@@ -94,7 +94,7 @@ format:
     code-link: true
     code-fold: false
     code-line-numbers: true
-    code-overflow: wrap
+    code-overflow: scroll
     code-copy: hover
     highlight-style: a11y
     mainfont: ''

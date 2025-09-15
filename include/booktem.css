@@ -55,8 +55,10 @@ pre {
 
 /* fix code wrap with line numbers */
 pre > code.sourceCode > span {
-  text-indent: -4em;
-  padding-left: 4em;
+  display: inline;
+  text-indent: 0;
+  padding-left: 0;
+  text-indent: 0;
 }
 
 /* special styles */
