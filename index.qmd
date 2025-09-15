@@ -12,8 +12,12 @@
 
 ```{r, echo=FALSE}
 version <- R.version.string
+
+last_updated <- Sys.Date()
 ```
 
-**R Version:** This book has been written with `r version`.
+The online version of the book will always be the most up-to-date version with interactive exercises. Periodically, we create a PDF version of the book if that helps you work offline. We last knitted the book on `r last_updated`. 
+
+**R Version:** We wrote this book using `r version`.
 
 
