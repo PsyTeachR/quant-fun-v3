@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-<title>Fundamentals of Quantitative Analysis - 8&nbsp; Regression with one continuous predictor</title>
+<title>8&nbsp; Regression with one continuous predictor – Fundamentals of Quantitative Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -56,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -98,7 +99,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -107,6 +114,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -117,7 +125,32 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <link rel="stylesheet" href="include/booktem.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/glossary.css">
@@ -127,23 +160,23 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-lm-continuous.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression with one continuous predictor</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-lm-continuous.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression with one continuous predictor</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Fundamentals of Quantitative Analysis</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/PsyTeachR/quant-fundamentals-v3" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PsyTeachR/quant-fundamentals-v3" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -283,9 +316,9 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -318,7 +351,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -338,6 +371,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   <ul class="collapse">
 <li><a href="#activity-3---visualise-the-relationship" id="toc-activity-3---visualise-the-relationship" class="nav-link" data-scroll-target="#activity-3---visualise-the-relationship"><span class="header-section-number">8.2.1</span> Activity 3 - Visualise the relationship</a></li>
   <li><a href="#activity-4---calculate-the-correlation-coefficient" id="toc-activity-4---calculate-the-correlation-coefficient" class="nav-link" data-scroll-target="#activity-4---calculate-the-correlation-coefficient"><span class="header-section-number">8.2.2</span> Activity 4 - Calculate the correlation coefficient</a></li>
+  <li><a href="#reporting-your-correlation-reproducibly" id="toc-reporting-your-correlation-reproducibly" class="nav-link" data-scroll-target="#reporting-your-correlation-reproducibly"><span class="header-section-number">8.2.3</span> Reporting your correlation reproducibly</a></li>
   </ul>
 </li>
   <li>
@@ -360,7 +394,12 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   <li><a href="#checking-all-the-assumptions" id="toc-checking-all-the-assumptions" class="nav-link" data-scroll-target="#checking-all-the-assumptions"><span class="header-section-number">8.4.6</span> Checking all the assumptions</a></li>
   </ul>
 </li>
-  <li><a href="#reporting-your-results" id="toc-reporting-your-results" class="nav-link" data-scroll-target="#reporting-your-results"><span class="header-section-number">8.5</span> Reporting your results</a></li>
+  <li>
+<a href="#reporting-your-results" id="toc-reporting-your-results" class="nav-link" data-scroll-target="#reporting-your-results"><span class="header-section-number">8.5</span> Reporting your results</a>
+  <ul class="collapse">
+<li><a href="#formatting-your-results-reproducibly" id="toc-formatting-your-results-reproducibly" class="nav-link" data-scroll-target="#formatting-your-results-reproducibly"><span class="header-section-number">8.5.1</span> Formatting your results reproducibly</a></li>
+  </ul>
+</li>
   <li>
 <a href="#test-yourself" id="toc-test-yourself" class="nav-link" data-scroll-target="#test-yourself"><span class="header-section-number">8.6</span> Test Yourself</a>
   <ul class="collapse">
@@ -370,7 +409,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
   <li><a href="#words-from-this-chapter" id="toc-words-from-this-chapter" class="nav-link" data-scroll-target="#words-from-this-chapter"><span class="header-section-number">8.7</span> Words from this Chapter</a></li>
   <li><a href="#end-of-chapter" id="toc-end-of-chapter" class="nav-link" data-scroll-target="#end-of-chapter"><span class="header-section-number">8.8</span> End of chapter</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/08-lm-continuous.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/08-lm-continuous.qmd" class="toc-action">View source</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/08-lm-continuous.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/08-lm-continuous.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -388,6 +427,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
     
   </div>
   
+
 
 </header><p>So far in this book, we have been building your data wrangling and visualisation skills and you now have the basis for a lot of the work you will do in research. Most of the work in data analysis is invested in getting your data into an appropriate form for analysis. Once you get there, the functions for inferential statistics are pretty short, but the challenge now comes to expressing your design as a statistical model and interpreting the output.</p>
 <p>In this chapter, we focus on simple linear regression for testing research questions and hypotheses for the relationship between two continuous predictors. We will also explore the concepts of correlation and checking the statistical assumptions of your regression model.</p>
@@ -542,7 +582,7 @@ Try this
 </div>
 </div>
 <p>In <code>dawtry_clean</code>, we have the following variables:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 41%">
@@ -632,7 +672,7 @@ Try this
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -697,7 +737,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 17%">
 <col style="width: 12%">
@@ -759,7 +799,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 12%">
@@ -861,7 +901,7 @@ Show me the solution
 <span id="cb6-6"><a href="#cb6-6"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -875,7 +915,7 @@ Show me the solution
 <span id="cb7-5"><a href="#cb7-5"></a>            <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
 <col style="width: 12%">
@@ -922,6 +962,66 @@ Show me the solution
 </div>
 </div>
 </div>
+</section><section id="reporting-your-correlation-reproducibly" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="reporting-your-correlation-reproducibly">
+<span class="header-section-number">8.2.3</span> Reporting your correlation reproducibly</h3>
+<p>When you write reports, you can take the numbers from your output and type them out but it is easy to make typos or forget to update your numbers. By writing reproducible reports in R, you can avoid this by adding a little code to format the numbers into APA format.</p>
+<p>For correlations, the first step is saving your <code>correlation()</code> function as an object.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>fairness_redist_object <span class="ot">&lt;-</span> <span class="fu">correlation</span>(<span class="at">data =</span> dawtry_clean, </span>
+<span id="cb8-2"><a href="#cb8-2"></a>                                      <span class="at">select =</span> <span class="st">"fairness_satisfaction"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>                                      <span class="at">select2 =</span> <span class="st">"redistribution"</span>,  </span>
+<span id="cb8-4"><a href="#cb8-4"></a>                                      <span class="at">method =</span> <span class="st">"pearson"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>                                      <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you look in the Environment, the <pkg>correlation</pkg> package helpfully saves the output as a data frame which makes it easy to work with. For the following code, this is a function we have created, so we do not expect you to understand everything at this point. You just need to copy and paste it into your .Rmd file before you want to reference the correlation. Click show the correlation formatting function as we initially hide it to avoid taking up lots of space.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Show the correlation formatting function</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>report_correlation <span class="ot">&lt;-</span> <span class="cf">function</span>(correlation_object){</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># This function will only work for correlation package objects</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="co"># Step 1 = save all the numbers with formatting </span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  r_type <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(correlation_object<span class="sc">$</span>Method <span class="sc">==</span> <span class="st">"Pearson correlation"</span>, </span>
+<span id="cb9-5"><a href="#cb9-5"></a>                   <span class="st">"$r$ "</span>, <span class="co"># if true, report as Pearson correlation</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>                   <span class="st">"$r_s$ "</span>) <span class="co"># if false, report as Spearman correlation</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="co"># save degrees of freedom</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  df <span class="ot">&lt;-</span> correlation_object<span class="sc">$</span>df_error</span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="co"># save r rounded to 3 decimals with any trailing zeros</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  r <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.3f"</span>, <span class="fu">round</span>(correlation_object<span class="sc">$</span>r, <span class="dv">3</span>))</span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="co"># save p value with formatting if less than .001</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>  pval <span class="ot">&lt;-</span> correlation_object<span class="sc">$</span>p</span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>  }</span>
+<span id="cb9-20"><a href="#cb9-20"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>  lower_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(correlation_object<span class="sc">$</span>CI_low, <span class="dv">3</span>)</span>
+<span id="cb9-22"><a href="#cb9-22"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>  upper_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(correlation_object<span class="sc">$</span>CI_high, <span class="dv">3</span>)</span>
+<span id="cb9-24"><a href="#cb9-24"></a>  <span class="co"># Switch CIs depending on sign </span></span>
+<span id="cb9-25"><a href="#cb9-25"></a>  r_CI <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(r <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb9-26"><a href="#cb9-26"></a>                 <span class="fu">paste0</span>(lower_CI, <span class="st">", "</span>, upper_CI),</span>
+<span id="cb9-27"><a href="#cb9-27"></a>                 <span class="fu">paste0</span>(upper_CI, <span class="st">", "</span>, lower_CI))</span>
+<span id="cb9-28"><a href="#cb9-28"></a>  </span>
+<span id="cb9-29"><a href="#cb9-29"></a>  <span class="co"># Step 2 = add them together in APA format</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>  output <span class="ot">&lt;-</span> <span class="fu">paste0</span>(r_type, </span>
+<span id="cb9-31"><a href="#cb9-31"></a>                   <span class="st">"("</span>, df,<span class="st">") = "</span>,</span>
+<span id="cb9-32"><a href="#cb9-32"></a>                   r,</span>
+<span id="cb9-33"><a href="#cb9-33"></a>                   pval,</span>
+<span id="cb9-34"><a href="#cb9-34"></a>                   <span class="st">", 95% CI = ["</span>, r_CI, <span class="st">"]"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35"></a>  </span>
+<span id="cb9-36"><a href="#cb9-36"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb9-37"><a href="#cb9-37"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Once you have saved the object and added the formatting function, you can use the function to format your correlation:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">report_correlation</span>(fairness_redist_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "$r$ (303) = -0.700, $p$ &lt; .001, 95% CI = [-0.638, -0.753]"</code></pre>
+</div>
+</div>
+<p>You can add that as inline code to insert into your report to make your inferential statistics reproducible. Just note it’s difficult to apply all the APA format details, so you might need to remove leading zeros, add italics to the math symbols etc.</p>
 </section></section><section id="linear-regression-with-one-continuous-predictor" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="linear-regression-with-one-continuous-predictor">
 <span class="header-section-number">8.3</span> Linear regression with one continuous predictor</h2>
 <p>Now you know how to calculate a correlation in R, we can turn to simple linear regression as a more flexible tool for modelling the relationship between variables.</p>
@@ -930,19 +1030,19 @@ Show me the solution
 <span class="header-section-number">8.3.1</span> Activity 5- Calculating descriptive statistics</h3>
 <p>For all the information we want to include in a report, calculating descriptive statistics is helpful for the reader to show the context behind the results you present. Here, we can report the mean and standard deviation of our two variables.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dawtry_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="co"># pivot longer to avoid repeating yourself</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> fairness_satisfaction<span class="sc">:</span>redistribution,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>               <span class="at">names_to =</span> <span class="st">"Variable"</span>, </span>
-<span id="cb8-5"><a href="#cb8-5"></a>               <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="co"># group by Variable to get one value per variable</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">group_by</span>(Variable) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-8"><a href="#cb8-8"></a>  <span class="co"># mean and SD, rounded to 2 decimals</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">summarise</span>(<span class="at">mean_variable =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Value), <span class="dv">2</span>),</span>
-<span id="cb8-10"><a href="#cb8-10"></a>            <span class="at">sd_variable =</span> <span class="fu">round</span>(<span class="fu">sd</span>(Value), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dawtry_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="co"># pivot longer to avoid repeating yourself</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> fairness_satisfaction<span class="sc">:</span>redistribution,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>               <span class="at">names_to =</span> <span class="st">"Variable"</span>, </span>
+<span id="cb12-5"><a href="#cb12-5"></a>               <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="co"># group by Variable to get one value per variable</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">group_by</span>(Variable) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="co"># mean and SD, rounded to 2 decimals</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">summarise</span>(<span class="at">mean_variable =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Value), <span class="dv">2</span>),</span>
+<span id="cb12-10"><a href="#cb12-10"></a>            <span class="at">sd_variable =</span> <span class="fu">round</span>(<span class="fu">sd</span>(Value), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;">Variable</th>
 <th style="text-align: right;">mean_variable</th>
@@ -984,8 +1084,8 @@ Note
 <p>Instead of a standardised correlation coefficient, we can frame it as whether knowing fairness and satisfaction can predict values of support for wealth redistribution. The design is still correlational, so it does not tell us anything about a causal relationship in isolation. We use the word predict in the statistical sense, where we can ask whether knowing values of one variable help us predict values of another variable with a degree of error.</p>
 <p>The first step is to create an object (<code>lm_redistribution</code>) for the linear model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>lm_redistribution <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> fairness_satisfaction,</span>
-<span id="cb9-2"><a href="#cb9-2"></a>                        <span class="at">data =</span> dawtry_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>lm_redistribution <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> fairness_satisfaction,</span>
+<span id="cb13-2"><a href="#cb13-2"></a>                        <span class="at">data =</span> dawtry_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> is built into R and is incredibly flexible for creating linear regression models.</p>
 <ul>
@@ -1006,9 +1106,9 @@ Note
 <p>In some resources, you might see people enter the same model as <code>redistribution ~ 1 + fairness_satisfaction</code>. The <code>1 +</code> component explicitly tells R to fit an intercept, plus a slope from <code>fairness_satisfaction</code>. R includes an intercept by default, so you do not need to add it, but some people like to include it for clarity.</p>
 </div>
 </div>
-<p>When you create this object, it stores a bunch of information, but does not really tell us all the statistics we expect. If you simply print the object in the console, it will tell you the intercept and coefficient(s), but none of the model fitting nor hypothesis testing values. If you look at the object in the R environment, you will see it is a <a href="https://psyteachr.github.io/glossary/l#list" target="_blank" class="glossary" title="A container data type that allows items with different data types to be grouped together.">list</a> containing several elements. It stores things like the model, the residuals, and other information you can use.</p>
+<p>When you create this object, it stores a bunch of information, but does not really tell us all the statistics we expect. If you simply print the object in the console, it will tell you the intercept and coefficient(s), but none of the model fitting nor hypothesis testing values. If you look at the object in the R environment, you will see it is a list containing several elements. It stores things like the model, the residuals, and other information you can use.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>lm_redistribution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>lm_redistribution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1021,7 +1121,7 @@ Coefficients:
 </div>
 <p>To get that extra information, we need to call the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function around the linear model object to explore it’s properties like estimates and model fit.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">summary</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1080,7 +1180,7 @@ What does 2e-16 mean?
 <p>For the <em>p</em>-value here, the output looks a little weird. R reports very small or very large numbers using scientific notation to save space. We normally report <em>p</em>-values to three decimals, so we report anything smaller as <em>p</em> &lt; .001 to say it is smaller than this.</p>
 <p>If you want to see the real number, you can use the following function which shows just how small the <em>p</em>-value is:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">format</span>(<span class="fl">2e-16</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">format</span>(<span class="fl">2e-16</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "0.0000000000000002"</code></pre>
 </div>
@@ -1110,7 +1210,7 @@ How are correlation and regression the same?
 <span class="header-section-number">8.3.3</span> Activity 7 - Calculating confidence intervals</h3>
 <p>In the standard <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> output, we get most of the key values we need for our inferential statistics, but the one thing missing is confidence intervals around our estimates. Fortunately, R has a built-in function called <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code> for calculating confidence intervals using your linear model object.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">confint</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">confint</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                           2.5 %     97.5 %
 (Intercept)            5.1301581  5.5035664
@@ -1170,15 +1270,15 @@ Show me the solution
 <div class="callout-body-container callout-body">
 <p>The conclusions are the same as when we calculated the correlation where age is not a statistically significant predictor of support for wealth redistribution. As a regression model, we get the same conclusions expressed in a slightly different way. Age is negative, but the size of the slope is very small (-0.003) and non-significant (<em>p</em> = .625). We explain pretty much no variance in support for wealth redistribution (<span class="math inline">\(R^2\)</span> = .0008), so age is not very informative as a predictor.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Create lm object for age as a predictor</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>lm_age <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> age,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>             <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="co"># summary of the model object</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="fu">summary</span>(lm_age)</span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a><span class="co"># confidence intervals around estimates</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="fu">confint</span>(lm_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Create lm object for age as a predictor</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>lm_age <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> age,</span>
+<span id="cb22-3"><a href="#cb22-3"></a>             <span class="at">data =</span> dawtry_clean)</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># summary of the model object</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="fu">summary</span>(lm_age)</span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co"># confidence intervals around estimates</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="fu">confint</span>(lm_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1214,26 +1314,30 @@ age         -0.01351424 0.00812738</code></pre>
 <section id="centering-predictors" class="level4" data-number="8.3.4.1"><h4 data-number="8.3.4.1" class="anchored" data-anchor-id="centering-predictors">
 <span class="header-section-number">8.3.4.1</span> Centering predictors</h4>
 <p><a class="glossary" title="Usually, centering a predictor means subtracting the mean from each value, so the mean is 0. You can then interpret the intercept as the value of your outcome for the mean value of your predictor(s).">Centering</a> predictors is where you change the values of your predictor, but not their scale. Typically, this means substracting the mean of your predictor from each observation. This changes how you interpret the intercept of your regression model.</p>
-<p>Remember the interpretation of the intercept is the predicted value of your outcome when your predictor is set to 0. If 0 is not present in your data or a value of 0 would be uninformative, the intercept can be difficult to interpret. When you center your predictor, 0 becomes the mean value of your predictor. So, the intercept is now the predicted value of your outcome for the mean value of your predictor, but the slope itself does not change. You can see the impact of this by plotting the data side by side in <a href="#fig-centering-predictors">Figure&nbsp;<span>8.1</span></a>.</p>
+<p>Remember the interpretation of the intercept is the predicted value of your outcome when your predictor is set to 0. If 0 is not present in your data or a value of 0 would be uninformative, the intercept can be difficult to interpret. When you center your predictor, 0 becomes the mean value of your predictor. So, the intercept is now the predicted value of your outcome for the mean value of your predictor, but the slope itself does not change. You can see the impact of this by plotting the data side by side in <a href="#fig-centering-predictors" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="co"># subtract fairness values from mean of fairness</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">mutate</span>(<span class="at">fairness_center =</span> fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="co"># subtract fairness values from mean of fairness</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">mutate</span>(<span class="at">fairness_center =</span> fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-centering-predictors" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/fig-centering-predictors-1.png" class="img-fluid figure-img" style="width:100.0%" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left."></p>
-<figcaption class="figure-caption">Figure&nbsp;8.1: Top: The relationship between wealth redistribution and perceived fairness and satisfaction using raw values. Bottom: The relationship after centering perceived fairness and satisfaction values.</figcaption></figure>
+<div id="fig-centering-predictors" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-centering-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="08-lm-continuous_files/figure-html/fig-centering-predictors-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-centering-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Top: The relationship between wealth redistribution and perceived fairness and satisfaction using raw values. Bottom: The relationship after centering perceived fairness and satisfaction values.
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The relationship between the two variables is exactly the same, but the values of fairness and satisfaction shifted so the mean is 0. If you create a new linear model object, you can see the difference this makes to the output.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>lm_center <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> fairness_center, </span>
-<span id="cb21-2"><a href="#cb21-2"></a>                <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">summary</span>(lm_center)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>lm_center <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> fairness_center, </span>
+<span id="cb25-2"><a href="#cb25-2"></a>                <span class="at">data =</span> dawtry_clean)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="fu">summary</span>(lm_center)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1261,17 +1365,17 @@ F-statistic: 291.7 on 1 and 303 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><a class="glossary" title="Standardising involves substracting the variable mean from each value and dividing it by the variable standard deviation. It then has the property of a mean of 0 and standard deviation of 1, so you interpret the units as standard deviations.">Standardising</a> predictors is where you first convert your values to z-scores. This means you interpret the values as standard deviations rather than your original units. This is more useful in multiple regression (Chapter 14) to compare the magnitude of predictors, but it is useful to get used to now when you only have one predictor to focus on.</p>
 <p>The first step is to standardise <strong>all</strong> your variables, not just the predictor this time. This involves subtracting the mean of your variable from each value, and dividing by the standard deviation of the variable. They now have a mean of 0 and a standard deviation of 1.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Be careful with the bracket placement to subtract the mean first</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">mutate</span>(<span class="at">redistribution_std =</span> (redistribution <span class="sc">-</span> <span class="fu">mean</span>(redistribution)) <span class="sc">/</span> <span class="fu">sd</span>(redistribution),</span>
-<span id="cb23-4"><a href="#cb23-4"></a>         <span class="at">fairness_std =</span> (fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction)) <span class="sc">/</span> <span class="fu">sd</span>(fairness_satisfaction))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Be careful with the bracket placement to subtract the mean first</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">mutate</span>(<span class="at">redistribution_std =</span> (redistribution <span class="sc">-</span> <span class="fu">mean</span>(redistribution)) <span class="sc">/</span> <span class="fu">sd</span>(redistribution),</span>
+<span id="cb27-4"><a href="#cb27-4"></a>         <span class="at">fairness_std =</span> (fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction)) <span class="sc">/</span> <span class="fu">sd</span>(fairness_satisfaction))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we enter them into the model, we no longer have values in the original units of measurement, we now have them expressed as standard deviations.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>lm_standardised <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution_std <span class="sc">~</span> fairness_std, </span>
-<span id="cb24-2"><a href="#cb24-2"></a>                      <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="fu">summary</span>(lm_standardised)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>lm_standardised <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution_std <span class="sc">~</span> fairness_std, </span>
+<span id="cb28-2"><a href="#cb28-2"></a>                      <span class="at">data =</span> dawtry_clean)</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">summary</span>(lm_standardised)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1283,7 +1387,7 @@ Residuals:
 
 Coefficients:
                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  -1.603e-16  4.094e-02    0.00        1    
+(Intercept)   7.387e-16  4.094e-02    0.00        1    
 fairness_std -7.003e-01  4.101e-02  -17.08   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1307,10 +1411,10 @@ Tip
 <div class="callout-body-container callout-body">
 <p>It is important to demonstrate the underlying concepts first but if you want a shortcut without needing to standardise all your variables, the <pkg>effectsize</pkg> package has a handy function called <code>standardize_parameters()</code> which you can apply to your initial <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> object.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">standardize_parameters</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">standardize_parameters</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;">Parameter</th>
 <th style="text-align: right;">Std_Coefficient</th>
@@ -1358,8 +1462,8 @@ Tip
 <p>Assumptions 1-4 are pretty straight forward as they relate to your understanding of the design or a simple check on the data for non-zero variance (the responses are not all the exact same value).</p>
 <p>Assumptions 5-7 require diagnostic checks on the <a class="glossary" title="The difference between the observed value in the data and the predicted value from the model given its assumptions.">residuals</a> from the model. The residuals are the difference between your observed values in the data and the values your model predicts given it’s assumptions. If you remember back, we highlighted the model output mentioned <code>Residuals:</code> and they are saved within the model object.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># head shows the first 6 values </span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">head</span>(lm_redistribution<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># head shows the first 6 values </span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">head</span>(lm_redistribution<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         1          2          3          4          5          6 
  0.5806764 -0.6754769  0.4208311  0.2159084 -0.5279383 -0.5730156 </code></pre>
@@ -1387,14 +1491,14 @@ What does the $ symbol mean?
 <p>In your reading, you might see individual statistical tests to check these assumptions, but they have more limitations than benefits. The best way to check the assumptions is through diagnostic plots which express the model residuals in different ways. We want to walk through this longer way of checking assumptions to develop a solid understanding before showing you a shortcut to see them all below.</p>
 <p>In the code below, we use a format you will be less familiar with as all these functions come from base R. If you just run the code for the diagnostic plots <code>plot(lm_redistribution)</code>, each one gets individually printed to your Plots window. Here, we create a 2x2 panel to show them all together.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Change the panel layout to 2 x 2</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># plot the diagnostic plots </span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">plot</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Change the panel layout to 2 x 2</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="co"># plot the diagnostic plots </span></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="fu">plot</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1404,11 +1508,11 @@ What does the $ symbol mean?
 <span class="header-section-number">8.4.2</span> Checking linearity</h3>
 <p>To isolate each plot, we can use the <code>which</code> argument. Plot 1 is a residuals vs fitted plot and helps us check linearity by showing the residuals on the y-axis and the fitted (predicted) values on the x-axis.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
-<span id="cb30-2"><a href="#cb30-2"></a>     <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
+<span id="cb34-2"><a href="#cb34-2"></a>     <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1433,11 +1537,11 @@ Error mode
 <span class="header-section-number">8.4.3</span> Checking normality</h3>
 <p>Plot 2 is a qq-plot (quantile-quantile plot) and helps us check the normality of the model residuals by showing the standardised residuals on the y-axis and the theoretical quantiles on the x-axis. A common misconception is your variables should all be normally distributed, but it is actually the model residuals which should be normal.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
-<span id="cb31-2"><a href="#cb31-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
+<span id="cb35-2"><a href="#cb35-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1449,11 +1553,11 @@ Error mode
 <span class="header-section-number">8.4.4</span> Checking homoscedasticity</h3>
 <p>Plot 3 is a scale-location plot and helps us check homoscedasticity by showing the square root of the standardised residuals on the y-axis and the fitted values on the x-axis. Homoscedasticity is where the variance of the residuals is approximately equal across the range of your predictor(s).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
-<span id="cb32-2"><a href="#cb32-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1465,22 +1569,22 @@ Error mode
 <p>Finally, there are two main plots to help us identify influential cases. You might have heard of the term outlier before and this is one way of classifying data points that are different enough to the rest of the data in a regression model. It is not strictly an assumption of linear regression, but it can affect the other assumptions. Identifying outliers is a complex decision and we will explore your options in the course materials and Chapter 11 on data screening.</p>
 <p>If you only run <code>plot(lm_redistribution)</code> and cycle through the plots, you do not see this version. This plot shows values of Cook’s distance for each observation in your data along the x-axis. Cook’s distance measures the influence of deleting a given observation, where higher values mean deleting that observation results in a larger change to the model estimates. There are different thresholds in the literature, but estimates range from 1, 0.5, to 4/n.&nbsp;We explore the decision making around this and your options in Chapter 11.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
-<span id="cb33-2"><a href="#cb33-2"></a>     <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
+<span id="cb37-2"><a href="#cb37-2"></a>     <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Finally, we get a residuals vs leverage plot to show influential cases in a slightly different way. Instead of just the Cook’s distance value of each observation, it plots the standardised residuals against leverage values.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
-<span id="cb34-2"><a href="#cb34-2"></a>     <span class="at">which =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">plot</span>(lm_redistribution, </span>
+<span id="cb38-2"><a href="#cb38-2"></a>     <span class="at">which =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1490,10 +1594,10 @@ Error mode
 <span class="header-section-number">8.4.6</span> Checking all the assumptions</h3>
 <p>Now we have covered the individual diagnostic plots, there is a handy function called <code>check_model()</code> from the <pkg>performance</pkg> package. This function reports all the diagnostic checks from <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, but tidies up the presentation and has some useful reminders of what you are looking for.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">check_model</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">check_model</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1567,10 +1671,10 @@ Show me the solution
 </ol>
 <p><strong>Looking at the first plot, the red line is pretty flat and horizontal, so we are happy with this.</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1580,10 +1684,10 @@ Show me the solution
 </ol>
 <p><strong>The qq-plot is fine for the vast majority of the range. We just have a few deviations in the extreme ends of the x-axis, but this is a byproduct of using a scale score as our outcome as responses cannot go beyond 1-6.</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1593,10 +1697,10 @@ Show me the solution
 </ol>
 <p><strong>The red line is pretty flat and it looks like there is a fairly even range of values across the x-axis range.</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">plot</span>(lm_age, <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1620,14 +1724,109 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Our model explained a statistically significant amount of variance in our outcome (adjusted <span class="math inline">\(R^2\)</span> = .489, F(1, 303) = 291.70, <em>p</em> &lt; .001). Fairness and satisfaction was a negative predictor, where for every 1-unit increase we expect support for redistribution to decrease by 0.40 (<span class="math inline">\(b_1 = -0.40\)</span>, 95% CI = [-0.44, -0.35], <em>p</em> &lt; .001).”</p>
 <p>Note: we have not included an APA formatted Figure title here as it is not easy to format in our book, so refer to the course materials for guidance.</p>
-</section><section id="test-yourself" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="test-yourself">
+<section id="formatting-your-results-reproducibly" class="level3" data-number="8.5.1"><h3 data-number="8.5.1" class="anchored" data-anchor-id="formatting-your-results-reproducibly">
+<span class="header-section-number">8.5.1</span> Formatting your results reproducibly</h3>
+<p>After the correlation example, we can also make regression models reproducible to add into your reports. For regression models, the first step is saving your model as an object <em>before</em> you apply the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function. We created this in activity 6, but as a reminder:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>lm_redistribution <span class="ot">&lt;-</span> <span class="fu">lm</span>(redistribution <span class="sc">~</span> fairness_satisfaction,</span>
+<span id="cb43-2"><a href="#cb43-2"></a>                        <span class="at">data =</span> dawtry_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To make the reporting flexible, we then separate the model into two components: the overall model and the slope. For the overall model, you must save the reporting function first.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Show the regression model formatting function</summary><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>report_regression_model <span class="ot">&lt;-</span> <span class="cf">function</span>(regression_object){</span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="co"># This function will only work for lm() objects</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="co"># Step 1 = apply the summary function so we have both objects</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a>  model_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(regression_object)</span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="co"># Step 2 = save all the numbers with formatting </span></span>
+<span id="cb44-6"><a href="#cb44-6"></a>  <span class="co"># Save adjusted R2 with any trailing zeroes</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a>  adj_r2 <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.3f"</span>, <span class="fu">round</span>(model_summary<span class="sc">$</span>adj.r.squared, <span class="dv">3</span>))</span>
+<span id="cb44-8"><a href="#cb44-8"></a>  <span class="co"># save model degrees of freedom</span></span>
+<span id="cb44-9"><a href="#cb44-9"></a>  df1 <span class="ot">&lt;-</span> model_summary<span class="sc">$</span>df[<span class="dv">1</span>]</span>
+<span id="cb44-10"><a href="#cb44-10"></a>  <span class="co"># save residual degrees of freedom</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a>  df2 <span class="ot">&lt;-</span> model_summary<span class="sc">$</span>df[<span class="dv">2</span>]</span>
+<span id="cb44-12"><a href="#cb44-12"></a>  <span class="co"># save F rounded to 2 decimals with any trailing zeroes</span></span>
+<span id="cb44-13"><a href="#cb44-13"></a>  Fval <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">round</span>(model_summary<span class="sc">$</span>fstatistic, <span class="dv">2</span>))[<span class="dv">1</span>]</span>
+<span id="cb44-14"><a href="#cb44-14"></a>  <span class="co"># save p value with formatting if less than .001</span></span>
+<span id="cb44-15"><a href="#cb44-15"></a>  pval <span class="ot">&lt;-</span> <span class="fu">anova</span>(regression_object)<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb44-16"><a href="#cb44-16"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
+<span id="cb44-17"><a href="#cb44-17"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb44-18"><a href="#cb44-18"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb44-19"><a href="#cb44-19"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
+<span id="cb44-20"><a href="#cb44-20"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
+<span id="cb44-21"><a href="#cb44-21"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb44-22"><a href="#cb44-22"></a>  }</span>
+<span id="cb44-23"><a href="#cb44-23"></a></span>
+<span id="cb44-24"><a href="#cb44-24"></a>  <span class="co"># Step 3 = add them together in APA format</span></span>
+<span id="cb44-25"><a href="#cb44-25"></a>  output <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"adjusted $R^2$ = "</span>,</span>
+<span id="cb44-26"><a href="#cb44-26"></a>                   adj_r2,</span>
+<span id="cb44-27"><a href="#cb44-27"></a>                   <span class="st">", "</span>,</span>
+<span id="cb44-28"><a href="#cb44-28"></a>                   <span class="st">"F("</span>, df1, <span class="st">", "</span>, df2, <span class="st">") = "</span>, Fval,</span>
+<span id="cb44-29"><a href="#cb44-29"></a>                   pval)</span>
+<span id="cb44-30"><a href="#cb44-30"></a>  </span>
+<span id="cb44-31"><a href="#cb44-31"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb44-32"><a href="#cb44-32"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then you can run the function on your regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">report_regression_model</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "adjusted $R^2$ = 0.489, F(2, 303) = 291.67, $p$ &lt; .001"</code></pre>
+</div>
+</div>
+<p>For the slope, there is a separate reporting function.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Show the regression slope formatting function</summary><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>report_regression_slope <span class="ot">&lt;-</span> <span class="cf">function</span>(regression_object){</span>
+<span id="cb47-2"><a href="#cb47-2"></a>  <span class="co"># This function will only work for lm() objects</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="co"># Step 1 = apply the summary function so we have both objects</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>  model_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(regression_object)</span>
+<span id="cb47-5"><a href="#cb47-5"></a>  <span class="co"># Step 2 = save all the numbers with formatting </span></span>
+<span id="cb47-6"><a href="#cb47-6"></a>  <span class="co"># $b_1 = -0.40$, 95% CI = [-0.44, -0.35], *p* &lt; .001)</span></span>
+<span id="cb47-7"><a href="#cb47-7"></a>  <span class="co"># Save slope with any trailing zeroes</span></span>
+<span id="cb47-8"><a href="#cb47-8"></a>  b_1 <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">round</span>(model_summary<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>], <span class="dv">2</span>))</span>
+<span id="cb47-9"><a href="#cb47-9"></a>  <span class="co"># save p value with formatting if less than .001</span></span>
+<span id="cb47-10"><a href="#cb47-10"></a>  pval <span class="ot">&lt;-</span> model_summary<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb47-11"><a href="#cb47-11"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
+<span id="cb47-12"><a href="#cb47-12"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb47-13"><a href="#cb47-13"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb47-14"><a href="#cb47-14"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
+<span id="cb47-15"><a href="#cb47-15"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
+<span id="cb47-16"><a href="#cb47-16"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb47-17"><a href="#cb47-17"></a>  }</span>
+<span id="cb47-18"><a href="#cb47-18"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb47-19"><a href="#cb47-19"></a>  lower_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">confint</span>(regression_object)[<span class="dv">2</span>, <span class="dv">1</span>], <span class="dv">2</span>)</span>
+<span id="cb47-20"><a href="#cb47-20"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb47-21"><a href="#cb47-21"></a>  upper_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">confint</span>(regression_object)[<span class="dv">2</span>, <span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb47-22"><a href="#cb47-22"></a>  <span class="co"># Switch CIs depending on sign </span></span>
+<span id="cb47-23"><a href="#cb47-23"></a>  b1_CI <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(b_1 <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb47-24"><a href="#cb47-24"></a>                 <span class="fu">paste0</span>(lower_CI, <span class="st">", "</span>, upper_CI),</span>
+<span id="cb47-25"><a href="#cb47-25"></a>                 <span class="fu">paste0</span>(upper_CI, <span class="st">", "</span>, lower_CI))</span>
+<span id="cb47-26"><a href="#cb47-26"></a>  </span>
+<span id="cb47-27"><a href="#cb47-27"></a>  <span class="co"># Step 3 = add them together in APA format</span></span>
+<span id="cb47-28"><a href="#cb47-28"></a>  output <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"$b_1$ = "</span>,</span>
+<span id="cb47-29"><a href="#cb47-29"></a>                   b_1,</span>
+<span id="cb47-30"><a href="#cb47-30"></a>                   <span class="st">", 95% CI = ["</span>, b1_CI, <span class="st">"]"</span>,</span>
+<span id="cb47-31"><a href="#cb47-31"></a>                   pval)</span>
+<span id="cb47-32"><a href="#cb47-32"></a>  </span>
+<span id="cb47-33"><a href="#cb47-33"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb47-34"><a href="#cb47-34"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then you can run the function on your regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">report_regression_slope</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "$b_1$ = -0.40, 95% CI = [-0.35, -0.44], $p$ &lt; .001"</code></pre>
+</div>
+</div>
+</section></section><section id="test-yourself" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="test-yourself">
 <span class="header-section-number">8.6</span> Test Yourself</h2>
 <p>To end the chapter, we have some knowledge check questions to test your understanding of the concepts we covered in the chapter. We then have some error mode tasks to see if you can find the solution to some common errors in the concepts we covered in this chapter.</p>
 <section id="knowledge-check" class="level3" data-number="8.6.1"><h3 data-number="8.6.1" class="anchored" data-anchor-id="knowledge-check">
@@ -1640,7 +1839,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="08-lm-continuous_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1688,53 +1887,53 @@ F-statistic: 6.861 on 1 and 303 DF,  p-value: 0.009251</code></pre>
 <p>The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on simple linear regression between two continuous variables. There are not many outright errors that people make here, more misspecifications that are not doing what you think they are doing.</p>
 <p>Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Load the packages below</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="fu">library</span>(effectsize)</span>
-<span id="cb40-4"><a href="#cb40-4"></a><span class="fu">library</span>(correlation)</span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="fu">library</span>(performance)</span>
-<span id="cb40-6"><a href="#cb40-6"></a></span>
-<span id="cb40-7"><a href="#cb40-7"></a><span class="co"># Load the data file</span></span>
-<span id="cb40-8"><a href="#cb40-8"></a><span class="co"># This should be the Dawtry_2015.csv file </span></span>
-<span id="cb40-9"><a href="#cb40-9"></a>dawtry_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Dawtry_2015.csv"</span>)</span>
-<span id="cb40-10"><a href="#cb40-10"></a></span>
-<span id="cb40-11"><a href="#cb40-11"></a><span class="co"># Reverse code redist2 and redist4</span></span>
-<span id="cb40-12"><a href="#cb40-12"></a>dawtry_data <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span></span>
-<span id="cb40-13"><a href="#cb40-13"></a>  <span class="fu">mutate</span>(<span class="at">redist2_R =</span> <span class="dv">7</span> <span class="sc">-</span> redist2,</span>
-<span id="cb40-14"><a href="#cb40-14"></a>         <span class="at">redist4_R =</span> <span class="dv">7</span> <span class="sc">-</span> redist4)</span>
-<span id="cb40-15"><a href="#cb40-15"></a></span>
-<span id="cb40-16"><a href="#cb40-16"></a><span class="co"># calculate mean fairness and satisfaction score  </span></span>
-<span id="cb40-17"><a href="#cb40-17"></a>fairness_satisfaction <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
-<span id="cb40-18"><a href="#cb40-18"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> fairness<span class="sc">:</span>satisfaction, </span>
-<span id="cb40-19"><a href="#cb40-19"></a>               <span class="at">names_to =</span> <span class="st">"Items"</span>, </span>
-<span id="cb40-20"><a href="#cb40-20"></a>               <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-21"><a href="#cb40-21"></a>  <span class="fu">group_by</span>(PS) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-22"><a href="#cb40-22"></a>  <span class="fu">summarise</span>(<span class="at">fairness_satisfaction =</span> <span class="fu">mean</span>(Response)) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-23"><a href="#cb40-23"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb40-24"><a href="#cb40-24"></a></span>
-<span id="cb40-25"><a href="#cb40-25"></a><span class="co"># calculate mean wealth redistribution score  </span></span>
-<span id="cb40-26"><a href="#cb40-26"></a>redistribution <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
-<span id="cb40-27"><a href="#cb40-27"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(redist1, redist2_R, redist3, redist4_R), </span>
-<span id="cb40-28"><a href="#cb40-28"></a>               <span class="at">names_to =</span> <span class="st">"Items"</span>, </span>
-<span id="cb40-29"><a href="#cb40-29"></a>               <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-30"><a href="#cb40-30"></a>  <span class="fu">group_by</span>(PS) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-31"><a href="#cb40-31"></a>  <span class="fu">summarise</span>(<span class="at">redistribution =</span> <span class="fu">mean</span>(Response)) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-32"><a href="#cb40-32"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb40-33"><a href="#cb40-33"></a></span>
-<span id="cb40-34"><a href="#cb40-34"></a><span class="co"># join data and select columns for focus</span></span>
-<span id="cb40-35"><a href="#cb40-35"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
-<span id="cb40-36"><a href="#cb40-36"></a>  <span class="fu">inner_join</span>(fairness_satisfaction, <span class="at">by =</span> <span class="st">"PS"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-37"><a href="#cb40-37"></a>  <span class="fu">inner_join</span>(redistribution, <span class="at">by =</span> <span class="st">"PS"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-38"><a href="#cb40-38"></a>  <span class="fu">select</span>(PS, Household_Income<span class="sc">:</span>redistribution, <span class="sc">-</span>redist2_R, <span class="sc">-</span>redist4_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># Load the packages below</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="fu">library</span>(effectsize)</span>
+<span id="cb51-4"><a href="#cb51-4"></a><span class="fu">library</span>(correlation)</span>
+<span id="cb51-5"><a href="#cb51-5"></a><span class="fu">library</span>(performance)</span>
+<span id="cb51-6"><a href="#cb51-6"></a></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="co"># Load the data file</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a><span class="co"># This should be the Dawtry_2015.csv file </span></span>
+<span id="cb51-9"><a href="#cb51-9"></a>dawtry_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Dawtry_2015.csv"</span>)</span>
+<span id="cb51-10"><a href="#cb51-10"></a></span>
+<span id="cb51-11"><a href="#cb51-11"></a><span class="co"># Reverse code redist2 and redist4</span></span>
+<span id="cb51-12"><a href="#cb51-12"></a>dawtry_data <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span></span>
+<span id="cb51-13"><a href="#cb51-13"></a>  <span class="fu">mutate</span>(<span class="at">redist2_R =</span> <span class="dv">7</span> <span class="sc">-</span> redist2,</span>
+<span id="cb51-14"><a href="#cb51-14"></a>         <span class="at">redist4_R =</span> <span class="dv">7</span> <span class="sc">-</span> redist4)</span>
+<span id="cb51-15"><a href="#cb51-15"></a></span>
+<span id="cb51-16"><a href="#cb51-16"></a><span class="co"># calculate mean fairness and satisfaction score  </span></span>
+<span id="cb51-17"><a href="#cb51-17"></a>fairness_satisfaction <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
+<span id="cb51-18"><a href="#cb51-18"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> fairness<span class="sc">:</span>satisfaction, </span>
+<span id="cb51-19"><a href="#cb51-19"></a>               <span class="at">names_to =</span> <span class="st">"Items"</span>, </span>
+<span id="cb51-20"><a href="#cb51-20"></a>               <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-21"><a href="#cb51-21"></a>  <span class="fu">group_by</span>(PS) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-22"><a href="#cb51-22"></a>  <span class="fu">summarise</span>(<span class="at">fairness_satisfaction =</span> <span class="fu">mean</span>(Response)) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-23"><a href="#cb51-23"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb51-24"><a href="#cb51-24"></a></span>
+<span id="cb51-25"><a href="#cb51-25"></a><span class="co"># calculate mean wealth redistribution score  </span></span>
+<span id="cb51-26"><a href="#cb51-26"></a>redistribution <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
+<span id="cb51-27"><a href="#cb51-27"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(redist1, redist2_R, redist3, redist4_R), </span>
+<span id="cb51-28"><a href="#cb51-28"></a>               <span class="at">names_to =</span> <span class="st">"Items"</span>, </span>
+<span id="cb51-29"><a href="#cb51-29"></a>               <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-30"><a href="#cb51-30"></a>  <span class="fu">group_by</span>(PS) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-31"><a href="#cb51-31"></a>  <span class="fu">summarise</span>(<span class="at">redistribution =</span> <span class="fu">mean</span>(Response)) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-32"><a href="#cb51-32"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb51-33"><a href="#cb51-33"></a></span>
+<span id="cb51-34"><a href="#cb51-34"></a><span class="co"># join data and select columns for focus</span></span>
+<span id="cb51-35"><a href="#cb51-35"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_data <span class="sc">%&gt;%</span> </span>
+<span id="cb51-36"><a href="#cb51-36"></a>  <span class="fu">inner_join</span>(fairness_satisfaction, <span class="at">by =</span> <span class="st">"PS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-37"><a href="#cb51-37"></a>  <span class="fu">inner_join</span>(redistribution, <span class="at">by =</span> <span class="st">"PS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-38"><a href="#cb51-38"></a>  <span class="fu">select</span>(PS, Household_Income<span class="sc">:</span>redistribution, <span class="sc">-</span>redist2_R, <span class="sc">-</span>redist4_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Below, we have several variations of a misspecification. Copy and paste them into your R Markdown file below the code chunk to wrangle the data. Once you have copied the activities, click knit and look at the output you receive. See if you can identify the mistake and fix it before checking the answer.</p>
 <p><strong>Question 6</strong>. Copy the following code chunk into your R Markdown file and press knit. We want to create a simple linear regression model to specify <code>fairness_satisfaction</code> as our outcome variable and <code>Political_Preference</code> as our predictor. Have we expressed that accurately?</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(Political_Preference <span class="sc">~</span> fairness_satisfaction,</span>
-<span id="cb41-3"><a href="#cb41-3"></a>                        <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb41-4"><a href="#cb41-4"></a></span>
-<span id="cb41-5"><a href="#cb41-5"></a><span class="fu">summary</span>(lm_fairness)</span>
-<span id="cb41-6"><a href="#cb41-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1"></a><span class="in">```{r}</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="in">lm_fairness &lt;- lm(Political_Preference ~ fairness_satisfaction,</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="in">                        data = dawtry_clean)</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a></span>
+<span id="cb52-5"><a href="#cb52-5"></a><span class="in">summary(lm_fairness)</span></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1749,24 +1948,24 @@ Explain the solution
 <div class="callout-body-container callout-body">
 <p>In this example, we mixed up the variables. The formula in <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> has the form <code>outcome ~ predictor</code>, so we mixed up the order. In simple linear regression, it makes no difference to the slope, but it is important to be able to express your model accurately and it would make a difference once you scale up to multiple linear regression.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(fairness_satisfaction <span class="sc">~</span> Political_Preference,</span>
-<span id="cb42-2"><a href="#cb42-2"></a>                        <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb42-3"><a href="#cb42-3"></a>                        </span>
-<span id="cb42-4"><a href="#cb42-4"></a><span class="fu">summary</span>(lm_fairness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(fairness_satisfaction <span class="sc">~</span> Political_Preference,</span>
+<span id="cb53-2"><a href="#cb53-2"></a>                        <span class="at">data =</span> dawtry_clean)</span>
+<span id="cb53-3"><a href="#cb53-3"></a>                        </span>
+<span id="cb53-4"><a href="#cb53-4"></a><span class="fu">summary</span>(lm_fairness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><strong>Question 7</strong>. Copy the following code chunk into your R Markdown file and press knit. We want to standardise the outcome and predictors, so that we get the intercept and slope estimates in standard deviations. Have we expressed that accurately?</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">mutate</span>(<span class="at">fairness_std =</span> (fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction)) <span class="sc">/</span> <span class="fu">sd</span>(fairness_satisfaction))</span>
-<span id="cb43-4"><a href="#cb43-4"></a></span>
-<span id="cb43-5"><a href="#cb43-5"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(fairness_std <span class="sc">~</span> Political_Preference,</span>
-<span id="cb43-6"><a href="#cb43-6"></a>                        <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb43-7"><a href="#cb43-7"></a>                        </span>
-<span id="cb43-8"><a href="#cb43-8"></a><span class="fu">summary</span>(lm_fairness)</span>
-<span id="cb43-9"><a href="#cb43-9"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1"></a><span class="in">```{r}</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="in">dawtry_clean &lt;- dawtry_clean %&gt;% </span></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="in">  mutate(fairness_std = (fairness_satisfaction - mean(fairness_satisfaction)) / sd(fairness_satisfaction))</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a></span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="in">lm_fairness &lt;- lm(fairness_std ~ Political_Preference,</span></span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="in">                        data = dawtry_clean)</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a><span class="in">                        </span></span>
+<span id="cb54-8"><a href="#cb54-8"></a><span class="in">summary(lm_fairness)</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1781,14 +1980,14 @@ Explain the solution
 <div class="callout-body-container callout-body">
 <p>In this example, we only standardised the outcome. When we standardise predictors, we must standardise both the outcome and predictor so they are expressed in standard deviations. It is just when we center, we only center the predictor.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">mutate</span>(<span class="at">fairness_std =</span> (fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction)) <span class="sc">/</span> <span class="fu">sd</span>(fairness_satisfaction),</span>
-<span id="cb44-3"><a href="#cb44-3"></a>         <span class="at">Political_std =</span> (Political_Preference <span class="sc">-</span> <span class="fu">mean</span>(Political_Preference, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(Political_Preference, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb44-4"><a href="#cb44-4"></a></span>
-<span id="cb44-5"><a href="#cb44-5"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(fairness_std <span class="sc">~</span> Political_std,</span>
-<span id="cb44-6"><a href="#cb44-6"></a>                        <span class="at">data =</span> dawtry_clean)</span>
-<span id="cb44-7"><a href="#cb44-7"></a>                        </span>
-<span id="cb44-8"><a href="#cb44-8"></a><span class="fu">summary</span>(lm_fairness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>dawtry_clean <span class="ot">&lt;-</span> dawtry_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">mutate</span>(<span class="at">fairness_std =</span> (fairness_satisfaction <span class="sc">-</span> <span class="fu">mean</span>(fairness_satisfaction)) <span class="sc">/</span> <span class="fu">sd</span>(fairness_satisfaction),</span>
+<span id="cb55-3"><a href="#cb55-3"></a>         <span class="at">Political_std =</span> (Political_Preference <span class="sc">-</span> <span class="fu">mean</span>(Political_Preference, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(Political_Preference, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb55-4"><a href="#cb55-4"></a></span>
+<span id="cb55-5"><a href="#cb55-5"></a>lm_fairness <span class="ot">&lt;-</span> <span class="fu">lm</span>(fairness_std <span class="sc">~</span> Political_std,</span>
+<span id="cb55-6"><a href="#cb55-6"></a>                        <span class="at">data =</span> dawtry_clean)</span>
+<span id="cb55-7"><a href="#cb55-7"></a>                        </span>
+<span id="cb55-8"><a href="#cb55-8"></a><span class="fu">summary</span>(lm_fairness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1797,7 +1996,7 @@ Explain the solution
 <span class="header-section-number">8.7</span> Words from this Chapter</h2>
 <p>Below you will find a list of words that were used in this chapter that might be new to you in case it helps to have somewhere to refer back to what they mean. The links in this table take you to the entry for the words in the <a href="https://psyteachr.github.io/glossary/" target="_blank">PsyTeachR Glossary</a>. Note that the Glossary is written by numerous members of the team and as such may use slightly different terminology from that shown in the chapter.</p>
 <div class="cell" data-layout-align="center">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;">term</th>
 <th style="text-align: left;">definition</th>
@@ -1808,30 +2007,26 @@ Explain the solution
 <td style="text-align: left;">Usually, centering a predictor means subtracting the mean from each value, so the mean is 0. You can then interpret the intercept as the value of your outcome for the mean value of your predictor(s).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/l#list" class="glossary" target="_blank">list</a></td>
-<td style="text-align: left;">A container data type that allows items with different data types to be grouped together.</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/o#outcome" class="glossary" target="_blank">outcome</a></td>
 <td style="text-align: left;">The outcome (also known as the dependent variable) is the variable you are interested in seeing a potential change in.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/p#pearson" class="glossary" target="_blank">pearson</a></td>
 <td style="text-align: left;">A standardised measure of the linear relationship between two variables that makes stringent assumptions about the population.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/p#predictor" class="glossary" target="_blank">predictor</a></td>
 <td style="text-align: left;">The predictor (also known as an independent variable) is the variable you measure or manipulate to see how it is associated with changes in the outcome variable.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/r#residuals" class="glossary" target="_blank">residuals</a></td>
 <td style="text-align: left;">The difference between the observed value in the data and the predicted value from the model given its assumptions.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/s#spearman" class="glossary" target="_blank">spearman</a></td>
 <td style="text-align: left;">A standardised measure of the relationship between two variables that assumes a monotonic - but not necessarily a linear - relationship and makes less stringent assumptions about the population.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/s#standardised-predictors" class="glossary" target="_blank">standardised-predictors</a></td>
 <td style="text-align: left;">Standardising involves substracting the variable mean from each value and dividing it by the variable standard deviation. It then has the property of a mean of 0 and standard deviation of 1, so you interpret the units as standard deviations.</td>
 </tr>
@@ -1845,7 +2040,7 @@ Explain the solution
 <p>In the next chapter, we reinforce most of the content by applying simple linear regression to a categorical predictor. This is when you want to test for differences between two groups on your outcome instead of testing the relationship between two continuous variables.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-dawtry_why_2015" class="csl-entry" role="listitem">
 Dawtry, R. J., Sutton, R. M., &amp; Sibley, C. G. (2015). Why <span>Wealthier</span> <span>People</span> <span>Think</span> <span>People</span> <span>Are</span> <span>Wealthier</span>, and <span>Why</span> <span>It</span> <span>Matters</span>: <span>From</span> <span>Social</span> <span>Sampling</span> to <span>Attitudes</span> to <span>Redistribution</span>. <em>Psychological Science</em>, <em>26</em>(9), 1389–1400. <a href="https://doi.org/10.1177/0956797615586560">https://doi.org/10.1177/0956797615586560</a>
 </div>
@@ -2125,6 +2320,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -2191,13 +2413,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2232,18 +2456,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2275,11 +2488,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2289,8 +2541,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2302,7 +2563,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2346,6 +2730,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2371,6 +2756,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2430,12 +2841,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./07-more-visualisation.html" class="pagination-link">
+      <a href="./07-more-visualisation.html" class="pagination-link" aria-label="Scatterplots, boxplots, and violin-boxplots">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scatterplots, boxplots, and violin-boxplots</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-lm-categorical.html" class="pagination-link">
+      <a href="./09-lm-categorical.html" class="pagination-link" aria-label="Regression with one categorical predictor">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression with one categorical predictor</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -2445,7 +2856,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">CC-BY-SA-4.0 (2024) James Bartlett &amp; Wilhelmiina Toivo</div>
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2024) James Bartlett &amp; Wilhelmiina Toivo</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/08-lm-continuous.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/08-lm-continuous.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

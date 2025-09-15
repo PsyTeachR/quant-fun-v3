@@ -372,6 +372,72 @@ correlation(data = dawtry_clean,
 
 :::
 
+### Reporting your correlation reproducibly
+
+When you write reports, you can take the numbers from your output and type them out but it is easy to make typos or forget to update your numbers. By writing reproducible reports in R, you can avoid this by adding a little code to format the numbers into APA format. 
+
+For correlations, the first step is saving your `correlation()` function as an object. 
+
+```{r}
+fairness_redist_object <- correlation(data = dawtry_clean, 
+                                      select = "fairness_satisfaction", 
+                                      select2 = "redistribution",  
+                                      method = "pearson", 
+                                      alternative = "two.sided")
+```
+
+If you look in the Environment, the <pkg>correlation</pkg> package helpfully saves the output as a data frame which makes it easy to work with. For the following code, this is a function we have created, so we do not expect you to understand everything at this point. You just need to copy and paste it into your .Rmd file before you want to reference the correlation. Click show the correlation formatting function as we initially hide it to avoid taking up lots of space. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the correlation formatting function"
+report_correlation <- function(correlation_object){
+  # This function will only work for correlation package objects
+  # Step 1 = save all the numbers with formatting 
+  r_type <- ifelse(correlation_object$Method == "Pearson correlation", 
+                   "$r$ ", # if true, report as Pearson correlation
+                   "$r_s$ ") # if false, report as Spearman correlation
+  # save degrees of freedom
+  df <- correlation_object$df_error
+  # save r rounded to 3 decimals with any trailing zeros
+  r <- sprintf("%.3f", round(correlation_object$r, 3))
+  # save p value with formatting if less than .001
+  pval <- correlation_object$p
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", $p$ = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", $p$ < .001"
+  }
+  # save lower 95% CI
+  lower_CI <- round(correlation_object$CI_low, 3)
+  # save lower 95% CI
+  upper_CI <- round(correlation_object$CI_high, 3)
+  # Switch CIs depending on sign 
+  r_CI <- ifelse(r > 0,
+                 paste0(lower_CI, ", ", upper_CI),
+                 paste0(upper_CI, ", ", lower_CI))
+  
+  # Step 2 = add them together in APA format
+  output <- paste0(r_type, 
+                   "(", df,") = ",
+                   r,
+                   pval,
+                   ", 95% CI = [", r_CI, "]")
+  
+  return(output)
+}
+```
+
+Once you have saved the object and added the formatting function, you can use the function to format your correlation:
+
+```{r}
+report_correlation(fairness_redist_object)
+```
+
+You can add that as inline code to insert into your report to make your inferential statistics reproducible. Just note it's difficult to apply all the APA format details, so you might need to remove leading zeros, add italics to the math symbols etc. 
+
 ## Linear regression with one continuous predictor
 
 Now you know how to calculate a correlation in R, we can turn to simple linear regression as a more flexible tool for modelling the relationship between variables. 
@@ -426,7 +492,7 @@ The function `lm()` is built into R and is incredibly flexible for creating line
 In some resources, you might see people enter the same model as `redistribution ~ 1 + fairness_satisfaction`. The `1 +` component explicitly tells R to fit an intercept, plus a slope from `fairness_satisfaction`. R includes an intercept by default, so you do not need to add it, but some people like to include it for clarity.
 :::
 
-When you create this object, it stores a bunch of information, but does not really tell us all the statistics we expect. If you simply print the object in the console, it will tell you the intercept and coefficient(s), but none of the model fitting nor hypothesis testing values. If you look at the object in the R environment, you will see it is a `r glossary("list")` containing several elements. It stores things like the model, the residuals, and other information you can use.
+When you create this object, it stores a bunch of information, but does not really tell us all the statistics we expect. If you simply print the object in the console, it will tell you the intercept and coefficient(s), but none of the model fitting nor hypothesis testing values. If you look at the object in the R environment, you will see it is a list containing several elements. It stores things like the model, the residuals, and other information you can use.
 
 ```{r}
 lm_redistribution
@@ -854,6 +920,109 @@ dawtry_clean %>%
 Our model explained a statistically significant amount of variance in our outcome (adjusted $R^2$ = .489, F(1, 303) = 291.70, *p* < .001). Fairness and satisfaction was a negative predictor, where for every 1-unit increase we expect support for redistribution to decrease by 0.40 ($b_1 = -0.40$, 95% CI = [-0.44, -0.35], *p* < .001)."
 
 Note: we have not included an APA formatted Figure title here as it is not easy to format in our book, so refer to the course materials for guidance. 
+
+### Formatting your results reproducibly
+
+After the correlation example, we can also make regression models reproducible to add into your reports. For regression models, the first step is saving your model as an object *before* you apply the `summary()` function. We created this in activity 6, but as a reminder: 
+
+```{r}
+lm_redistribution <- lm(redistribution ~ fairness_satisfaction,
+                        data = dawtry_clean)
+```
+
+To make the reporting flexible, we then separate the model into two components: the overall model and the slope. For the overall model, you must save the reporting function first. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the regression model formatting function"
+#| 
+report_regression_model <- function(regression_object){
+  # This function will only work for lm() objects
+  # Step 1 = apply the summary function so we have both objects
+  model_summary <- summary(regression_object)
+  # Step 2 = save all the numbers with formatting 
+  # Save adjusted R2 with any trailing zeroes
+  adj_r2 <- sprintf("%.3f", round(model_summary$adj.r.squared, 3))
+  # save model degrees of freedom
+  df1 <- model_summary$df[1]
+  # save residual degrees of freedom
+  df2 <- model_summary$df[2]
+  # save F rounded to 2 decimals with any trailing zeroes
+  Fval <- sprintf("%.2f", round(model_summary$fstatistic, 2))[1]
+  # save p value with formatting if less than .001
+  pval <- anova(regression_object)$`Pr(>F)`[1]
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", $p$ = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", $p$ < .001"
+  }
+
+  # Step 3 = add them together in APA format
+  output <- paste0("adjusted $R^2$ = ",
+                   adj_r2,
+                   ", ",
+                   "F(", df1, ", ", df2, ") = ", Fval,
+                   pval)
+  
+  return(output)
+}
+```
+
+Then you can run the function on your regression model.
+
+```{r}
+report_regression_model(lm_redistribution)
+```
+
+For the slope, there is a separate reporting function. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the regression slope formatting function"
+#| 
+report_regression_slope <- function(regression_object){
+  # This function will only work for lm() objects
+  # Step 1 = apply the summary function so we have both objects
+  model_summary <- summary(regression_object)
+  # Step 2 = save all the numbers with formatting 
+  # $b_1 = -0.40$, 95% CI = [-0.44, -0.35], *p* < .001)
+  # Save slope with any trailing zeroes
+  b_1 <- sprintf("%.2f", round(model_summary$coefficients[2, 1], 2))
+  # save p value with formatting if less than .001
+  pval <- model_summary$coefficients[2, 4]
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", $p$ = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", $p$ < .001"
+  }
+  # save lower 95% CI
+  lower_CI <- round(confint(regression_object)[2, 1], 2)
+  # save lower 95% CI
+  upper_CI <- round(confint(regression_object)[2, 2], 2)
+  # Switch CIs depending on sign 
+  b1_CI <- ifelse(b_1 > 0,
+                 paste0(lower_CI, ", ", upper_CI),
+                 paste0(upper_CI, ", ", lower_CI))
+  
+  # Step 3 = add them together in APA format
+  output <- paste0("$b_1$ = ",
+                   b_1,
+                   ", 95% CI = [", b1_CI, "]",
+                   pval)
+  
+  return(output)
+}
+```
+
+Then you can run the function on your regression model.
+
+```{r}
+report_regression_slope(lm_redistribution)
+```
 
 ## Test Yourself
 
