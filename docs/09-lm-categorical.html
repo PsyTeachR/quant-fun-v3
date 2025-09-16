@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-<title>9&nbsp; Regression with one categorical predictor – Fundamentals of Quantitative Analysis</title>
+<title>Fundamentals of Quantitative Analysis - 9&nbsp; Regression with one categorical predictor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -125,7 +125,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -160,13 +160,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-lm-categorical.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression with one categorical predictor</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -316,9 +316,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -371,8 +371,9 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#activity-3---visualising-the-difference" id="toc-activity-3---visualising-the-difference" class="nav-link" data-scroll-target="#activity-3---visualising-the-difference"><span class="header-section-number">9.2.1</span> Activity 3 - Visualising the difference</a></li>
   <li><a href="#activity-4---using-the-t.test-function" id="toc-activity-4---using-the-t.test-function" class="nav-link" data-scroll-target="#activity-4---using-the-t.test-function"><span class="header-section-number">9.2.2</span> Activity 4 - Using the <code>t.test()</code> function</a></li>
-  <li><a href="#activity-5---analysing-ranks-with-the-mann-whitney-u-test" id="toc-activity-5---analysing-ranks-with-the-mann-whitney-u-test" class="nav-link" data-scroll-target="#activity-5---analysing-ranks-with-the-mann-whitney-u-test"><span class="header-section-number">9.2.3</span> Activity 5 - Analysing ranks with the Mann-Whitney U test</a></li>
-  <li><a href="#activity-6---calculating-cohens-d" id="toc-activity-6---calculating-cohens-d" class="nav-link" data-scroll-target="#activity-6---calculating-cohens-d"><span class="header-section-number">9.2.4</span> Activity 6 - Calculating Cohen’s d</a></li>
+  <li><a href="#reporting-your-t-test-reproducibly" id="toc-reporting-your-t-test-reproducibly" class="nav-link" data-scroll-target="#reporting-your-t-test-reproducibly"><span class="header-section-number">9.2.3</span> Reporting your t-test reproducibly</a></li>
+  <li><a href="#activity-5---analysing-ranks-with-the-mann-whitney-u-test" id="toc-activity-5---analysing-ranks-with-the-mann-whitney-u-test" class="nav-link" data-scroll-target="#activity-5---analysing-ranks-with-the-mann-whitney-u-test"><span class="header-section-number">9.2.4</span> Activity 5 - Analysing ranks with the Mann-Whitney U test</a></li>
+  <li><a href="#activity-6---calculating-cohens-d" id="toc-activity-6---calculating-cohens-d" class="nav-link" data-scroll-target="#activity-6---calculating-cohens-d"><span class="header-section-number">9.2.5</span> Activity 6 - Calculating Cohen’s d</a></li>
   </ul>
 </li>
   <li>
@@ -807,14 +808,65 @@ sample estimates:
 </div>
 </div>
 <p>The difference here is specifying the <code>alternative</code> argument. You can use “less” or “greater” depending if you predict a negative (group A &lt; group B) or positive difference (group A &gt; group B).</p>
-</section><section id="activity-5---analysing-ranks-with-the-mann-whitney-u-test" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="activity-5---analysing-ranks-with-the-mann-whitney-u-test">
-<span class="header-section-number">9.2.3</span> Activity 5 - Analysing ranks with the Mann-Whitney U test</h3>
+</section><section id="reporting-your-t-test-reproducibly" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="reporting-your-t-test-reproducibly">
+<span class="header-section-number">9.2.3</span> Reporting your t-test reproducibly</h3>
+<p>Like correlations in Chapter 8, we can take objects like a t-test and add a little code to format the numbers into APA format. This means you can report your results reproducibly and avoid potential copy and paste errors.</p>
+<p>For t-tests, the first step is saving your <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function as an object.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>lopez_calories_object <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>                                <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you look in the Environment, you now have an object called <code>lopez_calories_object</code> which is a list of 10 items. For the following code, this is a function we have created, so we do not expect you to understand everything at this point as the objects are a little awkward to work with. You just need to copy and paste it into your .Rmd file before you want to reference the t-test. Click show the t-test formatting function as we initially hide it to avoid taking up lots of space.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Show the t-test formatting function</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>report_ttest <span class="ot">&lt;-</span> <span class="cf">function</span>(ttest_object){</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="co"># This function will only work for t-test objects</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="co"># Step 1 = save all the numbers with formatting </span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  tval <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">round</span>(ttest_object<span class="sc">$</span>statistic, <span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="co"># save degrees of freedom</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  df <span class="ot">&lt;-</span> <span class="fu">round</span>(ttest_object<span class="sc">$</span>parameter, <span class="dv">2</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="co"># save p value with formatting if less than .001</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  pval <span class="ot">&lt;-</span> ttest_object<span class="sc">$</span>p.value</span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>  }</span>
+<span id="cb13-16"><a href="#cb13-16"></a>  <span class="co"># save mean difference</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  meandiff <span class="ot">&lt;-</span> <span class="fu">round</span>(ttest_object<span class="sc">$</span>estimate[<span class="dv">1</span>] <span class="sc">-</span> ttest_object<span class="sc">$</span>estimate[<span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb13-18"><a href="#cb13-18"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>  lower_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(ttest_object<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="dv">2</span>)</span>
+<span id="cb13-20"><a href="#cb13-20"></a>  <span class="co"># save lower 95% CI</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a>  upper_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(ttest_object<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb13-22"><a href="#cb13-22"></a>  </span>
+<span id="cb13-23"><a href="#cb13-23"></a>  <span class="co"># Step 2 = add them together in APA format</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a>  output <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"$t$ ("</span>, df,<span class="st">") = "</span>,</span>
+<span id="cb13-25"><a href="#cb13-25"></a>                   tval,</span>
+<span id="cb13-26"><a href="#cb13-26"></a>                   pval,</span>
+<span id="cb13-27"><a href="#cb13-27"></a>                   <span class="st">", mean difference = "</span>, meandiff,</span>
+<span id="cb13-28"><a href="#cb13-28"></a>                   <span class="st">", 95% CI = ["</span>, lower_CI, <span class="st">", "</span>, upper_CI, <span class="st">"]"</span>)</span>
+<span id="cb13-29"><a href="#cb13-29"></a>  </span>
+<span id="cb13-30"><a href="#cb13-30"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb13-31"><a href="#cb13-31"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Once you have saved the object and added the formatting function, you can use the function to format your t-test:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">report_ttest</span>(lopez_calories_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "$t$ (453.45) = -4.86, $p$ &lt; .001, mean difference = -63.05, 95% CI = [-88.56, -37.54]"</code></pre>
+</div>
+</div>
+<p>You can add that as inline code to insert into your report to make your inferential statistics reproducible. Just note it’s difficult to apply all the APA format details, so you might need to remove leading zeros, add italics to the math symbols etc.</p>
+</section><section id="activity-5---analysing-ranks-with-the-mann-whitney-u-test" class="level3" data-number="9.2.4"><h3 data-number="9.2.4" class="anchored" data-anchor-id="activity-5---analysing-ranks-with-the-mann-whitney-u-test">
+<span class="header-section-number">9.2.4</span> Activity 5 - Analysing ranks with the Mann-Whitney U test</h3>
 <p>As a final type of test variation here, like the Spearman is a non-parametric version of correlation, the Mann-Whitney U test is a non-parametric version of a t-test. Instead of using the raw values, this test compares ranks between each group. You can use it when there are concerns with normality, outliers, or you are analysing a strictly ordinal outcome (more in Chapter 11).</p>
 <p>The format is the same as for the t-test, but instead of the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function, you have the <code><a href="https://rdrr.io/r/stats/wilcox.test.html">wilcox.test()</a></code> function (it also goes by the name Wilcoxon rank sum test).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">wilcox.test</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
-<span id="cb12-2"><a href="#cb12-2"></a>            <span class="at">data =</span> lopez_clean,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">wilcox.test</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb16-2"><a href="#cb16-2"></a>            <span class="at">data =</span> lopez_clean,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum test with continuity correction
@@ -831,16 +883,16 @@ difference in location
 </div>
 <p>The output is similar to the t-test, but adapted to analysing ranks in a non-parametric test. By setting the argument <code>conf.int</code> to TRUE, you get the unstandardised effect size and it’s confidence interval. Instead of the mean difference, you get the “difference in location”. This represents - to quote the documentation as it is a little awkward - “the median of the difference between a sample from x and a sample from y”. This means it is like a difference in medians, but the median difference in samples from each group rather than the median of the whole group.</p>
 <p>To summarise: A Mann-Whitney U test showed participants in the experimental group ate significantly more calories of soup than participants in the control group, <em>W</em> = 18827, <em>p</em> &lt; .001. For the difference in location, those in the experimental group ate 59.89 (95% CI = [39.92, 82.07]) more calories than those in the control group.</p>
-</section><section id="activity-6---calculating-cohens-d" class="level3" data-number="9.2.4"><h3 data-number="9.2.4" class="anchored" data-anchor-id="activity-6---calculating-cohens-d">
-<span class="header-section-number">9.2.4</span> Activity 6 - Calculating Cohen’s d</h3>
+</section><section id="activity-6---calculating-cohens-d" class="level3" data-number="9.2.5"><h3 data-number="9.2.5" class="anchored" data-anchor-id="activity-6---calculating-cohens-d">
+<span class="header-section-number">9.2.5</span> Activity 6 - Calculating Cohen’s d</h3>
 <p>Raw/unstandardised effect sizes are great for putting results in context, particularly when the units are comparable across studies. For our outcome in this study, differences in calories are easy to put in context.</p>
 <p>Alternatively, it can be useful to calculate standardised effect sizes. This helps for power analyses (more on that in Chapter 10) and when you want to compare across comparable studies with slightly different measurement scales.</p>
 <p>There are different formulas for calculating Cohen’s d, but if you know the t-value and degrees of freedom, you can calculate Cohen’s d through:</p>
 <p><span class="math inline">\(d = \frac{2t}{\sqrt{df}} = \frac{-9.725}{21.49} = -0.45\)</span></p>
 <p>It is important to know the concepts before you use shortcuts, but there is the <code>cohens_d()</code> function from the <pkg>effectsize</pkg> package which uses the same format as <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cohens_d</span>(F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
-<span id="cb14-2"><a href="#cb14-2"></a>         <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">cohens_d</span>(F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>         <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -916,32 +968,32 @@ Show me the solution
 <div class="callout-body-container callout-body">
 <p>The violin-boxplot shows little difference between the two groups on estimated calories consumed.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>lopez_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> CalEstimate, <span class="at">x =</span> Condition_label, <span class="at">fill =</span> Condition_label)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, </span>
-<span id="cb15-5"><a href="#cb15-5"></a>               <span class="at">fatten =</span> <span class="cn">NULL</span>) <span class="sc">+</span> </span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, </span>
-<span id="cb15-7"><a href="#cb15-7"></a>               <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_cl_boot"</span>, <span class="co"># confidence interval</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>               <span class="at">geom =</span> <span class="st">"errorbar"</span>, </span>
-<span id="cb15-10"><a href="#cb15-10"></a>               <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"E"</span>) <span class="sc">+</span> </span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Estimated Calories Consumed (kcals)"</span>) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">name =</span> <span class="st">"Study Condition"</span>) <span class="sc">+</span> </span>
-<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>lopez_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> CalEstimate, <span class="at">x =</span> Condition_label, <span class="at">fill =</span> Condition_label)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, </span>
+<span id="cb19-5"><a href="#cb19-5"></a>               <span class="at">fatten =</span> <span class="cn">NULL</span>) <span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, </span>
+<span id="cb19-7"><a href="#cb19-7"></a>               <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_cl_boot"</span>, <span class="co"># confidence interval</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>               <span class="at">geom =</span> <span class="st">"errorbar"</span>, </span>
+<span id="cb19-10"><a href="#cb19-10"></a>               <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"E"</span>) <span class="sc">+</span> </span>
+<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Estimated Calories Consumed (kcals)"</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">name =</span> <span class="st">"Study Condition"</span>) <span class="sc">+</span> </span>
+<span id="cb19-14"><a href="#cb19-14"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb19-15"><a href="#cb19-15"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>For our inferential statistics, a Welch t-test showed the difference is not statistically significant, <em>t</em> (455.06) = 1.60, <em>p</em> = .110.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> CalEstimate <span class="sc">~</span> Condition_label, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> CalEstimate <span class="sc">~</span> Condition_label, </span>
+<span id="cb20-2"><a href="#cb20-2"></a>       <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -958,8 +1010,8 @@ sample estimates:
 </div>
 <p>The control group estimated they consumed 17.88 (95% CI = [-4.08, 39.85]) more calories than the experimental group, but the difference was not significant. Expressed as a standardised effect size, this equates to Cohen’s d = 0.15 (95% CI = [-0.03, 0.33]).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">cohens_d</span>(CalEstimate <span class="sc">~</span> Condition_label, </span>
-<span id="cb18-2"><a href="#cb18-2"></a>         <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">cohens_d</span>(CalEstimate <span class="sc">~</span> Condition_label, </span>
+<span id="cb22-2"><a href="#cb22-2"></a>         <span class="at">data =</span> lopez_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -989,10 +1041,10 @@ sample estimates:
 <span class="header-section-number">9.3.1</span> Activity 7 - Descriptive statistics</h3>
 <p>For all the information we want to include in a report, calculating descriptive statistics is helpful for the reader to show the context behind the results you present. Here, we can report the mean and standard deviation of our outcome per group.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>lopez_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">group_by</span>(Condition_label) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>), </span>
-<span id="cb19-4"><a href="#cb19-4"></a>            <span class="at">sd_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>lopez_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">group_by</span>(Condition_label) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>), </span>
+<span id="cb23-4"><a href="#cb23-4"></a>            <span class="at">sd_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -1036,11 +1088,11 @@ Note
 <p>Like Chapter 8, we start by defining our regression model with a formula in the pattern <code>outcome ~ predictor</code> and specify the data frame you want to use. We must then use the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function around your model object to get all the statistics you need.</p>
 <p>There are two ways you can use a categorical predictor. First, we can code groups numerically which people called <a class="glossary" title="Entering a categorical predictor using two values such as 0 and 1.">dummy coding</a>. You code your first group 0 and you code your second group as 1, which maps on directly to how the regression model works. Let’s look at the output.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Condition as a factor containing 0 and 1</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>lm_cals_numbers <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition, </span>
-<span id="cb20-3"><a href="#cb20-3"></a>                      <span class="at">data =</span> lopez_clean)</span>
-<span id="cb20-4"><a href="#cb20-4"></a></span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">summary</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Condition as a factor containing 0 and 1</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>lm_cals_numbers <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition, </span>
+<span id="cb24-3"><a href="#cb24-3"></a>                      <span class="at">data =</span> lopez_clean)</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="fu">summary</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1080,11 +1132,11 @@ Does it matter if the slope is positive or negative?
 <p>Like the continuous predictor, we get values for <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>, showing we explain .046 (in other words, 4.6%) variance in the outcome through our condition manipulation. We then get the model fit statistics, but with a single predictor, the <em>p</em>-value is identifical to the slope.</p>
 <p>Alternatively, you can use character labels for your categorical predictor and it will still work. This time, we use <code>Condition_label</code>. By default, it will set the order of the reference and target groups alphabetically, but you can manually specify the order by setting factor levels.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Condition_label as characters</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>lm_cals_labels <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
-<span id="cb22-3"><a href="#cb22-3"></a>                     <span class="at">data =</span> lopez_clean)</span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">summary</span>(lm_cals_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Condition_label as characters</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>lm_cals_labels <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb26-3"><a href="#cb26-3"></a>                     <span class="at">data =</span> lopez_clean)</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="fu">summary</span>(lm_cals_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1118,10 +1170,10 @@ Note
 <div class="callout-body-container callout-body">
 <p>If you want to test specifying the factor order to see how it affects the output, try running this code prior to the regression model:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Specify group order of Experimental then Control</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>lopez_clean <span class="ot">&lt;-</span> lopez_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">mutate</span>(<span class="at">Condition_label =</span> <span class="fu">factor</span>(Condition_label, </span>
-<span id="cb24-4"><a href="#cb24-4"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Control"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Specify group order of Experimental then Control</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>lopez_clean <span class="ot">&lt;-</span> lopez_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">mutate</span>(<span class="at">Condition_label =</span> <span class="fu">factor</span>(Condition_label, </span>
+<span id="cb28-4"><a href="#cb28-4"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Control"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1148,7 +1200,7 @@ How are t-tests and regression the same?
 <span class="header-section-number">9.3.3</span> Activity 9 - Calculating confidence intervals</h3>
 <p>The only thing we are missing is our confidence intervals around the estimates which we can calculate through the <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code> function.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">confint</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">confint</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                2.5 %    97.5 %
 (Intercept) 179.21657 214.14704
@@ -1208,15 +1260,15 @@ Show me the solution
 <div class="callout-body-container callout-body">
 <p>The conclusions are the same as when we calculated the t-test, where condition is not a statistically significant predictor of estimated calories consumed. As a regression model, we get the same conclusions expressed in a slightly different way. Condition is a negative but non-significant predictor (<em>p</em> = .111). The control group ate 17.88 (<span class="math inline">\(b_1\)</span> = -17.88, 95% CI = [-39.88, 4.11]) more calories than the experimental group. We explain very little variance in estimated calories consumed (adjusted <span class="math inline">\(R^2\)</span> = .003), so the condition manipulation had little effect.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Create lm object for condiiton label as a predictor</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>lm_cal_est <span class="ot">&lt;-</span> <span class="fu">lm</span>(CalEstimate <span class="sc">~</span> Condition_label, </span>
-<span id="cb27-3"><a href="#cb27-3"></a>                 <span class="at">data =</span> lopez_clean)</span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a><span class="co"># summary of the model object</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a><span class="fu">summary</span>(lm_cal_est)</span>
-<span id="cb27-7"><a href="#cb27-7"></a></span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="co"># confidence intervals around estimates</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="fu">confint</span>(lm_cal_est)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># Create lm object for condiiton label as a predictor</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>lm_cal_est <span class="ot">&lt;-</span> <span class="fu">lm</span>(CalEstimate <span class="sc">~</span> Condition_label, </span>
+<span id="cb31-3"><a href="#cb31-3"></a>                 <span class="at">data =</span> lopez_clean)</span>
+<span id="cb31-4"><a href="#cb31-4"></a></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="co"># summary of the model object</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="fu">summary</span>(lm_cal_est)</span>
+<span id="cb31-7"><a href="#cb31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8"></a><span class="co"># confidence intervals around estimates</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="fu">confint</span>(lm_cal_est)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1250,15 +1302,15 @@ Condition_labelExperimental -39.87763   4.111599</code></pre>
 <span class="header-section-number">9.3.4</span> Activity 10 - Standardising predictors</h3>
 <p>For simple linear regression with two levels of a categorical predictor, centering the variable does not help, but we can standardise our outcome to express the estimate in standard deviations rather than the raw units. This is analogous to calculating Cohen’s d as we express the standardised mean difference. In contrast to continuous predictors, we only need to standardise the outcome, rather than both the outcome and predictor(s). We then use the standardised variable as our outcome.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Be careful with the bracket placement to subtract the mean first</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>lopez_clean <span class="ot">&lt;-</span>lopez_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">mutate</span>(<span class="at">actual_calories_std =</span> (F_CaloriesConsumed <span class="sc">-</span> <span class="fu">mean</span>(F_CaloriesConsumed)) <span class="sc">/</span> <span class="fu">sd</span>(F_CaloriesConsumed))</span>
-<span id="cb29-4"><a href="#cb29-4"></a></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># Condition as a factor containing 0 and 1</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>lm_cals_std <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> actual_calories_std <span class="sc">~</span> Condition, </span>
-<span id="cb29-7"><a href="#cb29-7"></a>                      <span class="at">data =</span> lopez_clean)</span>
-<span id="cb29-8"><a href="#cb29-8"></a></span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="fu">summary</span>(lm_cals_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Be careful with the bracket placement to subtract the mean first</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>lopez_clean <span class="ot">&lt;-</span>lopez_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">mutate</span>(<span class="at">actual_calories_std =</span> (F_CaloriesConsumed <span class="sc">-</span> <span class="fu">mean</span>(F_CaloriesConsumed)) <span class="sc">/</span> <span class="fu">sd</span>(F_CaloriesConsumed))</span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="co"># Condition as a factor containing 0 and 1</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>lm_cals_std <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> actual_calories_std <span class="sc">~</span> Condition, </span>
+<span id="cb33-7"><a href="#cb33-7"></a>                      <span class="at">data =</span> lopez_clean)</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a><span class="fu">summary</span>(lm_cals_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1293,7 +1345,7 @@ Tip
 <div class="callout-body-container callout-body">
 <p>As before, once you know how it works conceptually, there is a shortcut where you do not need to standardise all your variables first. The <pkg>effectsize</pkg> package has a handy function called <code>standardize_parameters()</code> which you can apply to your initial <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> object.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">standardize_parameters</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">standardize_parameters</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -1347,11 +1399,11 @@ Tip
 <span class="header-section-number">9.4.2</span> Checking linearity</h3>
 <p>When you have a categorical predictor with two levels, you meet linearity by default, so you <strong>do not</strong> need to check this assumption directly. When you have two levels, you can only fit a straight line between the values.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
-<span id="cb32-2"><a href="#cb32-2"></a>     <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>     <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1360,11 +1412,11 @@ Tip
 <span class="header-section-number">9.4.3</span> Checking normality</h3>
 <p>The qq-plot is still the same to interpret. Now, this example presents a useful case of decision making in data analysis we explore more in Chapter 11. The plot here is approaching signs of violating normality as there is a clear curve to the data points with 3 and 118 the largest deviations (you can see these on the violin-boxplot as the two highest values in the control group). For this chapter, we are sticking with it and it would be consistent with how the original authors analysed the data, but note this would be a key decision to make and justify when reporting the analysis.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
-<span id="cb33-2"><a href="#cb33-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
+<span id="cb37-2"><a href="#cb37-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1373,11 +1425,11 @@ Tip
 <span class="header-section-number">9.4.4</span> Checking homoscedasticity</h3>
 <p>The scale-location plot is harder to interpret when you have a categorical predictor. Like linearity, the points are all arranged in two vertical lines as we only have two levels. You are looking out for the spread of the two lines to be roughly similar. They look fine here, just points 118 and 3 separated a little from the other points.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
-<span id="cb34-2"><a href="#cb34-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
+<span id="cb38-2"><a href="#cb38-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1386,22 +1438,22 @@ Tip
 <span class="header-section-number">9.4.5</span> Checking influential cases</h3>
 <p>Finally, we have our plots for identifying influential cases. First, we get Cook’s distance for all the observations in your data. We see points 3 and 118 come up yet again, but although they are the largest deviations, they do not necessarily have worrying Cook’s distance values. There are different thresholds in the literature, but estimates range from 1, 0.5, to 4/n.&nbsp;It would only be under this final most conservative estimate (0.009) we would highlight several observations for further inspection.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
-<span id="cb35-2"><a href="#cb35-2"></a>     <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
+<span id="cb39-2"><a href="#cb39-2"></a>     <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Finally, the fifth plot shows residual values against leverage. Like Chapter 8, we cannot see the Cook’s distance threshold it uses in the plot as none of the points are a large enough deviation, despite 3 and 188 sticking out again.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
-<span id="cb36-2"><a href="#cb36-2"></a>     <span class="at">which =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">plot</span>(lm_cals_numbers, </span>
+<span id="cb40-2"><a href="#cb40-2"></a>     <span class="at">which =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1410,10 +1462,10 @@ Tip
 <span class="header-section-number">9.4.6</span> Checking all the assumptions</h3>
 <p>Now we have covered the individual diagnostic plots, there is a handy function called <code>check_model()</code> from the <pkg>performance</pkg> package. Like the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function, the output for linearity, homoscedasticity, and influential observations does not plot right as we only have two values for the predictor and the plot lines do not really work. Do not worry, you have not done anything wrong.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">check_model</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">check_model</span>(lm_cals_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1494,11 +1546,11 @@ Show me the solution
 </ol>
 <p><strong>Like the actual calories consumed, this is firmly a clear deviation from what we expect and provides a good example of when it does not look right. If we were to analyse the data fully, we would explore the impact of this and alternative models, but for this chapter, we are going to note our concern and remember the authors analysed the data like this.</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">plot</span>(lm_cal_est, </span>
-<span id="cb38-2"><a href="#cb38-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">plot</span>(lm_cal_est, </span>
+<span id="cb42-2"><a href="#cb42-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1508,11 +1560,11 @@ Show me the solution
 </ol>
 <p><strong>Looking at the spread of each group, it looks fine with a similar range until both groups are more sparsely distributed above 1.</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">plot</span>(lm_cal_est, </span>
-<span id="cb39-2"><a href="#cb39-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">plot</span>(lm_cal_est, </span>
+<span id="cb43-2"><a href="#cb43-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1536,7 +1588,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1560,8 +1612,8 @@ Show me the solution
 </ul>
 <p>In this scenario, we want to compare the hit rate to erotic images against a value of 50. This will tell us if the hit rate is significantly above or below chance.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> bem_data<span class="sc">$</span>Erotic.Hits.PC,</span>
-<span id="cb40-2"><a href="#cb40-2"></a>       <span class="at">mu =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> bem_data<span class="sc">$</span>Erotic.Hits.PC,</span>
+<span id="cb44-2"><a href="#cb44-2"></a>       <span class="at">mu =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1581,15 +1633,15 @@ mean of x
 <span class="header-section-number">9.6.1.2</span> Expressed as a linear model</h4>
 <p>We can also express this as a linear model, but we must first add a small wrangling step. In the one-sample t-test, we can manually enter a fixed value to compare the mean against. In a linear model, we must compare against 0 by subtracting the fixed value from your variable. So, we subtract 50 from all the observations, so they become a kind of deviation from 50.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>bem_data <span class="ot">&lt;-</span> bem_data <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">mutate</span>(<span class="at">erotic_deviation =</span> Erotic.Hits.PC <span class="sc">-</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>bem_data <span class="ot">&lt;-</span> bem_data <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">mutate</span>(<span class="at">erotic_deviation =</span> Erotic.Hits.PC <span class="sc">-</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In contrast to previous linear models, we only add a fixed intercept and do not add a predictor. This recreates the one-sample t-test by estimating the mean value of your outcome.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>lm_erotic <span class="ot">&lt;-</span> <span class="fu">lm</span>(erotic_deviation <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb43-2"><a href="#cb43-2"></a>                <span class="at">data =</span> bem_data)</span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="fu">summary</span>(lm_erotic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>lm_erotic <span class="ot">&lt;-</span> <span class="fu">lm</span>(erotic_deviation <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb47-2"><a href="#cb47-2"></a>                <span class="at">data =</span> bem_data)</span>
+<span id="cb47-3"><a href="#cb47-3"></a></span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="fu">summary</span>(lm_erotic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1623,9 +1675,9 @@ Residual standard error: 12.49 on 99 degrees of freedom</code></pre>
 </ul>
 <p>In this scenario, we want to compare the hit rate for erotic images to control images.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> bem_data<span class="sc">$</span>Erotic.Hits.PC,</span>
-<span id="cb45-2"><a href="#cb45-2"></a>       <span class="at">y =</span> bem_data<span class="sc">$</span>Control.Hits.PC, </span>
-<span id="cb45-3"><a href="#cb45-3"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> bem_data<span class="sc">$</span>Erotic.Hits.PC,</span>
+<span id="cb49-2"><a href="#cb49-2"></a>       <span class="at">y =</span> bem_data<span class="sc">$</span>Control.Hits.PC, </span>
+<span id="cb49-3"><a href="#cb49-3"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -1646,15 +1698,15 @@ mean difference
 <span class="header-section-number">9.6.2.2</span> Expressed as a linear model</h4>
 <p>Finally, we can express a paired-samples t-test as a linear model. We must apply a small data wrangling step to calculate a difference score between conditions. This is so the linear model compares the estimate against 0 of no difference. So, for this example, we create a variable for the difference between erotic and control images.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>bem_data <span class="ot">&lt;-</span> bem_data <span class="sc">%&gt;%</span> </span>
-<span id="cb47-2"><a href="#cb47-2"></a>  <span class="fu">mutate</span>(<span class="at">erotic_control =</span> Erotic.Hits.PC <span class="sc">-</span> Control.Hits.PC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>bem_data <span class="ot">&lt;-</span> bem_data <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">mutate</span>(<span class="at">erotic_control =</span> Erotic.Hits.PC <span class="sc">-</span> Control.Hits.PC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Like the one-sample scenario, we only add a fixed intercept for the new difference variance and do not add a predictor. This recreates the paired-samples t-test by estimating the mean value of your difference score.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>lm_paired <span class="ot">&lt;-</span> <span class="fu">lm</span>(erotic_control <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb48-2"><a href="#cb48-2"></a>                <span class="at">data =</span> bem_data)</span>
-<span id="cb48-3"><a href="#cb48-3"></a></span>
-<span id="cb48-4"><a href="#cb48-4"></a><span class="fu">summary</span>(lm_paired)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>lm_paired <span class="ot">&lt;-</span> <span class="fu">lm</span>(erotic_control <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb52-2"><a href="#cb52-2"></a>                <span class="at">data =</span> bem_data)</span>
+<span id="cb52-3"><a href="#cb52-3"></a></span>
+<span id="cb52-4"><a href="#cb52-4"></a><span class="fu">summary</span>(lm_paired)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1688,7 +1740,7 @@ Residual standard error: 17.81 on 99 degrees of freedom</code></pre>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="09-lm-categorical_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2195,7 +2247,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2227,29 +2290,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2257,7 +2298,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

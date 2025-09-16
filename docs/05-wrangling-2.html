@@ -850,7 +850,7 @@ Solution
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Retain fast judged speed trials</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a>pong_data_fast <span class="ot">&lt;-</span> <span class="fu">filter</span>(pong_data_filter,</span>
-<span id="cb19-3"><a href="#cb19-3"></a>                         JudgedSpeedLabel <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3"></a>                         JudgedSpeed <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note we use a double equals == and not a single equals = for the Boolean operator. We also must honour the data type for the expression we set.</p>
 </div>
@@ -1336,13 +1336,13 @@ Figure&nbsp;5.1: Example of using kable() to create tables in R Markdown.
 <option value="">Double</option>
 <option value="">Integer</option></select></p></li>
 <li><p>7.15 = <select class="webex-select"><option value="blank"></option>
-<option value="">Character</option>
 <option value="">Integer</option>
-<option value="answer">Double</option></select></p></li>
+<option value="answer">Double</option>
+<option value="">Character</option></select></p></li>
 <li><p>137 = <select class="webex-select"><option value="blank"></option>
 <option value="">Double</option>
-<option value="answer">Integer</option>
-<option value="">Character</option></select></p></li>
+<option value="">Character</option>
+<option value="answer">Integer</option></select></p></li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
@@ -1362,20 +1362,20 @@ Explain this answer
 </div>
 </div>
 <strong>Question 2</strong>. Which of the <pkg>dplyr</pkg> functions would you use to count the number of observations in your data set or variables?
-<div id="radio_SCINDAZVVO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SCINDAZVVO" value="answer"><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_SCINDAZVVO" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_SCINDAZVVO" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_SCINDAZVVO" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_SCINDAZVVO" value=""><span>group_by</span></label>
+<div id="radio_MPTVVTCCLK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value="answer"><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>mutate</span></label>
 </div>
 <strong>Question 3</strong>. Which of the <pkg>dplyr</pkg> functions would you use to calculate the mean of a column?
-<div id="radio_UZECKKQQMS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UZECKKQQMS" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_UZECKKQQMS" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_UZECKKQQMS" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_UZECKKQQMS" value="answer"><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_UZECKKQQMS" value=""><span>mutate</span></label>
+<div id="radio_QGTHRPCJEV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value="answer"><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>mutate</span></label>
 </div>
 <strong>Question 4</strong>. Which of the <pkg>dplyr</pkg> functions would you use to remove certain observations (e.g., remove all males)?
-<div id="radio_NAUICJCWZL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value="answer"><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_NAUICJCWZL" value=""><span>summarise</span></label>
+<div id="radio_IGSSQCUAUK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value="answer"><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>mutate</span></label>
 </div>
 <strong>Question 5</strong>. Which of the <pkg>dplyr</pkg> functions would you use to subset summary statistics by?
-<div id="radio_ZPHLJQOGPO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value="answer"><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_ZPHLJQOGPO" value=""><span>select</span></label>
+<div id="radio_FSAWDQYBGR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value="answer"><span>group_by</span></label>
 </div>
 </section><section id="error-mode" class="level3" data-number="5.6.2"><h3 data-number="5.6.2" class="anchored" data-anchor-id="error-mode">
 <span class="header-section-number">5.6.2</span> Error mode</h3>

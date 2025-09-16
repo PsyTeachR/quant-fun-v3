@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-<title>4&nbsp; Data wrangling 1: Join, select, and mutate – Fundamentals of Quantitative Analysis</title>
+<title>Fundamentals of Quantitative Analysis - 4&nbsp; Data wrangling 1: Join, select, and mutate</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -135,13 +135,13 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-wrangling-1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data wrangling 1: Join, select, and mutate</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -291,9 +291,9 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -637,7 +637,7 @@ Why do I not see all my columns?
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-preview-alldat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-img-preview-alldat" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-preview-alldat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/alldat_previewdata.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
@@ -739,12 +739,12 @@ Note
 <p>If you have several variables in order that you want to select, you can use a shortcut to avoid typing out every single name. When you select variables, you can use the format <code>firstcolumn:lastcolumn</code> to select all the variables from the first column you specify until the last column.</p>
 <p>For example, if we wanted to isolate the individual items, we could use the following code:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>scaleitems <span class="ot">&lt;-</span> <span class="fu">select</span>(all_dat, <span class="co"># First argument as the data object</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>scaleitems <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> all_dat, <span class="co"># First argument as the data object</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>                     ahi01<span class="sc">:</span>cesd20) <span class="co"># Range of variables to select</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also pair this with individual variable selection:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>scaleitems <span class="ot">&lt;-</span> <span class="fu">select</span>(all_dat, <span class="co"># First argument as the data object</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>scaleitems <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> all_dat, <span class="co"># First argument as the data object</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>                     id, <span class="co"># Individual variable to include</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>                     ahi01<span class="sc">:</span>cesd20) <span class="co"># Range of variables to select</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -778,7 +778,7 @@ Solution
 <div class="callout-body-container callout-body">
 <p>Instead of typing all 10 variables, you can select them using two ranges to ignore the scale items in the middle:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>summarydata2 <span class="ot">&lt;-</span> <span class="fu">select</span>(all_dat, <span class="co"># First argument as the data object</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>summarydata2 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> all_dat, <span class="co"># First argument as the data object</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>                      id<span class="sc">:</span>intervention, <span class="co"># variable range 1</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>                      ahiTotal<span class="sc">:</span>income) <span class="co"># variable range 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -790,13 +790,13 @@ Solution
 <p>Alternatively, you can also state which variables you do not want to keep. This is really handy if you want to keep many columns and only remove one or two.</p>
 <p>For example, if we wanted to remove two variables, you add a dash (-) before the variable name:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>all_dat_reduced2 <span class="ot">&lt;-</span> <span class="fu">select</span>(all_dat, </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>all_dat_reduced2 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> all_dat, </span>
 <span id="cb13-2"><a href="#cb13-2"></a>                           <span class="sc">-</span>occasion, <span class="co"># Remove occasion</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>                           <span class="sc">-</span>elapsed.days) <span class="co"># Remove elapsed.days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This also works using the range method, but you must add the dash before the first and last column in the range you want to remove. For example, we can recreate <code>summarydata</code> one more time by removing the scale items in the middle:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>summarydata3 <span class="ot">&lt;-</span> <span class="fu">select</span>(all_dat, <span class="co"># </span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>summarydata3 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="at">.data =</span> all_dat, <span class="co"># data object</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>                       <span class="sc">-</span>ahi01<span class="sc">:-</span>cesd20) <span class="co"># Remove range of variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -827,7 +827,7 @@ Tip
 <p>To break down the code,</p>
 <ul>
 <li><p>We create a new object called <code>age_ascend</code>.</p></li>
-<li><p>We apply the function <code>arrange()</code> to the <code>summarydata</code> object.</p></li>
+<li><p>We apply the function <code>arrange()</code> to the <code>summarydata</code> object. Note we have not typed <code>.data =</code> to start reinforcing how you can omit the argument name providing the arguments are in the correct order.</p></li>
 <li><p>We order the observations by <code>age</code>, which is by default in ascending order from smallest to largest.</p></li>
 </ul>
 <p>If you look in <code>age_ascend</code>, we organised the data in ascending order based on age and can see the youngest participant was 18 years old.</p>
@@ -1059,7 +1059,7 @@ Solution
 <p>If you remember back to chapter 3, we had a problem where R interpreted variables like <code>sex</code>, <code>educ</code>, and <code>income</code> as numeric, but ideally we wanted to treat them as distinct categories or factors. We used <code>mutate()</code> to convert the three columns to factors:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Overwrite summary data </span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>summarydata <span class="ot">&lt;-</span> <span class="fu">mutate</span>(summarydata, <span class="co"># mutate to change columns </span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>summarydata <span class="ot">&lt;-</span> <span class="fu">mutate</span>(summarydata, <span class="co"># mutate to change columns in summarydata</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>         <span class="at">sex =</span> <span class="fu">as.factor</span>(sex), <span class="co"># save sex as a factor</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a>         <span class="at">educ =</span> <span class="fu">as.factor</span>(educ),</span>
 <span id="cb20-5"><a href="#cb20-5"></a>         <span class="at">income =</span> <span class="fu">as.factor</span>(income))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1305,24 +1305,24 @@ Solution
 <section id="knowledge-check" class="level3" data-number="4.7.1"><h3 data-number="4.7.1" class="anchored" data-anchor-id="knowledge-check">
 <span class="header-section-number">4.7.1</span> Knowledge check</h3>
 <strong>Question 1</strong>. Which of the following functions would you use if you wanted to keep only certain columns?
-<div id="radio_ZHYGQIREMU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZHYGQIREMU" value="answer"><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_ZHYGQIREMU" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_ZHYGQIREMU" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_ZHYGQIREMU" value=""><span>inner_join()</span></label>
+<div id="radio_BDCYAYRKJW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BDCYAYRKJW" value="answer"><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_BDCYAYRKJW" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_BDCYAYRKJW" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_BDCYAYRKJW" value=""><span>inner_join()</span></label>
 </div>
 <strong>Question 2</strong>. Which of the following functions would you use if you wanted to join two data sets by their shared identifier?
-<div id="radio_BUCXZEGPTF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BUCXZEGPTF" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_BUCXZEGPTF" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_BUCXZEGPTF" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_BUCXZEGPTF" value="answer"><span>inner_join()</span></label>
+<div id="radio_SZDZOTSHLV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SZDZOTSHLV" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_SZDZOTSHLV" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_SZDZOTSHLV" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_SZDZOTSHLV" value="answer"><span>inner_join()</span></label>
 </div>
 <strong>Question 3</strong>. Which of the following functions would you use if you wanted to add or modify a column?
-<div id="radio_RASUDZJTRW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RASUDZJTRW" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_RASUDZJTRW" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_RASUDZJTRW" value="answer"><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_RASUDZJTRW" value=""><span>inner_join()</span></label>
+<div id="radio_JOIAOOIWHE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JOIAOOIWHE" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_JOIAOOIWHE" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_JOIAOOIWHE" value="answer"><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_JOIAOOIWHE" value=""><span>inner_join()</span></label>
 </div>
 <strong>Question 4</strong>. When you use mutate(), which additional function could you use to recode an existing variable?
-<div id="radio_UXFTPOTRFT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UXFTPOTRFT" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_UXFTPOTRFT" value=""><span>case_when()</span></label><label><input type="radio" autocomplete="off" name="radio_UXFTPOTRFT" value="answer"><span>case_match()</span></label><label><input type="radio" autocomplete="off" name="radio_UXFTPOTRFT" value=""><span>filter()</span></label>
+<div id="radio_XPDQBRDPXP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XPDQBRDPXP" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_XPDQBRDPXP" value=""><span>case_when()</span></label><label><input type="radio" autocomplete="off" name="radio_XPDQBRDPXP" value="answer"><span>case_match()</span></label><label><input type="radio" autocomplete="off" name="radio_XPDQBRDPXP" value=""><span>filter()</span></label>
 </div>
 <strong>Question 5</strong>. When you use mutate(), which additional function could you use to create a new variable depending on specific criteria you set?
-<div id="radio_LVDDHBIRBR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LVDDHBIRBR" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_LVDDHBIRBR" value="answer"><span>case_when()</span></label><label><input type="radio" autocomplete="off" name="radio_LVDDHBIRBR" value=""><span>case_match()</span></label><label><input type="radio" autocomplete="off" name="radio_LVDDHBIRBR" value=""><span>filter()</span></label>
+<div id="radio_XQIEZZDLWP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XQIEZZDLWP" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_XQIEZZDLWP" value="answer"><span>case_when()</span></label><label><input type="radio" autocomplete="off" name="radio_XQIEZZDLWP" value=""><span>case_match()</span></label><label><input type="radio" autocomplete="off" name="radio_XQIEZZDLWP" value=""><span>filter()</span></label>
 </div>
 </section><section id="error-mode-1" class="level3" data-number="4.7.2"><h3 data-number="4.7.2" class="anchored" data-anchor-id="error-mode-1">
 <span class="header-section-number">4.7.2</span> Error mode</h3>
@@ -1947,7 +1947,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1979,29 +1990,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2009,7 +1998,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
