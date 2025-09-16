@@ -469,7 +469,9 @@ The following questions are designed to introduce you to making and fixing error
 
 Create and save a new R Markdown file by following the instructions in [activity 3](#intro-a3) and [activity 4](#intro-a4). You should have a blank R Markdown file below line 10. Below, we have several variations of a code chunk and inline code errors. Copy and paste them into your R Markdown file, click knit, and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 6**. Copy the following text/code/code chunk into your R Markdown file and press knit. You should receive an error like `Error while opening file. No such file or directory`. 
+**Note**: For all of our error mode activities, the error is based on clicking knit so it applies to inline code examples. If you try and run the code instead of clicking knit on the whole document, you might see a different error message to what we report. 
+
+**Question 6**. Copy the following text/code/code chunk into your R Markdown file and press knit. You should receive an error like `Line 18 Execution halted` in the Render tab. 
 
 ````{verbatim, lang = "markdown"}
 city <- "Glasgow"
@@ -503,7 +505,7 @@ city <- "Glasgow"
 Here, we missed a final backtick in the code chunk. You might have noticed all the text had a grey background, so R Markdown thought everything was code. So, when it reached the inline code and text, it tried interpreting it as code and caused the error. If you add the final backtick to the code chunk, you should be able to click knit successfully. 
 :::
 
-**Question 8**. Copy the following text/code/code chunk into your R Markdown file and press knit. You should receive an error like `Error while opening file. No such file or directory`. 
+**Question 8**. Copy the following text/code/code chunk into your R Markdown file and press knit. You should receive an error like `Line 12 Execution halted` in the Render tab. 
 
 ````{verbatim, lang = "markdown"}
 
