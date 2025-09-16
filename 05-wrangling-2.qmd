@@ -328,7 +328,7 @@ If you used `JudgedSpeed`, you should have:
 ```{r eval=FALSE}
 # Retain fast judged speed trials
 pong_data_fast <- filter(pong_data_filter,
-                         JudgedSpeedLabel == 1)
+                         JudgedSpeed == 1)
 ```
 
 Note we use a double equals == and not a single equals = for the Boolean operator. We also must honour the data type for the expression we set. 
