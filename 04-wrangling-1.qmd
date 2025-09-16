@@ -276,14 +276,14 @@ If you have several variables in order that you want to select, you can use a sh
 For example, if we wanted to isolate the individual items, we could use the following code: 
 
 ```{r}
-scaleitems <- select(all_dat, # First argument as the data object
+scaleitems <- select(.data = all_dat, # First argument as the data object
                      ahi01:cesd20) # Range of variables to select
 ```
 
 You can also pair this with individual variable selection: 
 
 ```{r}
-scaleitems <- select(all_dat, # First argument as the data object
+scaleitems <- select(.data = all_dat, # First argument as the data object
                      id, # Individual variable to include
                      ahi01:cesd20) # Range of variables to select
 ```
@@ -305,7 +305,7 @@ summarydata2 <- ?
 Instead of typing all 10 variables, you can select them using two ranges to ignore the scale items in the middle: 
 
 ```{r}
-summarydata2 <- select(all_dat, # First argument as the data object
+summarydata2 <- select(.data = all_dat, # First argument as the data object
                       id:intervention, # variable range 1
                       ahiTotal:income) # variable range 2
 ```
@@ -319,7 +319,7 @@ Alternatively, you can also state which variables you do not want to keep. This 
 For example, if we wanted to remove two variables, you add a dash (-) before the variable name:
 
 ```{r}
-all_dat_reduced2 <- select(all_dat, 
+all_dat_reduced2 <- select(.data = all_dat, 
                            -occasion, # Remove occasion
                            -elapsed.days) # Remove elapsed.days
 ```
@@ -327,7 +327,7 @@ all_dat_reduced2 <- select(all_dat,
 This also works using the range method, but you must add the dash before the first and last column in the range you want to remove. For example, we can recreate `summarydata` one more time by removing the scale items in the middle:
 
 ```{r}
-summarydata3 <- select(all_dat, # 
+summarydata3 <- select(.data = all_dat, # data object
                        -ahi01:-cesd20) # Remove range of variables
 ```
 
@@ -356,7 +356,7 @@ To break down the code,
 
 - We create a new object called `age_ascend`. 
 
-- We apply the function `arrange()` to the `summarydata` object.
+- We apply the function `arrange()` to the `summarydata` object. Note we have not typed `.data = ` to start reinforcing how you can omit the argument name providing the arguments are in the correct order.  
 
 - We order the observations by `age`, which is by default in ascending order from smallest to largest. 
 
@@ -439,7 +439,7 @@ If you remember back to chapter 3, we had a problem where R interpreted variable
 
 ```{r}
 # Overwrite summary data 
-summarydata <- mutate(summarydata, # mutate to change columns 
+summarydata <- mutate(summarydata, # mutate to change columns in summarydata
          sex = as.factor(sex), # save sex as a factor
          educ = as.factor(educ),
          income = as.factor(income))
