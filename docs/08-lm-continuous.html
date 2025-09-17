@@ -979,8 +979,8 @@ Show me the solution
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># This function will only work for correlation package objects</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="co"># Step 1 = save all the numbers with formatting </span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>  r_type <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(correlation_object<span class="sc">$</span>Method <span class="sc">==</span> <span class="st">"Pearson correlation"</span>, </span>
-<span id="cb9-5"><a href="#cb9-5"></a>                   <span class="st">"$r$ "</span>, <span class="co"># if true, report as Pearson correlation</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>                   <span class="st">"$r_s$ "</span>) <span class="co"># if false, report as Spearman correlation</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>                   <span class="st">"*r* "</span>, <span class="co"># if true, report as Pearson correlation</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>                   <span class="st">"*r_s* "</span>) <span class="co"># if false, report as Spearman correlation</span></span>
 <span id="cb9-7"><a href="#cb9-7"></a>  <span class="co"># save degrees of freedom</span></span>
 <span id="cb9-8"><a href="#cb9-8"></a>  df <span class="ot">&lt;-</span> correlation_object<span class="sc">$</span>df_error</span>
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="co"># save r rounded to 3 decimals with any trailing zeros</span></span>
@@ -989,10 +989,10 @@ Show me the solution
 <span id="cb9-12"><a href="#cb9-12"></a>  pval <span class="ot">&lt;-</span> correlation_object<span class="sc">$</span>p</span>
 <span id="cb9-13"><a href="#cb9-13"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
 <span id="cb9-14"><a href="#cb9-14"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb9-15"><a href="#cb9-15"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", *p* = "</span>, pval)</span>
 <span id="cb9-16"><a href="#cb9-16"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
 <span id="cb9-17"><a href="#cb9-17"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
-<span id="cb9-18"><a href="#cb9-18"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>    pval <span class="ot">&lt;-</span> <span class="st">", *p* &lt; .001"</span></span>
 <span id="cb9-19"><a href="#cb9-19"></a>  }</span>
 <span id="cb9-20"><a href="#cb9-20"></a>  <span class="co"># save lower 95% CI</span></span>
 <span id="cb9-21"><a href="#cb9-21"></a>  lower_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(correlation_object<span class="sc">$</span>CI_low, <span class="dv">3</span>)</span>
@@ -1018,7 +1018,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">report_correlation</span>(fairness_redist_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "$r$ (303) = -0.700, $p$ &lt; .001, 95% CI = [-0.638, -0.753]"</code></pre>
+<pre><code>[1] "*r* (303) = -0.700, *p* &lt; .001, 95% CI = [-0.638, -0.753]"</code></pre>
 </div>
 </div>
 <p>You can add that as inline code to insert into your report to make your inferential statistics reproducible. Just note it’s difficult to apply all the APA format details, so you might need to remove leading zeros, add italics to the math symbols etc.</p>
@@ -1322,7 +1322,7 @@ age         -0.01351424 0.00812738</code></pre>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-centering-predictors" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left.">
+<div id="fig-centering-predictors" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-centering-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="08-lm-continuous_files/figure-html/fig-centering-predictors-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The plot at the top shows the relationship between wealth redistribution and perceived fairness and satisfaction using raw values. The plot at the bottom shows the relationship after centering perceived fairness and satisfaction values, so the values shift to the left.">
 </div>
@@ -1757,10 +1757,10 @@ Show me the solution
 <span id="cb44-15"><a href="#cb44-15"></a>  pval <span class="ot">&lt;-</span> <span class="fu">anova</span>(regression_object)<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span>
 <span id="cb44-16"><a href="#cb44-16"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
 <span id="cb44-17"><a href="#cb44-17"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb44-18"><a href="#cb44-18"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb44-18"><a href="#cb44-18"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", *p* = "</span>, pval)</span>
 <span id="cb44-19"><a href="#cb44-19"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
 <span id="cb44-20"><a href="#cb44-20"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
-<span id="cb44-21"><a href="#cb44-21"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb44-21"><a href="#cb44-21"></a>    pval <span class="ot">&lt;-</span> <span class="st">", *p* &lt; .001"</span></span>
 <span id="cb44-22"><a href="#cb44-22"></a>  }</span>
 <span id="cb44-23"><a href="#cb44-23"></a></span>
 <span id="cb44-24"><a href="#cb44-24"></a>  <span class="co"># Step 3 = add them together in APA format</span></span>
@@ -1778,7 +1778,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">report_regression_model</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "adjusted $R^2$ = 0.489, F(2, 303) = 291.67, $p$ &lt; .001"</code></pre>
+<pre><code>[1] "adjusted $R^2$ = 0.489, F(2, 303) = 291.67, *p* &lt; .001"</code></pre>
 </div>
 </div>
 <p>For the slope, there is a separate reporting function.</p>
@@ -1795,10 +1795,10 @@ Show me the solution
 <span id="cb47-10"><a href="#cb47-10"></a>  pval <span class="ot">&lt;-</span> model_summary<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
 <span id="cb47-11"><a href="#cb47-11"></a>  <span class="cf">if</span> (pval <span class="sc">&gt;=</span> <span class="fl">0.001</span>){</span>
 <span id="cb47-12"><a href="#cb47-12"></a>    pval <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="fu">as.character</span>(pval), <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb47-13"><a href="#cb47-13"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", $p$ = "</span>, pval)</span>
+<span id="cb47-13"><a href="#cb47-13"></a>    pval <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">", *p* = "</span>, pval)</span>
 <span id="cb47-14"><a href="#cb47-14"></a>  <span class="co"># If p &lt; .001, manually format as p &lt; .001</span></span>
 <span id="cb47-15"><a href="#cb47-15"></a>  } <span class="cf">else</span> <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.001</span>){</span>
-<span id="cb47-16"><a href="#cb47-16"></a>    pval <span class="ot">&lt;-</span> <span class="st">", $p$ &lt; .001"</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a>    pval <span class="ot">&lt;-</span> <span class="st">", *p* &lt; .001"</span></span>
 <span id="cb47-17"><a href="#cb47-17"></a>  }</span>
 <span id="cb47-18"><a href="#cb47-18"></a>  <span class="co"># save lower 95% CI</span></span>
 <span id="cb47-19"><a href="#cb47-19"></a>  lower_CI <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">confint</span>(regression_object)[<span class="dv">2</span>, <span class="dv">1</span>], <span class="dv">2</span>)</span>
@@ -1823,7 +1823,7 @@ Show me the solution
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">report_regression_slope</span>(lm_redistribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "$b_1$ = -0.40, 95% CI = [-0.35, -0.44], $p$ &lt; .001"</code></pre>
+<pre><code>[1] "$b_1$ = -0.40, 95% CI = [-0.35, -0.44], *p* &lt; .001"</code></pre>
 </div>
 </div>
 </section></section><section id="test-yourself" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="test-yourself">

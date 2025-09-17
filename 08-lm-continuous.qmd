@@ -395,8 +395,8 @@ report_correlation <- function(correlation_object){
   # This function will only work for correlation package objects
   # Step 1 = save all the numbers with formatting 
   r_type <- ifelse(correlation_object$Method == "Pearson correlation", 
-                   "$r$ ", # if true, report as Pearson correlation
-                   "$r_s$ ") # if false, report as Spearman correlation
+                   "*r* ", # if true, report as Pearson correlation
+                   "*r_s* ") # if false, report as Spearman correlation
   # save degrees of freedom
   df <- correlation_object$df_error
   # save r rounded to 3 decimals with any trailing zeros
@@ -405,10 +405,10 @@ report_correlation <- function(correlation_object){
   pval <- correlation_object$p
   if (pval >= 0.001){
     pval <- str_sub(as.character(pval), 2, 5)
-    pval <-  paste0(", $p$ = ", pval)
+    pval <-  paste0(", *p* = ", pval)
   # If p < .001, manually format as p < .001
   } else if (pval < 0.001){
-    pval <- ", $p$ < .001"
+    pval <- ", *p* < .001"
   }
   # save lower 95% CI
   lower_CI <- round(correlation_object$CI_low, 3)
@@ -953,10 +953,10 @@ report_regression_model <- function(regression_object){
   pval <- anova(regression_object)$`Pr(>F)`[1]
   if (pval >= 0.001){
     pval <- str_sub(as.character(pval), 2, 5)
-    pval <-  paste0(", $p$ = ", pval)
+    pval <-  paste0(", *p* = ", pval)
   # If p < .001, manually format as p < .001
   } else if (pval < 0.001){
-    pval <- ", $p$ < .001"
+    pval <- ", *p* < .001"
   }
 
   # Step 3 = add them together in APA format
@@ -994,10 +994,10 @@ report_regression_slope <- function(regression_object){
   pval <- model_summary$coefficients[2, 4]
   if (pval >= 0.001){
     pval <- str_sub(as.character(pval), 2, 5)
-    pval <-  paste0(", $p$ = ", pval)
+    pval <-  paste0(", *p* = ", pval)
   # If p < .001, manually format as p < .001
   } else if (pval < 0.001){
-    pval <- ", $p$ < .001"
+    pval <- ", *p* < .001"
   }
   # save lower 95% CI
   lower_CI <- round(confint(regression_object)[2, 1], 2)

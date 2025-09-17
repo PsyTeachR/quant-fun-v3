@@ -321,7 +321,7 @@ report_ttest <- function(ttest_object){
   upper_CI <- round(ttest_object$conf.int[2], 2)
   
   # Step 2 = add them together in APA format
-  output <- paste0("$t$ (", df,") = ",
+  output <- paste0("*t* (", df,") = ",
                    tval,
                    pval,
                    ", mean difference = ", meandiff,
@@ -354,6 +354,55 @@ wilcox.test(formula = F_CaloriesConsumed ~ Condition_label,
 The output is similar to the t-test, but adapted to analysing ranks in a non-parametric test. By setting the argument `conf.int` to TRUE, you get the unstandardised effect size and it's confidence interval. Instead of the mean difference, you get the "difference in location". This represents - to quote the documentation as it is a little awkward - "the median of the difference between a sample from x and a sample from y". This means it is like a difference in medians, but the median difference in samples from each group rather than the median of the whole group. 
 
 To summarise: A Mann-Whitney U test showed participants in the experimental group ate significantly more calories of soup than participants in the control group, *W* = 18827, *p* < .001. For the difference in location, those in the experimental group ate 59.89 (95% CI = [39.92, 82.07]) more calories than those in the control group.
+
+If you wanted to report this reproducibly, you first need to save the test as an object. 
+
+```{r}
+mannwhitney_cal <- wilcox.test(formula = F_CaloriesConsumed ~ Condition_label, 
+                               data = lopez_clean,
+                               conf.int = TRUE)
+```
+
+We have then created a bespoke reporting function for the Mann-Whitney U test. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Mann-Whitney formatting function"
+report_mannwhitney <- function(mannwhitney_object){
+  # This function will only work for Wilcoxon.test objects
+  # Step 1 = save all the numbers with formatting 
+  wval <- round(mannwhitney_object$statistic, 2)
+  # save p value with formatting if less than .001
+  pval <- mannwhitney_object$p.value
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", $p$ = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", $p$ < .001"
+  }
+  # save location difference
+  locationdiff <- round(mannwhitney_object$estimate, 2)
+  # save lower 95% CI
+  lower_CI <- round(mannwhitney_object$conf.int[1], 2)
+  # save lower 95% CI
+  upper_CI <- round(mannwhitney_object$conf.int[2], 2)
+  
+  # Step 2 = add them together in APA format
+  output <- paste0("*W* = ", wval,
+                   pval,
+                   ", location difference = ", locationdiff,
+                   ", 95% CI = [", lower_CI, ", ", upper_CI, "]")
+  
+  return(output)
+}
+```
+
+Once you have saved the object and added the formatting function, you can use the function to format your Mann-Whitney U test:
+
+```{r}
+report_mannwhitney(mannwhitney_cal)
+```
 
 ### Activity 6 - Calculating Cohen's d 
 
@@ -771,6 +820,109 @@ lopez_clean %>%
 Our model explained a statistically significant amount of variance in our outcome (adjusted $R^2$ = .047, F(1, 462) = 23.64, *p* < .001). Condition was a positive predictor, where the experimental group consumed on average 63 more calories than the control group ($b_1$ = 63.05, 95% CI = [37.57, 88.53], *p* < .001). Expressed as a standardised effect size, the experimental group consumed 0.44 (95% CI = [0.26, 0.62]) more standard deviations than the control group."
 
 Note: we have not included an APA formatted Figure title here as it is not easy to format in our book, so refer to the course materials for guidance. 
+
+### Formatting your results reproducibly
+
+Like Chapter 8, we can also make regression models reproducible to add into your reports. For regression models, the first step is saving your model as an object *before* you apply the `summary()` function. We created this in activity 8, but as a reminder: 
+
+```{r}
+lm_cals_numbers <- lm(formula = F_CaloriesConsumed ~ Condition, 
+                      data = lopez_clean)
+```
+
+To make the reporting flexible, we then separate the model into two components: the overall model and the slope. For the overall model, you must save the reporting function first. Note these are the exact same functions as Chapter 8, so you would not need to duplicate them if you already included them in a file. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the regression model formatting function"
+#| 
+report_regression_model <- function(regression_object){
+  # This function will only work for lm() objects
+  # Step 1 = apply the summary function so we have both objects
+  model_summary <- summary(regression_object)
+  # Step 2 = save all the numbers with formatting 
+  # Save adjusted R2 with any trailing zeroes
+  adj_r2 <- sprintf("%.3f", round(model_summary$adj.r.squared, 3))
+  # save model degrees of freedom
+  df1 <- model_summary$df[1]
+  # save residual degrees of freedom
+  df2 <- model_summary$df[2]
+  # save F rounded to 2 decimals with any trailing zeroes
+  Fval <- sprintf("%.2f", round(model_summary$fstatistic, 2))[1]
+  # save p value with formatting if less than .001
+  pval <- anova(regression_object)$`Pr(>F)`[1]
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", *p* = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", *p* < .001"
+  }
+
+  # Step 3 = add them together in APA format
+  output <- paste0("adjusted $R^2$ = ",
+                   adj_r2,
+                   ", ",
+                   "F(", df1, ", ", df2, ") = ", Fval,
+                   pval)
+  
+  return(output)
+}
+```
+
+Then you can run the function on your regression model.
+
+```{r}
+report_regression_model(lm_cals_numbers)
+```
+
+For the slope, there is a separate reporting function. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the regression slope formatting function"
+#| 
+report_regression_slope <- function(regression_object){
+  # This function will only work for lm() objects
+  # Step 1 = apply the summary function so we have both objects
+  model_summary <- summary(regression_object)
+  # Step 2 = save all the numbers with formatting 
+  # $b_1 = -0.40$, 95% CI = [-0.44, -0.35], *p* < .001)
+  # Save slope with any trailing zeroes
+  b_1 <- sprintf("%.2f", round(model_summary$coefficients[2, 1], 2))
+  # save p value with formatting if less than .001
+  pval <- model_summary$coefficients[2, 4]
+  if (pval >= 0.001){
+    pval <- str_sub(as.character(pval), 2, 5)
+    pval <-  paste0(", *p* = ", pval)
+  # If p < .001, manually format as p < .001
+  } else if (pval < 0.001){
+    pval <- ", *p* < .001"
+  }
+  # save lower 95% CI
+  lower_CI <- round(confint(regression_object)[2, 1], 2)
+  # save lower 95% CI
+  upper_CI <- round(confint(regression_object)[2, 2], 2)
+  # Switch CIs depending on sign 
+  b1_CI <- ifelse(b_1 > 0,
+                 paste0(lower_CI, ", ", upper_CI),
+                 paste0(upper_CI, ", ", lower_CI))
+  
+  # Step 3 = add them together in APA format
+  output <- paste0("$b_1$ = ",
+                   b_1,
+                   ", 95% CI = [", b1_CI, "]",
+                   pval)
+  
+  return(output)
+}
+```
+
+Then you can run the function on your regression model.
+
+```{r}
+report_regression_slope(lm_cals_numbers)
+```
 
 ## Bonus section - One- and paired-samples tests {#09-bonus}
 
