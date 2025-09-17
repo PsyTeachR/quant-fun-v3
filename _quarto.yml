@@ -18,6 +18,8 @@ book:
       family: Toivo
       given: Wilhelmiina
   doi: ''
+  downloads:
+    - pdf
   license: CC-BY
   description: Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology & Neuroscience.
   cover-image: images/logos/logo.png
@@ -71,7 +73,6 @@ book:
   - appendix-a2-additional-learning-resources.qmd
   - appendix-a3-How-to-cite-R.qmd
   - appendix-b-symbols.qmd
-  - appendix-d-probability.qmd
 bibliography: include/book.bib
 csl: include/apa.csl
 format:
@@ -102,3 +103,5 @@ format:
     include-after-body:
     - include/webex.js
     - include/script.js
+  pdf:
+    documentclass: scrreprt

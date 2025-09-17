@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-<title>Fundamentals of Quantitative Analysis - 1&nbsp; Introduction to programming with R/R Studio</title>
+<title>1&nbsp; Introduction to programming with R/R Studio – Fundamentals of Quantitative Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -108,23 +115,24 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-programming-basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to programming with R/R Studio</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-programming-basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to programming with R/R Studio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Fundamentals of Quantitative Analysis</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/PsyTeachR/quant-fundamentals-v3" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/PsyTeachR/quant-fundamentals-v3" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Fundamentals-of-Quantitative-Analysis.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -264,9 +272,9 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -289,17 +297,11 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Symbols</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./appendix-d-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
-  </div>
-</li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -360,7 +362,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
   <li><a href="#words-from-this-chapter" id="toc-words-from-this-chapter" class="nav-link" data-scroll-target="#words-from-this-chapter"><span class="header-section-number">1.9</span> Words from this Chapter</a></li>
   <li><a href="#end-of-chapter" id="toc-end-of-chapter" class="nav-link" data-scroll-target="#end-of-chapter"><span class="header-section-number">1.10</span> End of chapter</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/01-programming-basics.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/01-programming-basics.qmd" class="toc-action">View source</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/01-programming-basics.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/01-programming-basics.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -376,6 +378,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
     
   </div>
   
+
 
 </header><p>In this chapter, we will cover interacting with R and RStudio. We will provide an overview of basic programming concepts and terminology, common pitfalls, helpful hints, and where to get help. Those of you who have no programming experience should find this chapter particularly helpful, but there should be helpful hints and tips even if you have used R or another programming language before before.</p>
 <p><strong>Chapter Intended Learning Outcomes (ILOs)</strong></p>
@@ -401,16 +404,20 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span class="header-section-number">1.2</span> Getting to know R Studio</h2>
 <p>By default, RStudio has four windows:</p>
 <ol type="1">
-<li><p>The <strong><a href="https://psyteachr.github.io/glossary/c#console" target="_blank" class="glossary" title="The pane in RStudio where you can type in commands and view output messages.">console</a></strong>, where you can type R code in the bottom left (as shown in Figure <a href="#fig-img-rstudio">Figure&nbsp;<span>1.1</span></a>).</p></li>
+<li><p>The <strong><a href="https://psyteachr.github.io/glossary/c#console" target="_blank" class="glossary" title="The pane in RStudio where you can type in commands and view output messages.">console</a></strong>, where you can type R code in the bottom left (as shown in Figure <a href="#fig-img-rstudio" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>).</p></li>
 <li><p>Eventually, there will be a <strong><a href="https://psyteachr.github.io/glossary/s#script" target="_blank" class="glossary" title="A plain-text file that contains commands in a coding language, such as R.">script</a></strong> editor in the top left, but you will not see this when you open RStudio for the first time.</p></li>
 <li><p>The <strong><a href="https://psyteachr.github.io/glossary/e#environment" target="_blank" class="glossary" title="A data structure that contains R objects such as variables and functions">environment</a></strong> window in top right, where you will see things like data, functions, and objects that you create.</p></li>
 <li><p>Finally, the bottom right window shows files, plots, packages, and help documentation.</p></li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-rstudio" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rstudio.png" class="img-fluid figure-img" style="width:100.0%" alt="The default RStudio interface on a Windows computer. You can see an example script in the top left, the console bottom left, environment with objects in the top right, and example scatterplot in the plots bottom right."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.1: RStudio interface</figcaption></figure>
+<div id="fig-img-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The default RStudio interface on a Windows computer. You can see an example script in the top left, the console bottom left, environment with objects in the top right, and example scatterplot in the plots bottom right.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The default RStudio interface on a Windows computer. You can see an example script in the top left, the console bottom left, environment with objects in the top right, and example scatterplot in the plots bottom right.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: RStudio interface
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -419,7 +426,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span class="header-section-number">1.2.1</span> Console vs.&nbsp;scripts</h3>
 <p>When you first open up RStudio, you will not see an R script like above, there will just be the console window taking up the whole left half. You can write code in the console to test it out, but you cannot save that code anywhere, and you would lose all your code if you closed down RStudio.</p>
 <p>For this chapter only, we will use the console window to show you some simple R code, but from Chapter 2 - <a href="#C2-repro-docs">Creating reproducible documents</a> - we will teach you to work in a type of R script called an <strong><a href="https://psyteachr.github.io/glossary/r#r-markdown" target="_blank" class="glossary" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.">R Markdown</a></strong> document which ends with the file name .Rmd.</p>
-<p>You can open a new file in a number of ways, but the simplest is in the top menu of RStudio, selecting <strong><code>File &gt;&gt; New File &gt;&gt; R Markdown</code></strong> and clicking OK. You will then be able to see the extra pane in the top left like Figure <a href="#fig-img-rstudio">Figure&nbsp;<span>1.1</span></a>.</p>
+<p>You can open a new file in a number of ways, but the simplest is in the top menu of RStudio, selecting <strong><code>File &gt;&gt; New File &gt;&gt; R Markdown</code></strong> and clicking OK. You will then be able to see the extra pane in the top left like Figure <a href="#fig-img-rstudio" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
 </section></section><section id="writing-code-with-functions-and-arguments" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="writing-code-with-functions-and-arguments">
 <span class="header-section-number">1.3</span> Writing code with functions and arguments</h2>
 <p>R code is made up of <strong><a href="https://psyteachr.github.io/glossary/f#function" target="_blank" class="glossary" title="A named section of code that can be reused.">functions</a></strong> and <strong><a href="https://psyteachr.github.io/glossary/a#argument" target="_blank" class="glossary" title="A variable that provides input to a function.">arguments</a></strong> that go into the functions to create outputs. <strong>Functions</strong> in R execute specific tasks and normally take one or more <strong>arguments</strong>. You can think of these concepts like a spoken language as verbs (function) that require a subject and an object (arguments). You could also think of them as a kind of recipe. Some recipes (function) are quite simple and have one or two ingredients (arguments), while other recipes are more complicated with many ingredients (arguments).</p>
@@ -532,13 +539,17 @@ Warning
 </div>
 </section><section id="tab-auto-complete" class="level3" data-number="1.3.4"><h3 data-number="1.3.4" class="anchored" data-anchor-id="tab-auto-complete">
 <span class="header-section-number">1.3.4</span> Tab auto-complete</h3>
-<p>One very useful feature of RStudio is the tab auto-complete for functions (see Figure <a href="#fig-img-autocomplete">Figure&nbsp;<span>1.2</span></a>). If you write the name of the function and then press the tab key on your keyboard, RStudio will show you the arguments that function takes along with a brief description. If you press enter on the argument name, it will fill in the name for you, just like auto-complete on your phone.</p>
+<p>One very useful feature of RStudio is the tab auto-complete for functions (see Figure <a href="#fig-img-autocomplete" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>). If you write the name of the function and then press the tab key on your keyboard, RStudio will show you the arguments that function takes along with a brief description. If you press enter on the argument name, it will fill in the name for you, just like auto-complete on your phone.</p>
 <p>You can also use the tab button when writing a function name to auto-complete that function name or to find functions that start with certain letters. This feature can be really helpful if you cannot quite remember the name of a function or argument.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-autocomplete" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/autocomplete.png" class="img-fluid figure-img" style="width:100.0%" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.2: Tab auto-complete</figcaption></figure>
+<div id="fig-img-autocomplete" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-autocomplete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/autocomplete.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-autocomplete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Tab auto-complete
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -587,12 +598,16 @@ Important
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Often when you load packages you get information in your console window. Some packages will provide little messages to tell you what it has done or warn you about something. Sometimes these messages can look like errors and make you panic, but try and read over what it is saying first. For example, you should have something that looks like Figure <a href="#fig-img-load-tidyverse">Figure&nbsp;<span>1.3</span></a> when you load <code>tidyverse</code>. You might think you have done something wrong as it has little red crosses, but it is just telling you that it has loaded a set of packages and there are some <strong><a href="https://psyteachr.github.io/glossary/c#conflict" target="_blank" class="glossary" title="Having two packages loaded that have a function with the same name.">conflicts</a></strong>.</p>
+<p>Often when you load packages you get information in your console window. Some packages will provide little messages to tell you what it has done or warn you about something. Sometimes these messages can look like errors and make you panic, but try and read over what it is saying first. For example, you should have something that looks like Figure <a href="#fig-img-load-tidyverse" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> when you load <code>tidyverse</code>. You might think you have done something wrong as it has little red crosses, but it is just telling you that it has loaded a set of packages and there are some <strong><a href="https://psyteachr.github.io/glossary/c#conflict" target="_blank" class="glossary" title="Having two packages loaded that have a function with the same name.">conflicts</a></strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-load-tidyverse" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/tidyverse-loading.png" class="img-fluid figure-img" style="width:100.0%" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.3: Example loading message from tidyverse.</figcaption></figure>
+<div id="fig-img-load-tidyverse" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-load-tidyverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/tidyverse-loading.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-load-tidyverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Example loading message from tidyverse.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -659,7 +674,7 @@ Attaching package: 'MASS'</code></pre>
 <p>The first key thing to know about objects is how to create them and to give them content. You assign content to an object using <code>&lt;-</code> - often called the “left arrow” or the <strong><a href="https://psyteachr.github.io/glossary/a#assignment-operator" target="_blank" class="glossary" title="The symbol <-, which functions like = and assigns the value on the right to the object on the left">assignment operator</a></strong> which you can read as “assigned to”. Note that we do not use the <code>=</code> symbol as an assignment operator. There is a large discussion on why objects are assigned content and not equal to content but that is for another time. For now, just remember that we assign (<code>&lt;-</code>) content, be it words, numbers, or function output, to objects.</p>
 <section id="activity-5---create-some-objects" class="level3" data-number="1.5.1"><h3 data-number="1.5.1" class="anchored" data-anchor-id="activity-5---create-some-objects">
 <span class="header-section-number">1.5.1</span> Activity 5 - Create some objects</h3>
-<p>Type the following code into the console window and run each line. You should see that <code>name</code>, <code>age</code>, <code>today</code>, <code>new_year</code>, and <code>data</code> appear in the environment pane like Figure <a href="#fig-img-objects-enviro">Figure&nbsp;<span>1.4</span></a>.</p>
+<p>Type the following code into the console window and run each line. You should see that <code>name</code>, <code>age</code>, <code>today</code>, <code>new_year</code>, and <code>data</code> appear in the environment pane like Figure <a href="#fig-img-objects-enviro" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>name <span class="ot">&lt;-</span> <span class="st">"James"</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>age <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">+</span> <span class="dv">14</span> </span>
@@ -669,9 +684,13 @@ Attaching package: 'MASS'</code></pre>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-objects-enviro" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/objects-enviro.png" class="img-fluid figure-img" style="width:100.0%" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.4: Objects in the environment. Feel free to change your numbers and check that they match the environment!</figcaption></figure>
+<div id="fig-img-objects-enviro" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-objects-enviro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/objects-enviro.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-objects-enviro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Objects in the environment. Feel free to change your numbers and check that they match the environment!
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -734,13 +753,17 @@ What should I call objects?
 <ol type="1">
 <li><p>To remove individual objects, you can type <code>rm(object_name)</code> in the console. Try this now to remove one of the objects you created in the previous section. For example, you would remove the object <code>age</code> by writing <code>rm(age)</code>.</p></li>
 <li><p>To clear all objects from the environment, run <code>rm(list = ls())</code> in the console.</p></li>
-<li><p>To clear all objects from the environment, you can also click the broom icon in the environment pane like Figure <a href="#fig-img-broom">Figure&nbsp;<span>1.5</span></a>.</p></li>
+<li><p>To clear all objects from the environment, you can also click the broom icon in the environment pane like Figure <a href="#fig-img-broom" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>.</p></li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-broom" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/broom.png" class="img-fluid figure-img" style="width:100.0%" alt="Highlighting the broom symbol and hovering over the text which says clears objects from the workspace."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.5: Clearing the workspace.</figcaption></figure>
+<div id="fig-img-broom" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Highlighting the broom symbol and hovering over the text which says clears objects from the workspace.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-broom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/broom.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Highlighting the broom symbol and hovering over the text which says clears objects from the workspace.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-broom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: Clearing the workspace.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -748,12 +771,16 @@ What should I call objects?
 <span class="header-section-number">1.6</span> Global options</h2>
 <p>When you open RStudio, it will show you what you were last working on, including your code and any objects you have created, assuming this is not the first time you have used RStudio. This might sound helpful, but it can cause more problems than it is worth because it means that you risk accidentally using an old version of an object.</p>
 <p>For example, you might have <code>Date</code> in the environment from the last time you did some work and you start working on the wrong <code>Date</code> without realising. In reality, we recommend changing the settings so that each time you start RStudio, it opens a fresh new environment.</p>
-<p>You can do this by clicking on the top menu <strong><code>Tools &gt;&gt; Global Options...</code></strong> and then deselecting boxes so that your General box looks like Figure <a href="#fig-img-options">Figure&nbsp;<span>1.6</span></a> and applying the changes to save your selections.</p>
+<p>You can do this by clicking on the top menu <strong><code>Tools &gt;&gt; Global Options...</code></strong> and then deselecting boxes so that your General box looks like Figure <a href="#fig-img-options" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> and applying the changes to save your selections.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-options" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/global_options.png" class="img-fluid figure-img" style="width:100.0%" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.6: Global options - you want to make your global options look similar, in terms of what is ticked, to the above. The main thing is to make sure that you untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never. Unticking the History options are optional but can help. The update option is really just in case you want to.</figcaption></figure>
+<div id="fig-img-options" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/global_options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.6: Global options - you want to make your global options look similar, in terms of what is ticked, to the above. The main thing is to make sure that you untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never. Unticking the History options are optional but can help. The update option is really just in case you want to.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -791,12 +818,16 @@ What should I call objects?
 <span class="header-section-number">1.7.3</span> Activity 6 - Reset your R session</h3>
 <p>Finally, if you find that your code is not working and you cannot figure out why, it might be worth starting a new session. This will clear the environment and detach all loaded packages. Think of it like restarting your phone.</p>
 <p>When you open up R and start writing code, loading packages, and creating objects, you are typically doing so in a new <strong><a class="glossary" title="When you start R/RStudio and executive code to fill the workspace until you close R/RStudio">session</a></strong>. In addition to clearing your environment workspace, it can sometimes be useful to start a new session. This will happen automatically each time you start RStudio on your computer, although sessions can persist if you use the online server.</p>
-<p>This last activity shows a quick way to restart R from inside RStudio. On the Top Menu, click <strong><code>Session &gt;&gt; Restart R</code></strong> like Figure <a href="#fig-img-session">Figure&nbsp;<span>1.7</span></a>.</p>
+<p>This last activity shows a quick way to restart R from inside RStudio. On the Top Menu, click <strong><code>Session &gt;&gt; Restart R</code></strong> like Figure <a href="#fig-img-session" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-session" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/new_session.png" class="img-fluid figure-img" style="width:100.0%" alt="Highlighting how to restart R by using the menus Session >> Restart R."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.7: Restarting your R session from within RStudio.</figcaption></figure>
+<div id="fig-img-session" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Highlighting how to restart R by using the menus Session >> Restart R.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-session-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/new_session.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Highlighting how to restart R by using the menus Session >> Restart R.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-session-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.7: Restarting your R session from within RStudio.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -962,12 +993,16 @@ Explain this answer
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We missed the final bracket, so we start the function name <code>rnorm(</code>, enter our arguments, but there is no closing bracket. You will see in the console like Figure <a href="#fig-img-unfinished-bracket">Figure&nbsp;<span>1.8</span></a>, there is a little <code>+</code> symbol and you can enter new code, but there is no output.</p>
+<p>We missed the final bracket, so we start the function name <code>rnorm(</code>, enter our arguments, but there is no closing bracket. You will see in the console like Figure <a href="#fig-img-unfinished-bracket" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>, there is a little <code>+</code> symbol and you can enter new code, but there is no output.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-unfinished-bracket" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/unfinished-bracket.png" class="img-fluid figure-img" style="width:100.0%" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input."></p>
-<figcaption class="figure-caption">Figure&nbsp;1.8: An R function without a closing bracket in the console.</figcaption></figure>
+<div id="fig-img-unfinished-bracket" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-unfinished-bracket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/unfinished-bracket.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-img-unfinished-bracket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.8: An R function without a closing bracket in the console.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -980,7 +1015,7 @@ Explain this answer
 <p>Below, you will find a list of words that we used in this chapter that might be new to you in case you need to refer back to what they mean. The links in this table take you to the entry for the words in the <a href="https://psyteachr.github.io/glossary/" target="_blank">PsyTeachR Glossary</a>. Note that numerous members of the team wrote entries in the Glossary and as such the entries may use slightly different terminology from what we used in the chapter.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;">term</th>
 <th style="text-align: left;">definition</th>
@@ -1342,6 +1377,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -1408,13 +1470,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1449,18 +1513,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1492,11 +1545,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1506,8 +1598,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1519,7 +1620,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1563,6 +1787,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1588,6 +1813,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1647,12 +1898,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./00-foreword.html" class="pagination-link">
+      <a href="./00-foreword.html" class="pagination-link" aria-label="How to use this book">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to use this book</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-starting-with-data.html" class="pagination-link">
+      <a href="./02-starting-with-data.html" class="pagination-link" aria-label="Creating Reproducible Documents">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Creating Reproducible Documents</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1662,7 +1913,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">CC-BY-SA-4.0 (2024) James Bartlett &amp; Wilhelmiina Toivo</div>
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2024) James Bartlett &amp; Wilhelmiina Toivo</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/01-programming-basics.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/01-programming-basics.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
