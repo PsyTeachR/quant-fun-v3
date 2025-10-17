@@ -429,16 +429,9 @@ This corresponds nicely with the number of observations you can see in the data 
 
 You can then add one or more variables to the function to count the number of observations within each variable and across the combination of variables when you supply two or more. For example, we could count the number of observations within `BackgroundColor`: 
 
-```{r count3, eval = FALSE}
+```{r count3}
 count(pong_data_filter,
       BackgroundColor) # count observations within variable 1
-```
-
-And it would give the answer of:
-
-```{r count4, echo = FALSE}
-pong_data %>%
-  count(BackgroundColor)
 ```
 
 We can see there are an equal number of blue and red backgrounds across all the observations.

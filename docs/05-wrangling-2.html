@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-<title>5&nbsp; Data wrangling 2: Filter and summarise – Fundamentals of Quantitative Analysis</title>
+<title>Fundamentals of Quantitative Analysis - 5&nbsp; Data wrangling 2: Filter and summarise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -135,13 +135,13 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-wrangling-2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling 2: Filter and summarise</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -292,9 +292,9 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -408,7 +408,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span class="header-section-number">5.1</span> Chapter preparation</h2>
 <section id="introduction-to-the-data-set" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="introduction-to-the-data-set">
 <span class="header-section-number">5.1.1</span> Introduction to the data set</h3>
-<p>For this chapter, we are using open data from <span class="citation" data-cites="witt2018">Witt et al. (<a href="references.html#ref-witt2018" role="doc-biblioref">2018</a>)</span>. The abstract of their article is:</p>
+<p>For this chapter, we are using open data from <span class="citation" data-cites="witt2018">Witt et al. (<a href="#ref-witt2018" role="doc-biblioref">2018</a>)</span>. The abstract of their article is:</p>
 <blockquote class="blockquote">
 <p>Can one’s ability to perform an action, such as hitting a softball, influence one’s perception? According to the action-specific account, perception of spatial layout is influenced by the perceiver’s abilities to perform an intended action. Alternative accounts posit that purported effects are instead due to nonperceptual processes, such as response bias. Despite much confirmatory research on both sides of the debate, researchers who promote a response-bias account have never used the Pong task, which has yielded one of the most robust action-specific effects. Conversely, researchers who promote a perceptual account have rarely used the opposition’s preferred test for response bias, namely, the postexperiment survey. The current experiments rectified this. We found that even for people naive to the experiment’s hypothesis, the ability to block a moving ball affected the ball’s perceived speed. Moreover, when participants were explicitly told the hypothesis and instructed to resist the influence of their ability to block the ball, their ability still affected their perception of the ball’s speed.</p>
 </blockquote>
@@ -961,9 +961,6 @@ Solution
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">count</span>(pong_data_filter,</span>
 <span id="cb28-2"><a href="#cb28-2"></a>      BackgroundColor) <span class="co"># count observations within variable 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And it would give the answer of:</p>
-<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -974,11 +971,11 @@ Solution
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">blue</td>
-<td style="text-align: right;">2304</td>
+<td style="text-align: right;">2296</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">red</td>
-<td style="text-align: right;">2304</td>
+<td style="text-align: right;">2296</td>
 </tr>
 </tbody>
 </table>
@@ -1294,10 +1291,10 @@ R Markdown tip of the chapter: Create pretty tables
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(hits_by_judgedspeed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You will need to knit your document to see what it looks like, but it should look similar to <a href="#fig-img-kable-demo" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>. The row labels are fine, but you would need to tidy up the headers and round <code>prop_hits</code> to three decimals (see the function <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>).</p>
+<p>You will need to knit your document to see what it looks like, but it should look similar to <a href="#fig-img-kable-demo" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-img-kable-demo</span></a>. The row labels are fine, but you would need to tidy up the headers and round <code>prop_hits</code> to three decimals (see the function <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-kable-demo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-img-kable-demo" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-kable-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/kable_demo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
@@ -1327,17 +1324,17 @@ Figure&nbsp;5.1: Example of using kable() to create tables in R Markdown.
 <p><strong>Question 1</strong>. What type of data would these most likely be:</p>
 <ul>
 <li><p>Male = <select class="webex-select"><option value="blank"></option>
-<option value="answer">Character</option>
+<option value="">Integer</option>
 <option value="">Double</option>
-<option value="">Integer</option></select></p></li>
+<option value="answer">Character</option></select></p></li>
 <li><p>7.15 = <select class="webex-select"><option value="blank"></option>
 <option value="">Integer</option>
 <option value="answer">Double</option>
 <option value="">Character</option></select></p></li>
 <li><p>137 = <select class="webex-select"><option value="blank"></option>
-<option value="">Double</option>
 <option value="">Character</option>
-<option value="answer">Integer</option></select></p></li>
+<option value="answer">Integer</option>
+<option value="">Double</option></select></p></li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
@@ -1357,20 +1354,20 @@ Explain this answer
 </div>
 </div>
 <strong>Question 2</strong>. Which of the <pkg>dplyr</pkg> functions would you use to count the number of observations in your data set or variables?
-<div id="radio_MPTVVTCCLK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value="answer"><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_MPTVVTCCLK" value=""><span>mutate</span></label>
+<div id="radio_MWMODKIOAM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MWMODKIOAM" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_MWMODKIOAM" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_MWMODKIOAM" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_MWMODKIOAM" value="answer"><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_MWMODKIOAM" value=""><span>group_by</span></label>
 </div>
 <strong>Question 3</strong>. Which of the <pkg>dplyr</pkg> functions would you use to calculate the mean of a column?
-<div id="radio_QGTHRPCJEV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value="answer"><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_QGTHRPCJEV" value=""><span>mutate</span></label>
+<div id="radio_TDCJEWSXPC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TDCJEWSXPC" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_TDCJEWSXPC" value="answer"><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_TDCJEWSXPC" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_TDCJEWSXPC" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_TDCJEWSXPC" value=""><span>mutate</span></label>
 </div>
 <strong>Question 4</strong>. Which of the <pkg>dplyr</pkg> functions would you use to remove certain observations (e.g., remove all males)?
-<div id="radio_IGSSQCUAUK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value="answer"><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_IGSSQCUAUK" value=""><span>mutate</span></label>
+<div id="radio_BQAWWVVIXP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value="answer"><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value=""><span>group_by</span></label><label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_BQAWWVVIXP" value=""><span>mutate</span></label>
 </div>
 <strong>Question 5</strong>. Which of the <pkg>dplyr</pkg> functions would you use to subset summary statistics by?
-<div id="radio_FSAWDQYBGR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_FSAWDQYBGR" value="answer"><span>group_by</span></label>
+<div id="radio_HPMXNGTITU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value=""><span>filter</span></label><label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value=""><span>summarise</span></label><label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value=""><span>mutate</span></label><label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value=""><span>select</span></label><label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value=""><span>count</span></label><label><input type="radio" autocomplete="off" name="radio_HPMXNGTITU" value="answer"><span>group_by</span></label>
 </div>
 </section><section id="error-mode" class="level3" data-number="5.6.2"><h3 data-number="5.6.2" class="anchored" data-anchor-id="error-mode">
 <span class="header-section-number">5.6.2</span> Error mode</h3>
@@ -1550,7 +1547,7 @@ Explain the solution
 <p>In the next chapter, we finish the key data wrangling functions. For example, showing you how you can pipe together multiple functions to streamline your code. We will also demonstrate how to pivot your data wider from long form where there are multiple observations per participant to wide form where there is one row per participant, and vice versa.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-witt2018" class="csl-entry" role="listitem">
 Witt, J. K., Tenhundfeld, N. L., &amp; Tymoski, M. J. (2018). Is there a chastity belt on perception? <em>Psychological Science</em>, <em>29</em>(1), 139–146.
 </div>
@@ -1966,7 +1963,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1998,29 +2006,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2028,7 +2014,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
