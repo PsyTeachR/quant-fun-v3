@@ -601,9 +601,9 @@ Although there were more hits in the fast judged speed, the proportion of hits t
 #### Try this
 Using what you learnt above, apply the `group_by()` and `summarise()` functions to calculate the sum and mean value of `HitOrMiss` depending on whether `BackgroundColor` was blue or red. In your `group_by()` object, make sure you use the `pong_data_filter` object. After writing the code and checking the new object, answer the following questions: 
 
-1. Rounded to 2 decimal places, the mean proportion of hits to the **blue** background was `r fitb(0.69)` or rounded to 0 decimal places `r fitb(69)`%.
+1. Rounded to 2 decimal places, the mean proportion of hits to the **blue** background was `r fitb(0.69)`, or as a percentage rounded to 0 decimal places: `r fitb(69)`%.
 
-2. Rounded to 3 decimal places, the mean proportion of hits to the **red** background was `r fitb(0.686)` or rounded to 1 decimal place `r fitb(68.6)`%.
+2. Rounded to 3 decimal places, the mean proportion of hits to the **red** background was `r fitb(0.686)` or as a percentage rounded to 1 decimal place: `r fitb(68.6)`%.
 
 ```{r eval=FALSE}
 # Group pong_data_filter by BackgroundColor
