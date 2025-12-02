@@ -37,7 +37,7 @@ By the end of this chapter, you will be able to:
 
 For this chapter, we are using open data from @dawtry_why_2015. The abstract of their article is:
 
-> The present studies provide evidence that social-sampling processes lead wealthier people to oppose redistribution policies. In samples of American Internet users, wealthier participants reported higher levels of wealth in their social circles (Studies 1a and 1b). This was associated, in turn, with estimates of higher mean wealth in the wider U.S. population, greater perceived fairness of the economic status quo, and opposition to redistribution policies. Furthermore, results from a large-scale, nationally representative New Zealand survey revealed that low levels of neighborhood-level socioeconomic deprivation?an objective index of wealth within participants' social circles mediated the relation between income and satisfaction with the economic status quo (Study 2). These findings held controlling for relevant variables, including political orientation and perceived self-interest. Social-structural inequalities appear to combine with social-sampling processes to shape the different political attitudes of wealthier and poorer people.
+> The present studies provide evidence that social-sampling processes lead wealthier people to oppose redistribution policies. In samples of American Internet users, wealthier participants reported higher levels of wealth in their social circles (Studies 1a and 1b). This was associated, in turn, with estimates of higher mean wealth in the wider U.S. population, greater perceived fairness of the economic status quo, and opposition to redistribution policies. Furthermore, results from a large-scale, nationally representative New Zealand survey revealed that low levels of neighborhood-level socioeconomic deprivation - an objective index of wealth within participants' social circles mediated the relation between income and satisfaction with the economic status quo (Study 2). These findings held controlling for relevant variables, including political orientation and perceived self-interest. Social-structural inequalities appear to combine with social-sampling processes to shape the different political attitudes of wealthier and poorer people.
 
 In summary, the authors investigated why people with more money tend to oppose wealth redistribution policies like higher taxes for higher incomes to decrease inequality in society. We are using data from Study 1A where 305 people completed measures on household income, predicted population income, their predicted social circle income, in addition to measures on support for wealth redistribution and fairness and satisfaction with the current system. 
 
@@ -202,7 +202,7 @@ In `dawtry_clean`, we have the following variables:
 | Population_Mean_Income | `r typeof(dawtry_clean$Population_Mean_Income)`| Participant estimate of the mean household income in the population (\$). |
 | Social_Circle_Inequality_Gini_Index | `r typeof(dawtry_clean$Social_Circle_Inequality_Gini_Index)`| Measure of income inequality from 0 (perfect equality) to 100 (perfect inequality), here where participants estimated inequality in their social circle. |
 | Social_Circle_Mean_Income | `r typeof(dawtry_clean$Social_Circle_Mean_Income)`| Participant estimate of the mean household income in their social circle (\$). |
-| fairness_satisfaction | `r typeof(dawtry_clean$fairness_satisfaction)`| Perceived fairness and satisfaction about the current system of wealth redistribution: Mean of two items (1 extremely fair – 9 extremely unfair) |
+| fairness_satisfaction | `r typeof(dawtry_clean$fairness_satisfaction)`| Perceived fairness and satisfaction about the current system of wealth redistribution: Mean of two items (1 extremely unfair – 9 extremely fair). In the original paper, the authors explain these items were reverse-coded but it looks like only the labels were switched. So, higher values mean greater perceived fairness and satisfaction with the current system. |
 | redistribution | `r typeof(dawtry_clean$redistribution)`| Support for wealth distribution: Mean of four items (1 strongly disagree – 6 strongly agree). |
 
 We will use this data set to demonstrate correlations and regression when you have one continuous predictor. 
@@ -237,9 +237,9 @@ Looking at the graph, we can describe the relationship as `r mcq(c("positive", "
 
 ::: {.callout-caution collapse="true"}
 #### Show me the solution
-The scatterplot shows a negative correlation between the two variables. You need to be careful interpreting fairness and satisfaction as it is coded a little counterintuitive. Higher values mean great *dissatisfaction*. 
+The scatterplot shows a negative correlation between the two variables. You need to be careful interpreting fairness and satisfaction due to the sneaky reverse-coding. Higher values mean *greater* fairness and satisfaction. 
 
-As support for wealth redistribution increases to be more positive, perceived fairness and satisfaction tends to decrease. This makes sense as people who are more dissatisfied with the current system think there should be more wealth redistribution strategies. 
+As support for wealth redistribution increases up the y-axis to be more positive, perceived fairness and satisfaction tends to decrease on the x-axis. In other words, for people who perceive things to be fair and they are more satisfied, they are less supportive of reforms to wealth redistribution. 
 
 You should have the following in a code chunk: 
 
@@ -331,6 +331,12 @@ correlation(data = dawtry_clean,
 
 Similarly, we could report the results as: a Spearman correlation showed there was a strong, negative, statistically significant relationship between attitudes on wealth redistribution and perceived fairness and satisfaction, $r_s$ (303) = -0.68, *p* < .001, 95% CI = [-0.74, -0.61].
 
+::: {.callout-note}
+#### One-tailed tests
+
+By default, these functions will apply a two-tailed test to look for any correlation value more extreme than zero - the null hypothesis - which could be positive or negative. If you wanted to run a one-tailed correlation and look for an effect in one specific direction, you would use the argument `alternative = "greater"` for positive correlations and `alternative = "less"` for negative correlations. 
+:::
+
 ::: {.callout-tip}
 #### Try this
 
@@ -360,7 +366,7 @@ dawtry_clean %>%
                      breaks = c(1:6))
 ```
 
-For our inferential statistics, the relationship is not statistically significant and the Pearson correlation coefficient is very weak, *r* (302) = -0.03, *p* = .625, 95% CI = [-0.14, 0.08]. Note there is a missing value for age, so we have one few participant / degrees of freedom. 
+For our inferential statistics, the relationship is not statistically significant and the Pearson correlation coefficient is very weak, *r* (302) = -0.03, *p* = .625, 95% CI = [-0.14, 0.08]. Note there is a missing value for age, so we have one fewer participant / degrees of freedom. 
 
 ```{r}
 correlation(data = dawtry_clean, 
