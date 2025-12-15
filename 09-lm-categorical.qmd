@@ -487,7 +487,7 @@ For all the information we want to include in a report, calculating descriptive 
 lopez_clean %>% 
   group_by(Condition_label) %>% 
   summarise(mean_cals = round(mean(F_CaloriesConsumed), 2), 
-            sd_cals = round(mean(F_CaloriesConsumed), 2))
+            sd_cals = round(sd(F_CaloriesConsumed), 2))
 ```
 
 ::: {.callout-note}

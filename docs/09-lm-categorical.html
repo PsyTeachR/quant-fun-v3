@@ -1089,7 +1089,7 @@ sample estimates:
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>lopez_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">group_by</span>(Condition_label) <span class="sc">%&gt;%</span> </span>
 <span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>), </span>
-<span id="cb27-4"><a href="#cb27-4"></a>            <span class="at">sd_cals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(F_CaloriesConsumed), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-4"><a href="#cb27-4"></a>            <span class="at">sd_cals =</span> <span class="fu">round</span>(<span class="fu">sd</span>(F_CaloriesConsumed), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -1102,12 +1102,12 @@ sample estimates:
 <tr class="odd">
 <td style="text-align: left;">Control</td>
 <td style="text-align: right;">196.68</td>
-<td style="text-align: right;">196.68</td>
+<td style="text-align: right;">138.33</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Experimental</td>
 <td style="text-align: right;">259.73</td>
-<td style="text-align: right;">259.73</td>
+<td style="text-align: right;">140.59</td>
 </tr>
 </tbody>
 </table>
