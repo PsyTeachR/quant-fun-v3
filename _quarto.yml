@@ -73,6 +73,7 @@ book:
   - appendix-a2-additional-learning-resources.qmd
   - appendix-a3-How-to-cite-R.qmd
   - appendix-b-symbols.qmd
+  - appendix-c-equivalence.qmd
 bibliography: include/book.bib
 csl: include/apa.csl
 format:

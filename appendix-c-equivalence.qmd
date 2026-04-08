@@ -1,0 +1,326 @@
+# Equivalence Testing {#equivalence}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      echo = TRUE)
+
+library(patchwork)
+library(cowplot)
+```
+
+In this bonus chapter, you will learn how to apply equivalence testing. In Chapters 8 and 9, you learnt about different inferential statistics but they all rely on the traditional null hypothesis significance testing framework of rejecting a null value of zero. The limitations of this approach is that you can only ever test to reject the null, not test *for* the null, or more precisely for effect sizes within a set of boundaries. In this chapter, you will learn how to use the <pkg>TOSTER</pkg> package to apply equivalence testing to t-tests and correlations. 
+
+**Chapter Intended Learning Outcomes (ILOs)**
+
+By the end of this chapter, you will be able to: 
+
+- Justify your equivalence boundaries for your smallest effect size of interest.   
+
+- Apply equivalence testing to designs requiring a correlation. 
+
+- Apply equivalence testing to designs requiring a t-test. 
+
+## Chapter preparation
+
+### Organising your files and project for the chapter
+
+For this chapter, we are going to revisit the data sets you worked with in Chapters 8 [@dawtry_why_2015] and 9 [@lopez_visual_2023]. Before we can get started, you need to organise your files and project for the chapter, so your working directory is in order.
+
+1. In your folder for research methods and the book `ResearchMethods1_2/Quant_Fundamentals`, create a new folder called `Equivalence_testing`. Within `Equivalence_testing`, create two new folders called `data` and `figures`.
+
+2. Create an R Project for `Equivalence_testing` as an existing directory for your chapter folder. This should now be your working directory.
+
+3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `Equivalence Testing`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Equivalence_testing` folder. 
+
+4. The @dawtry_why_2015 data wrangling steps were quite long, so please save this clean version of the data to focus on screening data in this chapter: [Dawtry_2015_clean.csv](data/Dawtry_2015_clean.csv). You will also need to save the data from @lopez_visual_2023 if you have not downloaded it yet: [Lopez_2023.csv](data/Lopez_2023.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the files as ".csv". Save or copy the files to your `data/` folder within `Equivalence_testing`.
+
+To prepare for the activities, read and process the two key data files. You will also need to install the <pkg>TOSTER</pkg> package before you can load it as that is a new package we have not used before. 
+
+```{r}
+library(tidyverse)
+library(correlation)
+library(effectsize)
+library(TOSTER)
+
+# Read the Dawtry_2015_clean.csv file 
+dawtry_clean <- read_csv("data/Dawtry_2015_clean.csv")
+
+# Read the Lopez_2023.csv file 
+lopez_data <- read_csv("data/Lopez_2023.csv")
+
+# recode condition
+lopez_clean <- lopez_data %>% 
+  mutate(Condition_label = case_match(Condition,
+                                      0 ~ "Control",
+                                      1 ~ "Experimental"))
+```
+
+You are now ready to start working on the chapter! 
+
+## The logic behind equivalence testing
+
+The standard approach to inferential statistics using frequentist probability is trying to reject a point-null value of zero, applied to whatever parameter you are interested in. In a t-test, this is a mean difference of zero as your test statistic/value. In a correlation, it is a correlation coefficient of zero as your test statistic/value. The *p*-value in the test represents the probability of observing the data, assuming that the null (that point-null value of zero) is true. You are always trying to reject the null hypothesis and indirectly accept the alternative hypothesis, but importantly you can never accept the null. Visually, it looks something like this: 
+
+```{r echo=FALSE}
+# two-tailed
+  
+two_tailed <- ggplot(x = 0, y = 0) + 
+  geom_segment(aes(x = 0, xend = 0, 
+                   y = -1, yend = 0.9), 
+               linetype = 2) + 
+  scale_x_continuous(limits = c(-2, 2), 
+                     breaks = seq(-2, 2, 1)) + 
+  theme_cowplot() + 
+  labs(title = "Two-tailed NHST", 
+       y = "",
+       x = "Parameter Value") + 
+  annotate("text", x = 0, y = 1, 
+           label = "H[0]", parse = TRUE) + 
+  annotate("text", x = 1, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  annotate("text", x = -1, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  geom_segment(aes(x = 0.05, y = 0, 
+                   xend = 2, yend = 0),
+               arrow = arrow()) + 
+  geom_segment(aes(x = -0.05, y = 0, 
+                   xend = -2, yend = 0),
+               arrow = arrow()) + 
+  theme(axis.text.y = element_blank())
+
+one_tailed <- ggplot(x = 0, y = 0) + 
+  geom_segment(aes(x = 0, xend = 0, 
+                   y = -1, yend = 1), 
+               linetype = 2) + 
+  scale_x_continuous(limits = c(-2, 2), 
+                     breaks = seq(-2, 2, 1)) + 
+  theme_cowplot() + 
+  labs(title = "One-tailed NHST", 
+       y = "",
+       x = "Parameter Value") + 
+  annotate("text", x = -1, y = 0.2, 
+           label = "H[0]", parse = TRUE) + 
+  annotate("text", x = 1, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  geom_segment(aes(x = 0.05, y = 0, 
+                   xend = 2, yend = 0),
+               arrow = arrow()) + 
+  annotate(geom = "rect", 
+           ymin = -1, ymax = 1, 
+           xmin = -2, xmax = 0,
+           alpha = 0.2) + 
+  theme(axis.text.y = element_blank())
+
+two_tailed + one_tailed
+```
+
+In a two-tailed test, the null is precisely zero and you are trying to reject it in favour of the alternative hypothesis which can be any positive or negative value. In a one-tailed test, it follows the same logic, but instead of precisely zero, the null is the entire positive or negative region, meaning you want to reject values above or below zero depending which direction you predict. For many research questions, this logic holds to test for the presence of an effect by rejecting the null hypothesis. However, what about if your research question / prediction is interested in testing the null *itself* or a lack of effect? Unfortunately, you cannot test for the effect being precisely zero but you can use the procedure to test for effects too small to be practically or theoretically meaningful.  
+
+Equivalence testing [@harms_making_2018; @lakens_improving_2020; @lakens_equivalence_2018] flips the null hypothesis significance testing logic. In this setup, you set two boundaries representing your smallest effect size of interest (SESOI) and conduct two one-sided tests: one comparing your test statistic/value to the upper bound and one comparing your test statistic/value to the lower bound. If both tests are statistically significant, you can conclude the mean was within your bounds and it is practically equivalent to zero. 
+
+This procedure is usually referred to by the single name of equivalence testing, but you can apply it in two ways depending on your research question. In an equivalence test, you want to test whether your test statistic/value is smaller than your boundaries, i.e., you want to test for the absence of an effect. Conversely, in a minimal effects test you want to test whether your statistic/value is larger than your boundaries, i.e., you want to test for an effect exceeding your SESOI. 
+
+```{r echo=FALSE}
+equivalence <- ggplot(x = 0, y = 0) + 
+  annotate(geom = "rect", 
+           ymin = -1, ymax = 1, 
+           xmin = -2, xmax = -1,
+           alpha = 0.2) + 
+    annotate(geom = "rect", 
+           ymin = -1, ymax = 1, 
+           xmin = 2, xmax = 1,
+           alpha = 0.2) + 
+  geom_segment(aes(x = -1, xend = -1, 
+                   y = -1, yend = 1), 
+               linetype = 2) + 
+    geom_segment(aes(x = 1, xend = 1, 
+                   y = -1, yend = 1), 
+               linetype = 2) + 
+  scale_x_continuous(limits = c(-2, 2), 
+                     breaks = seq(-2, 2, 1)) + 
+  theme_cowplot() + 
+  labs(title = "Equivalence Test", 
+       y = "",
+       x = "Parameter Value") + 
+  annotate("text", x = -1.5, y = 0.2, 
+           label = "H[0]", parse = TRUE) + 
+    annotate("text", x = 1.5, y = 0.2, 
+           label = "H[0]", parse = TRUE) +
+    annotate("text", x = -0.5, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  annotate("text", x = 0.5, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  geom_segment(aes(x = -1, y = 0, 
+                   xend = -0.1, yend = 0),
+               arrow = arrow()) + 
+  geom_segment(aes(x = 1, y = 0, 
+                   xend = 0.1, yend = 0),
+               arrow = arrow()) + 
+  theme(axis.text.y = element_blank())
+
+minimal <- ggplot(x = 0, y = 0) + 
+  annotate(geom = "rect", 
+           ymin = -1, ymax = 1, 
+           xmin = -0.5, xmax = 0.5,
+           alpha = 0.2) + 
+  geom_segment(aes(x = 0.5, xend = 0.5, 
+                   y = -1, yend = 1), 
+               linetype = 2) + 
+    geom_segment(aes(x = -0.5, xend = -0.5, 
+                   y = -1, yend = 1), 
+               linetype = 2) + 
+  scale_x_continuous(limits = c(-2, 2), 
+                     breaks = seq(-2, 2, 1)) + 
+  theme_cowplot() + 
+  labs(title = "Minimal Effects Test", 
+       y = "",
+       x = "Parameter Value") + 
+  annotate("text", x = 0, y = 0.2, 
+           label = "H[0]", parse = TRUE) + 
+  annotate("text", x = 1, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  annotate("text", x = -1, y = 0.2, 
+           label = "H[1]", parse = TRUE) +
+  geom_segment(aes(x = 0.55, y = 0, 
+                   xend = 2, yend = 0),
+               arrow = arrow()) + 
+  geom_segment(aes(x = -0.55, y = 0, 
+                   xend = -2, yend = 0),
+               arrow = arrow()) + 
+  theme(axis.text.y = element_blank())
+
+equivalence + minimal
+```
+
+In an equivalence test, the null hypothesis is split into two regions representing your SESOI. The two one-sided tests compare your test statistic/value to calculate whether it is significantly lower than the upper bound **and** significantly higher than the upper bound. If both tests are significant, you conclude it is statistically equivalent, given the boundaries you set. Conversely, a minimal effects test flips this procedure. Instead of a point-null in NHST, the null hypothesis is a region of effects representing your SESOI. The two one-sided tests calculate whether your test statistic/value is significantly lower than the lower bound and significantly higher than the higher bound. You are looking for the tests to be statistically significant to test the null region.
+
+Justifying your equivalence/minimal effects bounds is probably the most difficult decision you will make as it requires subject knowledge for what you would consider the smallest effect size of interest. For a non-exhaustive list, there are different strategies like: 
+
+1. Your understanding of the applications / mechanisms (e.g., a clinically meaningful decrease in pain). 
+
+2. Smallest effects from previous research (e.g., lower bound of individual study effect sizes or lower bound of a meta-analysis).
+
+3. Small telescopes (the effect size the original study had 33% power to detect).
+
+## Correlations 
+
+To apply the procedure to correlations, we will use the @dawtry_why_2015 data and the relationship between support for wealth redistribution and perceived fairness and satisfaction in the current system. For a starting point, we need to calculate the correlation coefficient as standard. 
+
+```{r}
+correlation(data = dawtry_clean, 
+            select = "fairness_satisfaction", 
+            select2 = "redistribution",  
+            method = "pearson", 
+            alternative = "two.sided")
+```
+
+### Equivalence testing
+
+For the first demonstration, we will conduct an equivalence test using the correlation coefficient we observed. The idea behind this function is that you can apply the procedure when you only have summary statistics and you do not need the raw data. In the `corsum_test()` function, we need to define: 
+
+- `r` - The observed correlation coefficient. 
+
+- `n` - The number of observation pairs, i.e., the sample size. 
+
+- `alternative` - The hypothesis to test, including options like "equivalence" and "minimal.effect".
+
+- `method` - The type of correlation to calculate, including options like "pearson" and "spearman". 
+
+- `null` - The null hypothesis or region to test against. If you provide a single value, it will test against symmetrical values, i.e., 0.2 will test against -0.2 and 0.2. If you want to specify asymmetrical values, you must enter a vector of numbers like `c(0, 0.2)`. 
+
+To apply this procedure to the correlation example, we can enter -0.70 for the Pearson correlation coefficient and 305 participants. The equivalence bounds is the hardest argument to set here, so we will use 0.2 as there is an idea called the "crud factor" where correlations smaller than 0.2 are likely noise (although @orben_crud_2020 critique this somewhat). 
+
+```{r}
+corsum_test(r = -0.70, 
+            n = 305, 
+            alternative = "equivalence", 
+            method = "pearson", 
+            null = 0.2)
+```
+
+In this example, the *p*-value of the equivalence test is 1 which might sound strange, but we need to think of the procedure here. Remember in an equivalence test we want to test whether the test statistic is *smaller* than the boundaries. In this scenario, the observed test statistic is *r* = -0.70 (90% CI = [-0.75, -0.65]). The correlation is pretty large and beyond the lower bound of -0.2, so it is entirely within that null region.
+
+::: {.callout-note}
+#### Why is it a 90% CI? 
+
+One detail you might have noticed is that we use a 90% confidence interval instead of the standard 95%. If we want to maintain the standard alpha rate at 5%, a 90% confidence interval over two tests maintains the alpha rate at 5%. 
+:::
+
+### Minimal effects testing
+
+For this scenario, it would be more aligned with a minimal effects test as we want to calculate whether our effect exceeds our SESOI. This time, we will set the alternative argument as `"minimal.effect"`.
+
+```{r}
+corsum_test(r = -0.70, 
+            n = 305, 
+            alternative = "minimal.effect", 
+            method = "pearson", 
+            null = 0.2)
+```
+
+This time, it is statistically significant as our observed correlation coefficient is significantly lower than our lower bound of -0.2. This means we can conclude the effect size exceeds our minimal effects test. 
+
+### Plotting the tests
+
+To help communicate your findings, or just help contextualise things for you, we can plot the results of these tests using one of two methods. First, the <pkg>TOSTER</pkg> package comes with a function to plot different tests that we can edit using <pkg>ggplot2</pkg> layers. 
+
+The first step is saving the plot object using the same values as we used for the equivalence test.
+
+```{r}
+p <- plot_cor(r = -0.70, 
+         n = 305, 
+         method = "pearson", 
+         type = "cd")
+
+# print the object
+p
+```
+
+The default arguments here visualise the observed correlation coefficient with a range of confidence intervals. We can then add <pkg>ggplot2</pkg> layers to visualise the equivalence test or minimal effects test results, depending which way around you want to interpret the results.
+
+```{r}
+p + scale_x_continuous(limits = c(-0.8, 0.2), 
+                       breaks = seq(-0.8, 0.2, 0.2)) + 
+  annotate(geom = "rect", 
+           xmin = -0.2, xmax = 0.2, 
+           ymin = I(0), ymax = I(100), # I() specifies values as percent of plot
+           alpha = 0.4)
+```
+
+Alternatively, if you wanted a more minimalist look or you wanted to plot the results of multiple correlations, we can create our own version. The first step is saving the results of a `correlation()` object, specifying we want the 90% confidence interval. 
+
+```{r}
+save_correlation <- correlation(data = dawtry_clean, 
+            select = "fairness_satisfaction", 
+            select2 = "redistribution",  
+            method = "pearson", 
+            alternative = "two.sided",
+            ci = 0.9)
+
+```
+
+This provides us with a data frame containing one row. This means we can take the results and feed it into <pkg>ggplot2</pkg>. We can use similar layers to customise our own version of the plot to help visualise the equivalence or minimal effects test. 
+
+```{r}
+save_correlation %>% 
+  ggplot(aes(y = r, x = "")) + # leave x blank
+  geom_point() + # correlation estimate
+  geom_errorbar(aes(ymin = CI_low, # 90% CI around r
+                    ymax = CI_high), 
+                width = 0.2) + 
+  labs(x = "",
+       y = "Pearson's Correlation") + 
+  coord_flip() + # flip x and y axes
+  scale_y_continuous(limits = c(-0.8, 0.2), 
+                       breaks = seq(-0.8, 0.2, 0.2)) + 
+  annotate(geom = "rect", # add the box for the SESOI
+           ymin = -0.2, ymax = 0.2, 
+           xmin = I(0), xmax = I(100),
+           alpha = 0.4)
+```
+
+## t-tests
+
+
+
