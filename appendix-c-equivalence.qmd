@@ -322,5 +322,84 @@ save_correlation %>%
 
 ## t-tests
 
+To apply the procedure to t-tests, we will use the @lopez_visual_2023 data and the difference in calories consumed between accurate and inaccurate visual cues.
 
+### Equivalence testing
 
+There are two ways you can apply the equivalence testing procedure for t-tests. We are focusing on two groups here, but the function also works for paired samples and one-sample t-tests. We will start with the `t_TOST()` function which starts with similar arguments to the standard `t.test()` function: 
+
+- `formula` - For two groups, we can use the standard `outcome ~ predictor` format. If you have paired samples or one-sample, you can use the `x` and `y` arguments. 
+
+- `data` - The data frame you are using.  
+
+- `eqb` - The equivalence bounds you want to set. If you enter one number, it will create symmetrical bounds, such as -20 to 20. If you want asymmetrical bound, you would need to enter a vector of numbers.  
+- `eqbound_type` - The default option is to enter "raw" units, so whatever scale your outcome is on. For our example, this will be in calories. Your other option is "smd" for standardised mean difference, or Cohen's d. You can enter the equivalence bounds as standardised units but it comes with a little warning that there is potential bias.  
+- `hypothesis` - This is where you can create an equivalence test using "EQU" or a minimal effects test using "MET". We will come back to minimal effects in the next section. 
+
+The main argument to explain here is using 57 calories for the equivalence bounds. Remember this is a t-test, so we want to see whether one group is larger (or smaller) than the other. Setting the equivalence bounds is the single most difficult part here but @lopez_visual_2023 explain that they were interested in detecting an effect at least half as large as the original Wansink et al. study. Therefore, in an equivalence test, we would ask the question whether the observed effect size is smaller than 57 calories difference. 
+
+```{r}
+t_TOST(formula = F_CaloriesConsumed ~ Condition_label, 
+       data = lopez_clean, 
+       eqb = 57, 
+       eqbound_type = "raw",
+       hypothesis = "EQU")
+```
+
+The output is busier than correlations, so we will walk through the three sections. The first explains the summary of the equivalence tests. You get both the equivalence test and a traditional t-test. Here, the traditional t-test is significant (we can reject 0) but the equivalence test is non-significant, meaning we cannot conclude the effect was statistically equivalent, given our bounds. 
+
+The second section adds context to this as you see the output for all three tests. The t-test is significant to reject zero. We then have the two one-sided tests where one is significant (we can reject the upper bound), but the other is non-significant. Both need to be significant to conclude equivalence. 
+
+Finally, we have a summary of the effect sizes. You get the raw / unstandardised effect size and it's 90% CI. For our equivalence bounds of -57 to 57, the upper bound of the 90% CI (-41.66) extends into the equivalence bounds, so that's why the test is non-significant. You also get Hedge's g as a standardised effect size. 
+
+Briefly, there is a second, more minimalist function to calculate the equivalence test called `simple_htest()`. This is supposed to look closer to the output from a traditional t-test but the conclusion is the same. You just get one test (the smaller of the two one-sided tests) and a summary of the boundaries. 
+
+```{r}
+simple_htest(formula = F_CaloriesConsumed ~ Condition_label, 
+       data = lopez_clean, 
+       mu = 57, 
+       alternative = "e")
+```
+
+### Minimal effects testing
+
+For the framing of @lopez_visual_2023, it potentially makes more sense to calculate a minimal effects test if we are interested in the effect being at least as large as half the original effect size. In other words, we want to see whether the effect is 57 calories or greater, rather than smaller than 57 calories. 
+
+```{r}
+t_TOST(formula = F_CaloriesConsumed ~ Condition_label, 
+       data = lopez_clean, 
+       eqb = 57, 
+       eqbound_type = "raw",
+       hypothesis = "MET")
+```
+
+In changing the `hypothesis` argument to "MET", we still get all the same output but the framing changes. Instead of testing whether the observed effect is *within* the equivalence bounds, we test whether the effect is *outwith* the equivalence bounds. We get a similar conclusion here where the traditional t-test is significant and we can reject the point null of zero. However, the minimal effects test is non-significant and our effect does not exceed the bounds. 
+
+### Plotting the tests
+
+The plotting options are also a little nicer here as there are built-in visualisations for equivalence tests. First, we need to save the initial test object. 
+
+```{r}
+lopez_EQU <- t_TOST(formula = F_CaloriesConsumed ~ Condition_label, 
+                    data = lopez_clean, 
+                    eqb = 57, 
+                    eqbound_type = "raw",
+                    hypothesis = "EQU")
+```
+
+We can then pass the object to `plot()` to create different types of visualisation. The first is a simple dot-and-whisker plot we created ourselves for the correlation. 
+
+```{r}
+plot(lopez_EQU, 
+     type = "simple", 
+     layout = "combined")
+```
+
+The second is a density plot like we saw for correlations, but this time the equivalence bounds are added automatically. 
+
+```{r}
+plot(lopez_EQU, 
+     type = "cd")
+```
+
+Both visualisations reinforce the conclusion that we have a traditionally significant result where we can reject a point-null, but the effect estimate and it's precision through the 90% CI does not exceed the equivalence bounds we set. 

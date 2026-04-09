@@ -347,7 +347,14 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   <li><a href="#plotting-the-tests" id="toc-plotting-the-tests" class="nav-link" data-scroll-target="#plotting-the-tests"><span class="header-section-number">D.3.3</span> Plotting the tests</a></li>
   </ul>
 </li>
-  <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests"><span class="header-section-number">D.4</span> t-tests</a></li>
+  <li>
+<a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests"><span class="header-section-number">D.4</span> t-tests</a>
+  <ul class="collapse">
+<li><a href="#equivalence-testing-1" id="toc-equivalence-testing-1" class="nav-link" data-scroll-target="#equivalence-testing-1"><span class="header-section-number">D.4.1</span> Equivalence testing</a></li>
+  <li><a href="#minimal-effects-testing-1" id="toc-minimal-effects-testing-1" class="nav-link" data-scroll-target="#minimal-effects-testing-1"><span class="header-section-number">D.4.2</span> Minimal effects testing</a></li>
+  <li><a href="#plotting-the-tests-1" id="toc-plotting-the-tests-1" class="nav-link" data-scroll-target="#plotting-the-tests-1"><span class="header-section-number">D.4.3</span> Plotting the tests</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/appendix-c-equivalence.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/appendix-c-equivalence.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -632,6 +639,138 @@ sample estimates:
 </div>
 </section></section><section id="t-tests" class="level2" data-number="D.4"><h2 data-number="D.4" class="anchored" data-anchor-id="t-tests">
 <span class="header-section-number">D.4</span> t-tests</h2>
+<p>To apply the procedure to t-tests, we will use the <span class="citation" data-cites="lopez_visual_2023">Lopez et al. (<a href="references.html#ref-lopez_visual_2023" role="doc-biblioref">2023</a>)</span> data and the difference in calories consumed between accurate and inaccurate visual cues.</p>
+<section id="equivalence-testing-1" class="level3" data-number="D.4.1"><h3 data-number="D.4.1" class="anchored" data-anchor-id="equivalence-testing-1">
+<span class="header-section-number">D.4.1</span> Equivalence testing</h3>
+<p>There are two ways you can apply the equivalence testing procedure for t-tests. We are focusing on two groups here, but the function also works for paired samples and one-sample t-tests. We will start with the <code>t_TOST()</code> function which starts with similar arguments to the standard <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function:</p>
+<ul>
+<li><p><code>formula</code> - For two groups, we can use the standard <code>outcome ~ predictor</code> format. If you have paired samples or one-sample, you can use the <code>x</code> and <code>y</code> arguments.</p></li>
+<li><p><code>data</code> - The data frame you are using.</p></li>
+<li><p><code>eqb</code> - The equivalence bounds you want to set. If you enter one number, it will create symmetrical bounds, such as -20 to 20. If you want asymmetrical bound, you would need to enter a vector of numbers.<br></p></li>
+<li><p><code>eqbound_type</code> - The default option is to enter “raw” units, so whatever scale your outcome is on. For our example, this will be in calories. Your other option is “smd” for standardised mean difference, or Cohen’s d.&nbsp;You can enter the equivalence bounds as standardised units but it comes with a little warning that there is potential bias.<br></p></li>
+<li><p><code>hypothesis</code> - This is where you can create an equivalence test using “EQU” or a minimal effects test using “MET”. We will come back to minimal effects in the next section.</p></li>
+</ul>
+<p>The main argument to explain here is using 57 calories for the equivalence bounds. Remember this is a t-test, so we want to see whether one group is larger (or smaller) than the other. Setting the equivalence bounds is the single most difficult part here but <span class="citation" data-cites="lopez_visual_2023">Lopez et al. (<a href="references.html#ref-lopez_visual_2023" role="doc-biblioref">2023</a>)</span> explain that they were interested in detecting an effect at least half as large as the original Wansink et al.&nbsp;study. Therefore, in an equivalence test, we would ask the question whether the observed effect size is smaller than 57 calories difference.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">t_TOST</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>       <span class="at">data =</span> lopez_clean, </span>
+<span id="cb11-3"><a href="#cb11-3"></a>       <span class="at">eqb =</span> <span class="dv">57</span>, </span>
+<span id="cb11-4"><a href="#cb11-4"></a>       <span class="at">eqbound_type =</span> <span class="st">"raw"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>       <span class="at">hypothesis =</span> <span class="st">"EQU"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Welch Two Sample t-test
+
+The equivalence test was non-significant, t(453.45) = -0.47, p = 0.68
+The null hypothesis test was significant, t(453.45) = -4.86, p &lt; 0.01
+NHST: reject null significance hypothesis that the effect is equal to zero 
+TOST: don't reject null equivalence hypothesis
+
+TOST Results 
+                 t    df p.value
+t-test     -4.8578 453.4 &lt; 0.001
+TOST Lower -0.4661 453.4   0.679
+TOST Upper -9.2495 453.4 &lt; 0.001
+
+Effect Sizes 
+               Estimate       SE                 C.I. Conf. Level
+Raw            -63.0495 12.97908 [-84.4419, -41.6571]         0.9
+Hedges's g(av)  -0.4513  0.09445   [-0.6059, -0.2963]         0.9
+Note: SMD confidence intervals are an approximation. See vignette("SMD_calcs").</code></pre>
+</div>
+</div>
+<p>The output is busier than correlations, so we will walk through the three sections. The first explains the summary of the equivalence tests. You get both the equivalence test and a traditional t-test. Here, the traditional t-test is significant (we can reject 0) but the equivalence test is non-significant, meaning we cannot conclude the effect was statistically equivalent, given our bounds.</p>
+<p>The second section adds context to this as you see the output for all three tests. The t-test is significant to reject zero. We then have the two one-sided tests where one is significant (we can reject the upper bound), but the other is non-significant. Both need to be significant to conclude equivalence.</p>
+<p>Finally, we have a summary of the effect sizes. You get the raw / unstandardised effect size and it’s 90% CI. For our equivalence bounds of -57 to 57, the upper bound of the 90% CI (-41.66) extends into the equivalence bounds, so that’s why the test is non-significant. You also get Hedge’s g as a standardised effect size.</p>
+<p>Briefly, there is a second, more minimalist function to calculate the equivalence test called <code>simple_htest()</code>. This is supposed to look closer to the output from a traditional t-test but the conclusion is the same. You just get one test (the smaller of the two one-sided tests) and a summary of the boundaries.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">simple_htest</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="at">data =</span> lopez_clean, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>       <span class="at">mu =</span> <span class="dv">57</span>, </span>
+<span id="cb13-4"><a href="#cb13-4"></a>       <span class="at">alternative =</span> <span class="st">"e"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  F_CaloriesConsumed by Condition_label
+t = -0.4661, df = 453.45, p-value = 0.6793
+alternative hypothesis: equivalence
+null values:
+difference in means difference in means 
+                -57                  57 
+90 percent confidence interval:
+ -84.44188 -41.65710
+sample estimates:
+mean of x mean of y 
+ 196.6818  259.7313 </code></pre>
+</div>
+</div>
+</section><section id="minimal-effects-testing-1" class="level3" data-number="D.4.2"><h3 data-number="D.4.2" class="anchored" data-anchor-id="minimal-effects-testing-1">
+<span class="header-section-number">D.4.2</span> Minimal effects testing</h3>
+<p>For the framing of <span class="citation" data-cites="lopez_visual_2023">Lopez et al. (<a href="references.html#ref-lopez_visual_2023" role="doc-biblioref">2023</a>)</span>, it potentially makes more sense to calculate a minimal effects test if we are interested in the effect being at least as large as half the original effect size. In other words, we want to see whether the effect is 57 calories or greater, rather than smaller than 57 calories.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">t_TOST</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="at">data =</span> lopez_clean, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>       <span class="at">eqb =</span> <span class="dv">57</span>, </span>
+<span id="cb15-4"><a href="#cb15-4"></a>       <span class="at">eqbound_type =</span> <span class="st">"raw"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>       <span class="at">hypothesis =</span> <span class="st">"MET"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Welch Two Sample t-test
+
+The minimal effect test was non-significant, t(453.45) = -9.2, p = 0.32
+The null hypothesis test was significant, t(453.45) = -4.86, p &lt; 0.01
+NHST: reject null significance hypothesis that the effect is equal to zero 
+TOST: don't reject null MET hypothesis
+
+TOST Results 
+                 t    df p.value
+t-test     -4.8578 453.4 &lt; 0.001
+TOST Lower -0.4661 453.4   0.321
+TOST Upper -9.2495 453.4       1
+
+Effect Sizes 
+               Estimate       SE                 C.I. Conf. Level
+Raw            -63.0495 12.97908 [-84.4419, -41.6571]         0.9
+Hedges's g(av)  -0.4513  0.09445   [-0.6059, -0.2963]         0.9
+Note: SMD confidence intervals are an approximation. See vignette("SMD_calcs").</code></pre>
+</div>
+</div>
+<p>In changing the <code>hypothesis</code> argument to “MET”, we still get all the same output but the framing changes. Instead of testing whether the observed effect is <em>within</em> the equivalence bounds, we test whether the effect is <em>outwith</em> the equivalence bounds. We get a similar conclusion here where the traditional t-test is significant and we can reject the point null of zero. However, the minimal effects test is non-significant and our effect does not exceed the bounds.</p>
+</section><section id="plotting-the-tests-1" class="level3" data-number="D.4.3"><h3 data-number="D.4.3" class="anchored" data-anchor-id="plotting-the-tests-1">
+<span class="header-section-number">D.4.3</span> Plotting the tests</h3>
+<p>The plotting options are also a little nicer here as there are built-in visualisations for equivalence tests. First, we need to save the initial test object.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>lopez_EQU <span class="ot">&lt;-</span> <span class="fu">t_TOST</span>(<span class="at">formula =</span> F_CaloriesConsumed <span class="sc">~</span> Condition_label, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>                    <span class="at">data =</span> lopez_clean, </span>
+<span id="cb17-3"><a href="#cb17-3"></a>                    <span class="at">eqb =</span> <span class="dv">57</span>, </span>
+<span id="cb17-4"><a href="#cb17-4"></a>                    <span class="at">eqbound_type =</span> <span class="st">"raw"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>                    <span class="at">hypothesis =</span> <span class="st">"EQU"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can then pass the object to <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> to create different types of visualisation. The first is a simple dot-and-whisker plot we created ourselves for the correlation.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">plot</span>(lopez_EQU, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>     <span class="at">type =</span> <span class="st">"simple"</span>, </span>
+<span id="cb18-3"><a href="#cb18-3"></a>     <span class="at">layout =</span> <span class="st">"combined"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="appendix-c-equivalence_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The second is a density plot like we saw for correlations, but this time the equivalence bounds are added automatically.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">plot</span>(lopez_EQU, </span>
+<span id="cb19-2"><a href="#cb19-2"></a>     <span class="at">type =</span> <span class="st">"cd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="appendix-c-equivalence_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both visualisations reinforce the conclusion that we have a traditionally significant result where we can reject a point-null, but the effect estimate and it’s precision through the 90% CI does not exceed the equivalence bounds we set.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -654,7 +793,7 @@ Lopez, A., Choi, A. K., Dellawar, N. C., Cullen, B. C., Avila Contreras, S., Ros
 Orben, A., &amp; Lakens, D. (2020). Crud (<span>Re</span>)<span>Defined</span>. <em>Advances in Methods and Practices in Psychological Science</em>, <em>3</em>(2), 238–247. <a href="https://doi.org/10.1177/2515245920917961">https://doi.org/10.1177/2515245920917961</a>
 </div>
 </div>
-</section></main><!-- /main --><script>
+</section></section></main><!-- /main --><script>
 
 /* update total correct if #webex-total_correct exists */
 update_total_correct = function() {
