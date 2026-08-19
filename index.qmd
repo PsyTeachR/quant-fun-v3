@@ -8,6 +8,12 @@
 
 **Aim:** This course covers data skills such as creating reproducible documents with R Markdown, data wrangling, and data visualisation with the tidyverse family of packages. It also introduces statistical concepts such as Null Hypothesis Significance Testing (NHST), as well as demonstrating how to perform numerous analyses based around the general linear model including regression and ANOVA.
 
+**Using our materials**: All PsyTeachR resources are open-access with Creative Commons licences (see below). You are free to reuse, remix, and adapt our materials with attribution. If you do use any of our work, please complete this [short form](https://forms.office.com/e/v8Sk0UpP6Q){target="_blank"} so that we can track our impact.
+
+**Licence**: This book is licensed under Creative Commons Attribution-ShareAlike 4.0 International License [(CC-BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/){target="_blank"}. You are free to share and adapt this book. You must give appropriate credit, provide a link to the license, and indicate if changes were made. If you adapt the material, you must distribute your contributions under the same license as the original. 
+
+**Citation**: Bartlett, J.E. & Toivo, W. (2024). Fundamentals of Quantitative Analysis (Version 3.0). https://github.com/PsyTeachR/quant-fundamentals-v3
+
 **Contact:** This book is a living document and will be regularly checked and updated for improvements. Should you have any issues using the book or have any queries, please contact [James Bartlett](mailto:james.bartlett@glasgow.ac.uk) and [Wil Toivo](mailto:wilhelmiina.toivo@glasgow.ac.uk).
 
 ```{r, echo=FALSE}
@@ -19,5 +25,4 @@ last_updated <- Sys.Date()
 The online version of the book will always be the most up-to-date version with interactive exercises. Periodically, we create a PDF version of the book if that helps you work offline. We last knitted the book on `r last_updated`. 
 
 **R Version:** We wrote this book using `r version`.
-
 
