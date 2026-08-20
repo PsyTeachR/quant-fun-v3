@@ -289,11 +289,9 @@ Clashes are inevitable in your learning and when you see one, you will probably 
 
 ## Objects
 
-So far, you have learnt about packages, and functions and arguments. Earlier we said functions give us outputs and another name for outputs - or at least specific types of outputs - are **`r glossary("object", display = "objects")`**. 
+So far, you have learnt about packages, functions, and arguments. Earlier we said functions give us outputs and one of the most common types of outputs - are **`r glossary("object", display = "objects")`**. Most of your coding will involve creating and manipulating objects. Objects contain stuff, which could be numbers, words, or the result of functions, operations, and analyses. 
 
-Objects are the output of functions but you can also create objects without functions. Most of your coding will involve creating and manipulating objects. Objects contain stuff, which could be numbers, words, or the result of functions, operations, and analyses. 
-
-The first key thing to know about objects is how to create them and to give them content. You assign content to an object using `<-` - often called the "left arrow" or the **`r glossary("assignment operator")`** which you can read as "assigned to". Note that we do not use the `=` symbol as an assignment operator. There is a large discussion on why objects are assigned content and not equal to content but that is for another time. For now, just remember that we assign (`<-`) content, be it words, numbers, or function output, to objects.
+The first key thing to know about objects is how to create them and to give them content. You assign content to an object using `<-` - often called the "left arrow" or the **`r glossary("assignment operator")`** which you can read as "assigned to". 
 
 ### Activity 5 - Create some objects
 
@@ -304,7 +302,7 @@ Type the following code into the console window and run each line. You should se
 name <- "James"
 age <- 16 + 14 
 today <- Sys.Date()
-new_year <- as.Date("2025-01-01")
+new_year <- as.Date("2027-01-01")
 data <- rnorm(n = 10, mean = 15, sd = 3)
 
 ```
@@ -318,11 +316,11 @@ knitr::include_graphics("images/objects-enviro.png")
 
 ```
 
-Note that in these examples, `name`,`age`, and `new_year` would always contain the values `James`, `r age`, and the date of New Year's Day 2025, but `today` will draw the date from the operating system on the day you are using the computer, and `data` will be a randomly generated set of data - as we saw earlier - so the values of these objects will not be static. 
+Note that in these examples, `name`,`age`, and `new_year` would always contain the values James, `r age`, and the date of New Year's Day 2027, but `today` will draw the date from the operating system on the day you are using the computer, and `data` will be a randomly generated set of data - as we saw earlier - so the values of these objects will not be static. 
 
 ::: {.callout-tip}
 #### Try this
-Try changing the name to your name and the age to your age, and seeing if they update in the environment window.
+Try changing the name to your name and the age to your age, and see how they update in the environment window.
 :::
 
 Importantly, for what we will learn in future chapters, you can use different objects in calculations and interact with each other. For example:
@@ -339,7 +337,7 @@ new_year - today
 mean(data)
 ```
 
-Finally, you can store the result of these operations on objects in a new object as below:
+Finally, you can store the result of these operations on objects in a new object:
 
 ```{r objects-interact4}
 
@@ -366,22 +364,13 @@ Now that you are starting to learn about the other windows in RStudio like the e
 
 2. To clear all objects from the environment, run `rm(list = ls())` in the console.
 
-3. To clear all objects from the environment, you can also click the broom icon in the environment pane like Figure @fig-img-broom. 
-
-```{r img-broom, echo=FALSE}
-#| label: fig-img-broom
-#| fig.cap: "Clearing the workspace."
-#| fig-alt: "Highlighting the broom symbol and hovering over the text which says clears objects from the workspace."
-
-knitr::include_graphics("images/broom.png")
-
-```
+3. To clear all objects from the environment, you can also click the broom icon in the environment pane.
 
 ## Global options
 
 When you open RStudio, it will show you what you were last working on, including your code and any objects you have created, assuming this is not the first time you have used RStudio. This might sound helpful, but it can cause more problems than it is worth because it means that you risk accidentally using an old version of an object. 
 
-For example, you might have `Date` in the environment from the last time you did some work and you start working on the wrong `Date` without realising. In reality, we recommend changing the settings so that each time you start RStudio, it opens a fresh new environment. 
+For example, you might have `Date` in the environment from the last time you did some work and you start working on the wrong `Date` without realising. We recommend changing the settings so that each time you start RStudio, it opens a fresh new environment. 
 
 You can do this by clicking on the top menu **`Tools >> Global Options...`** and then deselecting boxes so that your General box looks like Figure @fig-img-options and applying the changes to save your selections.
 
@@ -394,13 +383,11 @@ knitr::include_graphics("images/global_options.png")
 
 ```
 
-That should save a lot of hassle going forward. You will still encounter issues of course, so we are going to end this chapter by outlining where you can get help.
-
 ## Getting Help 
 
 ### Help and additional resources
 
-Learning to code really means trying stuff out, searching for help online when it does not work, and finding examples of code to adapt to your own needs. 
+Learning to code really means trying stuff out, searching for help in these books or online when it does not work, and finding examples of code to adapt to your own needs. 
 
 If you are having difficulty with any of the content in this book, then you can of course ask for help from the course team but learning to problem solve effectively is a key skill that you will develop throughout this course and beyond. 
 
@@ -414,7 +401,9 @@ There are a wealth of [additional resources](#additional-resources) in the Appen
 
 - Trying Googling your question in the style of the package name or function name and what you want to do. For example, **arrange data tidyverse** or maybe **sort data in R**.
 
-If those approaches do not work, in addition to these course materials and the other [PsyTeachR books](https://psyteachr.github.io/){target="_blank"} from other courses we run, there are many excellent online resources for learning data skills that can serve as quick guides:
+- In this introductory course, we avoid talking about generative AI tools as we want you to develop a fundamental understanding of R code and a framework for how you conduct psychology research (as well as the wider environmental impact), but it is potentially useful as a problem solving tool. One of our other books [AITutor](https://psyteachr.github.io/AITutor/){target="_blank"} outlines strategies for using AI tools as a pair programmer, but remember you should be the one in the driving seat. 
+
+Other excellent online resources for learning data skills that can serve as quick guides include:
 
 - Individual package cheat sheets which you can find via the top menu: **`Help >> Cheat Sheets`**.
   
@@ -487,7 +476,7 @@ rnorm(6, 50, 10)
 The default form for `rnorm()` is `rnorm(n, mean, sd)`. If you need help remembering what each argument of a function does, look up the help documentation by running `?rnorm`.
 :::
 
-**Question 3.** If you have two packages that have functions with the same name and you want to specify exactly which package to use, what code would you use? 
+**Question 3.** If you have two packages that have functions with the same name and you want to specify exactly which package to use, what code pattern would you use? 
 
 `r longmcq(c(answer = "package::function", "function::package", "library(package)", "install.packages(package)"))`  
 
@@ -525,7 +514,7 @@ The following questions are designed to introduce you to making and fixing error
 
 ::: {.callout-caution collapse="true"} 
 #### Explain this answer
-We accidentally spelt one of the arguments incorrectly. If you look closely, you will see that we typed `meen` spelt with two es instead of one e when we should have typed `mean`.
+We accidentally spelt one of the arguments incorrectly. If you look closely, you will see that we typed `meen` spelt with two "e"s instead of one "e" when we should have typed `mean`.
 :::
 
 **Question 8.** To end on a sneaky one that we have not covered in this chapter, type the following code into the console and press enter/return: `rnorm(n = 10, mean = 5, sd = 1`. What happened and how can you fix it? Before checking the explain this answer box below, maybe try and Google what happens to see if you can describe it and find a solution. 
