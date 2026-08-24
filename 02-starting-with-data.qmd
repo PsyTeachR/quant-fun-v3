@@ -185,7 +185,7 @@ knitr::include_graphics("images/default_qmd.png")
 
 We will now demonstrate what it looks like to **Render** a document. This means that we are going to compile (i.e., turn) our code into a document that is more presentable. This way, you can check it renders and there are no errors. So, as we add changes in the following activities, you can identify if and when any errors appear and fix them quicker. 
 
-At the top of your Quarto window, you should see a Render button next to a little ball of yarn (@fig-img-render-document). If you click that, the document will render and produce a html file. 
+At the top of your Quarto window, you should see a Render button (@fig-img-render-document). If you click that, the document will render and produce a html file. 
 
 ```{r img-render-document, echo=FALSE}
 #| label: fig-img-render-document
@@ -218,11 +218,11 @@ These are all the default options when you use RStudio. It can be quite annoying
 
 Let's start using your new Quarto document to combine code and text. Follow these steps: 
 
-1. Delete **everything** below line 10. 
+1. Delete **everything** below line 6. 
 
-2. On line 12, type "## About me". 
+2. On line 7, type "## About me". 
 
-3. With your cursor on line 14, insert a blank code chunk by clicking on the top menu **`Code >> Insert Chunk`** or using the shortcut at the top of the Quarto window that looks like a small green c and select R. 
+3. With your cursor on line 9, insert a blank code chunk by clicking on the top menu **`Code >> Insert Chunk`** or using the shortcut at the top of the Quarto window that looks like a small green plus and the letter c and select R. 
 
 Your document should now look something like @fig-img-new-chunk. 
 
@@ -230,17 +230,17 @@ Your document should now look something like @fig-img-new-chunk.
 #| label: fig-img-new-chunk
 #| fig.cap: "Creating a new R chunk in your blank Quarto document"
 
-knitr::include_graphics("images/Rmd_blank_insert_chunk.png")
+knitr::include_graphics("images/qmd_blank_chunk.png")
 
 ```
 
-What you have created is called a **`r glossary("chunk", display = "code chunk")`**. Quarto assumes anything written outside of a code chunk is just normal text, just like you would have in a text editor like Word. It assumes anything written inside the code chunk is R code. This makes it easy to combine both text and code in one document.
+What you have created is called a **`r glossary("chunk", display = "code chunk")`**. Quarto assumes anything written outside of a code chunk is just normal text, just like you would write in a text editor like Word. It assumes anything written inside the code chunk is R code. This makes it easy to combine both text and code in one document.
 
 ::: {.callout-important}
 #### Error mode
 When you create a new code chunk, you should notice that the grey box starts and ends with three back ticks (`` ``` ``), followed by the {r}, and then it ends with three back ticks again. This is the structure that creates a code chunk. You could actually just type this structure instead of using the `Insert` approach but we are introducing you to some shortcuts
 
-One common mistake is to accidentally delete one or more of these back ticks. A useful thing to notice is that code chunks tend to have a different color background - in the default appearance of RStudio a code chunk is grey and the normal text is white. You can use this to look for mistakes. If the colour of certain parts of your Markdown does not look right, check that you have not deleted the backticks.
+One common mistake is to accidentally delete one or more of these back ticks. A useful thing to notice is that code chunks tend to have a different color background - in the default appearance of RStudio a code chunk is grey and the normal text is white. You can use this to look for mistakes. If the code chunks keep expanding it's grey area as you return new lines, check that you have not deleted the backticks. RStudio essentially thinks the code chunk has not finished yet. 
 
 Remember it is backticks (i.e. this `) and not single quotes (i.e. not this ').
 :::
@@ -251,7 +251,7 @@ When you typed "## About me", you might notice the two hashes. You will see the 
 
 The hashes create headers. One (#) creates a first level header (larger text), two (##) creates a second level header, and so on. Make sure there is a space between the text and hash or it will not render properly. 
 
-As we progress through the book, we will slowly introduce you to different Markdown features, but you can see the [RStudio Markdown Basics page](https://rmarkdown.rstudio.com/lesson-8.html){target="_blank"} if you are interested.
+As we progress through the book, we will slowly introduce you to different Markdown features, but you can see the [Quarto Markdown Basics page](https://quarto.org/docs/authoring/markdown-basics.html){target="_blank"} if you are interested.
 :::
 
 ### Activity 5: Write some code {#intro-a5}
@@ -264,9 +264,9 @@ In your code chunk, write the code below but replace the values of name/age/birt
 
 ```{r prog-basics}
 name <- "James" 
-age <- 30
+age <- 32
 today <- Sys.Date()
-next_birthday <- as.Date("2025-02-18") # Year, month, day format
+next_birthday <- as.Date("2027-02-18") # Year, month, day format
 ```
 
 ::: {.callout-important}
@@ -336,7 +336,7 @@ Your .Qmd should look like @fig-img-aboutme-rmd but nothing will happen yet. Unl
 #| label: fig-img-aboutme-rmd
 #| fig.cap: "Complete .Qmd file with your about me section and inline code."
 
-knitr::include_graphics("images/Rmd_about_me.png")
+knitr::include_graphics("images/qmd_aboutme.png")
 
 ```
 
@@ -345,7 +345,7 @@ object <- "r object"
 function_name <- "r function"
 ```
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 #### How does inline code work? 
 
 Inline code has the following form:
@@ -377,19 +377,19 @@ My name is **`r name`** and I am **`r age`** years old. <br><br>It is **`r next_
 
 Quarto is an incredibly powerful and flexible format, we wrote this whole book using it! There are a few final things to note about rendering that will be useful going forward for your data skills learning and assessments:
 
-- Quarto will only render if your code works. If you have an error, it will stop and tell you to fix the error before you can click Render and try again. This is a good way of checking whether you have written functioning code in your assessments. 
+- Quarto will only render if your code works. If you have an error, it will stop and tell you to fix the error before you can click Render and try again. This is a good way of checking whether you have written functioning code in your assessments. There is actually a way of ignoring errors we use in data skills assessments, but we want you to recognise errors at this point. 
 
 - When you render an Quarto document, it runs the code from the start of the document to the end in order, and in a fresh session. This means it cannot access your environment, just the objects you create within that Quarto. One common error can be writing and running code as you work on the document, but the code chunks are in the wrong order, or you created an object in the console but not in the code chunks. This means Quarto would not know the object exists yet, or it does not have access to it at all. 
 
 - You can choose to render to a Word document rather than HTML. This can be useful for sharing with others or adding further edits, but you might lose some functionality. By default, html looks good and is accessible, so that will be our default throughout this book, but look out for our instructions on what output format we want your assessments in. 
 
-- You can choose to render to PDF, however, unless you are using the server this requires a **`r glossary("LaTeX")`** installation and can be quite complicated. If you do not already know what LaTeX is and how to use it, we do not recommend trying to render to PDF just yet. If you do know how to use LaTeX, you probably do not need us to give you instructions!
+- You can choose to render to PDF, however, this requires a **`r glossary("LaTeX")`** installation and can be quite complicated. If you do not already know what LaTeX is and how to use it, we do not recommend trying to render to PDF just yet. If you do know how to use LaTeX, you probably do not need us to give you instructions!
 
 We will test some of these warnings in error mode in the test yourself section, but we have one final demonstration for how Quarto files support reproducibility. 
 
 ## Demonstrating reproducibility 
 
-At the start of this chapter, we plugged the benefits of reproducible research as the ability to produce the same result for different people using the same software on different computers. We are going to end the chapter on a demonstration of this by giving you an Quarto document and data. You should be able to click Render and see the results without editing anything. We do not expect you to understand the code included in it, we are previewing the skills you will develop over the next four chapters on visualisation and data wrangling. 
+At the start of this chapter, we plugged the benefits of reproducible research as the ability to produce the same result for different people using the same software on different computers. We are going to end the chapter on a demonstration of this by giving you a Quarto document and data. You should be able to click Render and see the results without editing anything. We do not expect you to understand the code included in it, we are previewing the skills you will develop over the next few chapters on visualisation and data wrangling. 
 
 ### Activity 9 - Render the reproducibility demonstration document
 
@@ -407,7 +407,7 @@ If you open "02_reproducibility_demo.Qmd" and followed all the steps above, you 
 
 ::: {#fig-img-repro-demo layout-ncol=2}
 
-![](images/repro_demo_Rmd.png)
+![](images/repro_demo_qmd.png)
 
 ![](images/repro_demo_html.png)
 
@@ -459,11 +459,11 @@ Inline coding is an incredibly useful approach for merging text and code in a se
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on Quarto and potential errors in using code blocks and inline code. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new Quarto file by following the instructions in [activity 3](#intro-a3) and [activity 4](#intro-a4). You should have a blank Quarto file below line 10. Below, we have several variations of a code chunk and inline code errors. Copy and paste them into your Quarto file, click Render, and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Create and save a new Quarto file by following the instructions in [activity 3](#intro-a3) and [activity 4](#intro-a4). You should have a blank Quarto file below line 6. Below, we have several variations of a code chunk and inline code errors. Copy and paste them into your Quarto file, click Render, and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
 **Note**: For all of our error mode activities, the error is based on clicking Render so it applies to inline code examples. If you try and run the code instead of clicking Render on the whole document, you might see a different error message to what we report. 
 
-**Question 6**. Copy the following text/code/code chunk into your Quarto file and press render. You should receive an error like `Line 18 Execution halted` in the Render tab. 
+**Question 6**. Copy the following text/code/code chunk into your Quarto file and press render. You should receive a few lines of error message containing `Error in eval(parse_only(code), envir = envir) : object 'city' not found` in the Background jobs tab. 
 
 ````{verbatim, lang = "markdown"}
 city <- "Glasgow"
@@ -480,7 +480,7 @@ city <- "Glasgow"
 Here, we wrote `city <- "Glasgow"` outside the code chunk. So, when we try and render, it is not evaluated as code, and city does not exist as an object to be referenced in inline code. If you copy `city <- "Glasgow"` into the code chunk and press render, it should work. 
 :::
 
-**Question 7**. Copy the following text/code/code chunk into your Quarto file and press render. You should receive an error like `Error in parse(): ! attempt to use zero-length variable name` which is not very helpful for diagnosing the problem. 
+**Question 7**. Copy the following text/code/code chunk into your Quarto file and press render. This...works? 
 
 ````{verbatim, lang = "markdown"}
 
@@ -494,10 +494,10 @@ city <- "Glasgow"
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-Here, we missed a final backtick in the code chunk. You might have noticed all the text had a grey background, so Quarto thought everything was code. So, when it reached the inline code and text, it tried interpreting it as code and caused the error. If you add the final backtick to the code chunk, you should be able to click render successfully. 
+Here, we missed a final backtick in the code chunk. You might have noticed all the text had a grey background, so Quarto thought everything was code. Quarto can be quite robust to errors, so it "worked", but it did not render the inline code. When it reached the next back tick around `r` `city`,  it used that to finish off the code chunk. If you add the final backtick to the code chunk, you should be able to click render successfully and see the inline code work this time. 
 :::
 
-**Question 8**. Copy the following text/code/code chunk into your Quarto file and press render. You should receive an error like `Line 12 Execution halted` in the Render tab. 
+**Question 8**. Copy the following text/code/code chunk into your Quarto file and press render. You should receive an error like `Error in eval(parse_only(code), envir = envir) : object 'city' not found` in the Background jobs tab. 
 
 ````{verbatim, lang = "markdown"}
 
