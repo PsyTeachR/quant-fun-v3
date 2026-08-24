@@ -93,7 +93,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_03_intro_data_viz` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `03 Introduction to Data Visualisation`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_03_intro_data_viz` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `03 Introduction to Data Visualisation`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_03_intro_data_viz` folder. 
 
 4. Download these two data files which we used at the end of Chapter 2. Data file one: [ahi-cesd.csv](data/ahi-cesd.csv). Data file two: [participant-info.csv](data/participant-info.csv). Right click the links and select "save link as", or clicking the links will save the files to your Downloads. Make sure that both files are saved as ".csv". Do not open them on your machine as often other software like Excel can change setting and ruin the files. Save or copy the file to your `data/` folder within `Chapter_03_intro_data_viz`.
 
@@ -101,19 +101,19 @@ You are now ready to start working on the chapter!
 
 ::: {.callout-note collapse="true"}
 #### Reminder of file management if you use the online server
-If we support you to use the online University of Glasgow R Server, working with files is a little different. If you downloaded R / RStudio to your own computer or you are using one of the library/lab computers, please ignore this section. 
+If you use RStudio online, remember that working with files is a little different.
 
-The main disadvantage to using the R server is that you will need create folders on the server and then upload and download any files you are working on to and from the server. Please be aware that **there is no link between your computer and the R server**. If you change files on the server, they will not appear on your computer until you download them from the server, and you need to be very careful when you submit your assessment files that you are submitting the right file. This is the main reason we recommend installing R / RStudio on your computer wherever possible.
+The main disadvantage to using R online is that you will need create folders and then upload and download any files you are working on. Please be aware that **there is no link between your computer and the online version of R/RStudio**. If you change files online, they will not appear on your computer until you download them, and you need to be very careful when you submit your assessment files that you are submitting the right file. This is the main reason we recommend installing R / RStudio on your computer wherever possible.
 
-Going forward throughout this book, if you are using the server, you will need to follow an extra step where you also upload them to the sever. As an example: 
+Going forward throughout this book, if you are using RStudio online, you will need to follow an extra step where you also upload them online. As an example: 
 
-1. Log on to the **R server** using the link we provided to you.
+1. Log into RStudio online.
 
 2. In the file pane, click `New folder` and create the same structure we demonstrated above.
 
 3. Download these two data files which we used at the end of Chapter 2. Data file one: [ahi-cesd.csv](data/ahi-cesd.csv). Data file two: [participant-info.csv](data/participant_info.csv). Save the two files into the `data` folder you created for chapter 3. To download a file from this book, right click the link and select "save link as". Make sure that both files are saved as ".csv". Do not open them on your machine as often other software like Excel can change setting and ruin the files.
 
-4. Now that the files are stored on your computer, go to RStudio on the server and click `Upload` then `Browse` and choose the folder for the chapter you are working on.
+4. Now that the files are stored on your computer, go to RStudio online and click `Upload` then `Browse` and choose the folder for the chapter you are working on.
 
 5. Click `Choose file` and go and find the data you want to upload.
 :::
@@ -124,7 +124,7 @@ Going forward throughout this book, if you are using the server, you will need t
 
 For everything we do in this chapter and almost every chapter from now, we need to use the **`r glossary("tidyverse")`** package. The `tidyverse` is a package of packages, containing a kind of ecosystem of functions that work together for **`r glossary("data wrangling")`**, **`r glossary("descriptive")`** statistics, and visualisation. So let's load that package into our library using the `library()` function.
 
-To load the `tidyverse`, below line 10 of your RMarkdown document, create a code chunk, type the following code into your code chunk, and run the code:
+To load the `tidyverse`, below line 6 of your Quarto document, create a code chunk, type the following code into your code chunk, and run the code:
 
 ```{r eval=FALSE}
 library(tidyverse)
@@ -183,7 +183,7 @@ If you have done this activity correctly, you should now see the objects `dat` a
 ::: {.callout-warning}
 #### Be careful to use the right `read_csv()` function
 
-There is also a function called `read.csv()`. Be very careful **not** to use this function instead of `read_csv()` as they have different ways of naming columns. For the activities and the assignments in RM1 and RM2, we will **always** ask and expect you to use `read_csv()`. This is really a reminder to watch spelling on functions and to be careful to use the right functions, especially when the names are so close.
+There is also a function called `read.csv()`. Be very careful **not** to use this function instead of `read_csv()` as they have different ways of naming columns. For the activities and the assessments in RM1 and RM2, we will **always** ask and expect you to use `read_csv()`. This is really a reminder to watch spelling on functions and to be careful to use the right functions, especially when the names are so close.
 :::
 
 ### Activity 3 - Wrangling the two data sets
@@ -266,11 +266,11 @@ ggplot(summarydata, aes(x = age)) # Plot age on the x axis
 ```
 
 ::: {.callout-tip}
-#### R Markdown tip of the chapter: Add code comments
+#### Quarto tip of the chapter: Add code comments
 
-After we introduced you to R Markdown to create reproducible documents in Chapter 2, we are going to add a tip in every chapter to demonstrate extra functionality.
+After we introduced you to Quarto to create reproducible documents in Chapter 2, we are going to add a tip in every chapter to demonstrate extra functionality.
 
-In the code chunk above, we added a code `r glossary("comment")` by adding a hash (`#`). In code chunks and scripts, you can add a comment which R will ignore, so you can explain to yourself what the code is doing. In R Markdown, you can combine adding notes to yourself outside and inside the code chunks. 
+In the code chunk above, we added a code `r glossary("comment")` by adding a hash (`#`). In code chunks and scripts, you can add a comment which R will ignore, so you can explain to yourself what the code is doing. In Quarto, you can combine adding notes to yourself outside and inside the code chunks. 
 
 Code comments help explain what the code is doing and why you added certain values. It might seem redundant for simple functions, but as your code becomes more complex, you will forget what it is doing when you return to it after days, months, or years. Future you will thank past you. 
 :::
@@ -366,9 +366,13 @@ ggplot(summarydata, aes(x = age)) +  # Plot age on the x axis
 
 ### Activity 5 - Apply your plotting skills to a new variable
 
+::: {.callout-tip}
+#### Try this
+
 Before we move on to barplots, an important learning step is being able to apply or transfer what you learnt in one scenario to something new. 
 
-In the data set, there is a variable for The Authentic Happiness Inventory (AHI): `ahiTotal`. Plot the new variable and try to recreate the customisation layers before checking the solution below. It might take some trial-and-error to get some features right, so do not worry if it does not immediately look the same. 
+In the data set, there is a variable for The Authentic Happiness Inventory (AHI): `ahiTotal`. Plot the new variable and try to recreate the customisation layers before checking the solution below. It might take some trial-and-error to get some features right, so do not worry if it does not immediately look the same.
+:::
 
 ```{r echo=FALSE}
 # Plot the variable ahi total from summarydata
@@ -379,7 +383,7 @@ ggplot(summarydata, aes(x = ahiTotal)) +  # Plot ahi total on the x axis
   theme_classic()
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-caution collapse="true"} 
 #### Show me the solution code
 
 To recreate the plot, this is the code:
@@ -395,6 +399,7 @@ ggplot(summarydata, aes(x = ahiTotal)) +  # Plot ahi total on the x axis
 
 We were a little sneaky with using the classic theme to get you exploring. 
 :::
+
 ## Barplots
 
 In the next section, we are going to cover making barplots - potentially the most common type of visualisation you will see in published research. A `r glossary("barplot", def = "also known as a bar chart, barplots represent the frequency or count of a variable through the height of one or more bars.")` shows counts of categorical data, or factors, where the height of each bar represents the count of that particular variable. 
@@ -405,9 +410,9 @@ You will see people use them to represent continuous outcomes, such as showing t
 
 Earlier, we highlighted that all the variables were processed as numbers. This was fine for most of the variables, but  `sex`, `educ`, and `income` should be categories or what we call **`r glossary("factor data type", display = "factors")`**. 
 
-To get around this, we need to convert these variables into factors. This is relates to data wrangling, so this is one final time we would like you to copy and run code, before we fully explain how to write this kind of code independently in the next chapter. 
+To get around this, we need to convert these variables into factors. This relates to data wrangling, so this is one final time we would like you to copy and run code, before we fully explain how to write this kind of code independently in the next chapter. 
 
-Copy and run the following code in your R Markdown document, at least below where you read and wrangled the data: 
+Copy and run the following code in your Quarto document, at least below where you read and wrangled the data: 
 
 ```{r factors}
 # Overwrite summary data 
@@ -427,7 +432,7 @@ If you do not do convert numbers to factors when they should represent distinct 
 
 ### Activity 7 - Create a bar plot {#introviz-a3}
 
-Now you are familiar with the layering system, we will jump straight into creating the barplot. As before, type and run the code in each step, making notes to yourself either in the R Markdown document outside the code chunks, or using code comments. 
+Now you are familiar with the layering system, we will jump straight into creating the barplot. As before, type and run the code in each step, making notes to yourself either in the Quarto document outside the code chunks, or using code comments. 
 
 ```{r barplot1}
 # Plot the variable sex from summarydata
@@ -457,7 +462,7 @@ ggplot(summarydata, aes(x = sex)) +
 
 Within `scale_x_discrete`, we have a new argument called "labels". This is where we can edit the labels for each category. Instead of 1 and 2, we labelled the x-axis clearer as "Female" and "Male", making it easier to understand there are way more female participants compared to male. 
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 #### What does `c()` mean in labels? 
 
 When we specified the labels, you might have noticed the `c("Female", "Male")` format. `c()` stands for concatenate and you will see it a lot in R. When we give a value to a function argument, we must provide one "value". However, in scenarios like this, we want to apply multiple values since we have several categories. 
@@ -475,9 +480,12 @@ These errors are the most sneaky as it will not cause an error to fix, but they 
 
 ### Activity 9 - Apply your plotting skills to a new variable
 
+::: {.callout-tip}
+#### Try this
 An important learning step is being able to apply or transfer what you learnt in one scenario to something new. 
 
 In the data set, there is a variable for the level of education: `educ`. Plot the new variable and try to recreate the customisation layers before checking the solution below. 
+:::
 
 ```{r echo=FALSE}
 # Plot the variable educ from summarydata
@@ -493,7 +501,7 @@ ggplot(summarydata, aes(x = educ)) +
   scale_y_continuous(name = "Number of Participants")
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-caution collapse="true"} 
 #### Show me the solution code
 
 To recreate the plot, this is the code:
@@ -620,9 +628,9 @@ ggplot(summarydata, aes(x = sex)) +
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on reading data and using ggplot2. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new R Markdown file for these activities by following the instructions in Chapter 2. You should have a blank R Markdown file below line 10. Below, we have several variations of a code chunk and inline code errors. Copy and paste them into your R Markdown file, click knit, and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Create and save a new Quarto file for these activities by following the instructions in Chapter 2. You should have a blank Quarto file below line 6. Below, we have several variations of a code chunk and inline code errors. Copy and paste them into your Quarto file, click Render, and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 4**. Copy the following code chunk into your R Markdown file and press knit. You should receive an error like `Error in read_csv(): ! could not find function "read_csv"`. 
+**Question 4**. Copy the following code chunk into your Quarto file and press Render. You should receive an error like `Error in read_csv(): ! could not find function "read_csv"`. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -634,10 +642,10 @@ pinfo <- read_csv("data/participant-info.csv")
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-If you only added this code chunk in, you have not loaded tidyverse yet. Remember R Markdown knits from start to finish in a fresh session, so it will not work even if you have loaded already tidyverse outside the R Markdown document. So, you would need to add `library(tidyverse)` first. 
+If you only added this code chunk in, you have not loaded tidyverse yet. Remember Quarto renders from start to finish in a fresh session, so it will not work even if you have loaded already tidyverse outside the Quarto document. So, you would need to add `library(tidyverse)` first. 
 :::
 
-**Question 5**. Copy the following code chunk into your R Markdown file and press knit. You should receive an error like `! participant-info.csv does not exist in current working directory`. 
+**Question 5**. Copy the following code chunk into your Quarto file and press Render. You should receive an error like `! participant-info.csv does not exist in current working directory`. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -653,7 +661,7 @@ pinfo <- read_csv("participant-info.csv")
 You had tidyverse loaded this time, but it is not pointing to the right folder. Your working directory should be the main chapter folder, where `participant-info.csv` does not exist. You will need to edit it to `data/participant-info.csv` to work. 
 :::
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. You should receive a long error where the problem is buried in the first five lines: 
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. You should receive a long error where the problem is buried in the first five lines: 
 
 > `Error in geom_histogram()`
 
@@ -683,7 +691,7 @@ ggplot(pinfo, x = age) +   # Plot age on the x axis
 This is potentially a sneaky one where we missed the `aes()` argument and it is only line 5 of the error which gives it away: `! stat_bin() requires an x or y aesthetic`. The first ggplot2 layer has two key components: the data object you want to use, and the aesthetics to set. You need to add "aes()" around where you specify the x-axis: `ggplot(pinfo, aes(x = age))`.
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. This...works, but does not look quite right? 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. This...works, but does not look quite right? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -711,11 +719,11 @@ ggplot(pinfo, aes(x = age)) +  # Plot age on the x axis
 At the moment, it runs the first layer to create an empty plot, then prints the information contained within geom_histogram. 
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. You should receive a long error again with lines 5-7 key: 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. You should receive a long error again with lines 5-7 key: 
 
 > `! stat_bin() requires a continuous x aesthetic.`
 
-> `x the x aesthetic is discrete.`
+> `X the x aesthetic is discrete.`
 
 > `i Perhaps you want stat="count"?`
 
