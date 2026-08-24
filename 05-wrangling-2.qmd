@@ -12,17 +12,15 @@ pong_data <- read_csv("data/witt_2018.csv")
 
 ```
 
-One of the key aspects in a researcher's toolbox is the knowledge and skill to work with data regardless of how it comes to you. When you run a study, you might get lots of different data types in various different files. For instance, some experimental software creates a new file for every participant, and each participant's file might contain columns and rows of different data types, only some of which are important. Being able to wrangle that data, manipulate it into different layouts, extract the parts you need, and summarise it, is one of the most important skills we will help you learn throughout this book.
+In the last chapter, we introduced you to several one-table `r glossary("function", display = "functions")` from <pkg>dplyr</pkg> which we use to wrangle data. Over the course of this book, we will reinforce these functions and skills across different data sets to expose you to what psychology is about, and to reiterate that the same skills apply across different data sets. Always remember: **while the data changes, the skills stay the same!**
 
-In the last chapter, we introduced you to several one-table `r glossary("function", display = "functions")` from <pkg>dplyr</pkg> which we use to wrangle data. Over the course of this book, we will reinforce these functions and skills across different data sets to give you a wide range of exposure to what psychology is about, and to reiterate that the same skills apply across different data sets. Always remember: **while the data changes, the skills stay the same!**
-
-In this chapter, we are going to continue developing our understanding of data, and build on the knowledge and skills you have developed so far. We start with a recap of data wrangling functions from Chapter 4 and ask you to apply them to a new data set. Feel free through to refer back to Chapter 4 for help - this is not a test - but try and complete the activities independently to judge how well you can transfer your skills to a new scenario. We then introduce you to new data wrangling functions to filter and summarise. 
+In this chapter, we are going to continue developing our understanding of data, and build on the knowledge and skills you have developed so far. We start with a recap of data wrangling functions from Chapter 4 and ask you to apply them to a new data set. Try and complete the activities independently to judge how well you can transfer your skills to a new scenario but remember this is not a test. If you need to look up a code example, you can always refer back to Chapter 4. We then introduce you to new data wrangling functions to filter and summarise. 
 
 **Chapter Intended Learning Outcomes (ILOs)**
 
 By the end of this chapter, you will be able to: 
 
-- Apply your data wrangling skills to a new unseen data set. 
+- Apply your data wrangling skills to a new data set. 
 
 - Filter observations to retain a subset of your data, such as keeping only postgraduate students. 
 
@@ -38,7 +36,7 @@ For this chapter, we are using open data from @witt2018. The abstract of their a
 
 To summarise, their research question was: **does your ability to perform an action influence your perception?** For instance, does your ability to hit a tennis ball influence how fast you perceive the ball to be moving? Or to phrase another way, do expert tennis players perceive the ball moving slower than novice tennis players?  
 
-This experiment does not use tennis players, instead they used the Pong task like the classic retro arcade game. Participants aimed to block moving balls with various sizes of paddles. Participants tend to estimate the balls as moving faster when they have to block it with a smaller paddle as opposed to when they have a bigger paddle. In this chapter, we will wrangle their data to reinforce skills from Chapter 4, and add more <pkg>dplyr</pkg> functions to your toolkit. 
+This experiment does not use tennis players, instead they used the Pong task like the retro arcade game. Participants aimed to block moving balls with various sizes of paddles. Participants tend to estimate the balls as moving faster when they have to block it with a smaller paddle as opposed to when they have a bigger paddle. In this chapter, we will wrangle their data to reinforce skills from Chapter 4, and add more <pkg>dplyr</pkg> functions to your toolkit. 
 
 ### Organising your files and project for the chapter
 
@@ -46,7 +44,7 @@ Before we can get started, you need to organise your files and project for the c
 
 1. In your folder for research methods and the book `ResearchMethods1_2/Quant_Fundamentals`, you should have a folder from chapter 4 called `Chapter_04_06_datawrangling` where you created an R Project. 
 
-2. Create a new R Markdown document and give it a sensible title describing the chapter, such as `05 Data Wrangling 2`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
+2. Create a new Quarto document and give it a sensible title describing the chapter, such as `05 Data Wrangling 2`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
 
 3. We are working with a new data set, so please save the following data file: [witt_2018.csv](data/witt_2018.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the file as ".csv". Save or copy the file to your `data/` folder within `Chapter_04_06_datawrangling`.
 
@@ -69,7 +67,7 @@ As the first activity, try and test yourself by loading <pkg>tidyverse</pkg> and
 pong_data <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -98,7 +96,7 @@ If you look at that table, you can see there are 8 columns and 4608 rows. Seven 
 
 We try and balance developing your data skills in a practical way while slowly introducing some of the underlying technical points. In the last chapter, we warned about honoring data types so R knew how to handle numbers/doubles vs factors. Now we have explored a few data sets, it is time to clarify some key differences between data types in R. 
 
-We often store data in two-dimensional tables, either called `r glossary("data frame", display = "data frames")`, tables, or `r glossary("tibble", display = "tibbles")`. There are other ways of storing data that you will discover in time but in this book, we will be using data frame or tibbles (a special type of data frame in the tidyverse). A data frame is really just a table of data with columns and rows of information. Within the cells of the data frame - a cell being where a row and a column meet - you get different types of data, including `r glossary("double")`, `r glossary("integer")`, `r glossary("character")` and `r glossary("factor")`. To summarise: 
+We often store data in two-dimensional tables, either called `r glossary("data frame", display = "data frames")`, tables, or `r glossary("tibble", display = "tibbles")`. There are other ways of storing data that you will discover in time but in this book, we will be using data frame or tibbles (a special type of data frame in the <pkg>tidyverse</pkg>). A data frame is really just a table of data with columns and rows of information. Within the cells of the data frame - a cell being where a row and a column meet - you get different types of data, including `r glossary("double")`, `r glossary("integer")`, `r glossary("character")` and `r glossary("factor")`. Within each column, the data must be one specific type. You cannot have a variable containing more than one data type. 
 
 |Type of Data | Description                                                  |
 |:------------|:-------------------------------------------------------------| 
@@ -202,7 +200,7 @@ reorder_dat <- select(pong_data, # original data
 
 ### Activity 5 - Reorder observations using `arrange()` {#dw2-a5}
 
-Reorder observations in the data using the following two variables: `HitOrMiss` (putting hits (1) first) and `JudgedSpeed` (putting fast judgement (1) first). Store this in an object named `arrange_dat`. 
+Reorder observations in the data using the following two variables: `HitOrMiss` (putting hits (1) first) and `JudgedSpeed` (putting fast judgements (1) first). Store this in an object named `arrange_dat`. 
 
 ```{r eval=FALSE}
 # arrange pong_data by HitOrMiss and JudgedSpeed
@@ -250,9 +248,9 @@ You should have the following in a code chunk:
 ```{r}
 # mutate pong_data and recode values into a new variable
 pong_data <- mutate(pong_data, 
-                    JudgedSpeedLabel = case_match(JudgedSpeed, 
-                                                  0 ~ "Slow",
-                                                  1 ~ "Fast"))
+                    JudgedSpeedLabel = recode_values(JudgedSpeed, 
+                                                     0 ~ "Slow",
+                                                     1 ~ "Fast"))
 ```
 
 :::
@@ -334,6 +332,20 @@ pong_data_fast <- filter(pong_data_filter,
 Note we use a double equals == and not a single equals = for the Boolean operator. We also must honour the data type for the expression we set. 
 :::
 
+::: {.callout-note}
+#### To stay or to go? 
+
+There are actually two versions of this function: `filter()` and `filter_out()`. We will mainly use `filter()` but they are designed to avoid negating criteria. In `filter()`, any criterion evaluated to TRUE will be retained and any FALSE will be excluded. In `filter_out()`, any criterion evaluated to TRUE will be excluded and any FALSE will be retained. 
+
+For example, if you wanted to remove trial number 1 using `filter_out()` instead, you would use:
+
+```{r}
+pong_data_filter <- filter_out(pong_data,
+                               TrialNumber == 1)
+```
+
+:::
+
 ### Activity 8 - Filter using two or more criteria 
 
 You explored using one criterion to filter out or retain observations/rows, but you can make the expressions arbitrarily more complicated by adding two or more criteria to evaluate against. Just note the more criteria you add, the more selective you are being. You are probably going to be excluding more and more observations, so think about what you want to achieve. 
@@ -351,7 +363,7 @@ To break down the code:
 
 - We add the Boolean expression `BallSpeed == 2`, the vertical line symbol (`|`), then a second expression `BallSpeed == 4`. The vertical line symbol (`|`) means "or", so our expression is retain `BallSpeed` responses which equal 2 OR 4, and ignore all the others. 
 
-For two values, this is pretty straightforward, but it could get out of hand when you have four or five values to evaluate against. There is a super handy shortcut from the Boolean expressions table for "in" which we can apply if we wanted to keep ball speeds of 2, 4, 5, and 7:
+For two values, this is pretty straightforward, but it could get messy when you have four or five values to evaluate against. There is a super handy shortcut from the Boolean expressions table for "in" which we can apply if we wanted to keep ball speeds of 2, 4, 5, and 7:
 
 ```{r}
 pong_data_BallSpeed <- filter(pong_data_filter,
@@ -634,23 +646,23 @@ hits_by_background <- summarise(pong_data_background,
 :::
 
 ::: {.callout-tip}
-#### R Markdown tip of the chapter: Create pretty tables
+#### Quarto tip of the chapter: Create pretty tables
 
-After we introduced you to R Markdown to create reproducible documents in Chapter 2, we are going to add a tip in every chapter to demonstrate extra functionality.
+After we introduced you to Quarto to create reproducible documents in Chapter 2, we are going to add a tip in every chapter to demonstrate extra functionality.
 
-R Markdown is great for embedding plots and statistics in reproducible documents, but tables can be a little tricky. If you only call objects like `hits_by_background`, the output does not look super professional and it is not consistent with APA formatting guidelines.
+Quarto is great for embedding plots and statistics in reproducible documents, but tables can be a little tricky. If you only call objects like `hits_by_background`, the output does not look super professional and it is not consistent with APA formatting guidelines.
 
-There are a few options available to you. One of the packages that helps create R Markdown - <pkg>knitr</pkg> -  can create tables from objects you create. There is a function called `kable()` which can create tables with no further arguments, but you will need to edit the object to make sure it has headers and labels consistent with APA. The following code creates a simple table if you have <pkg>knitr</pkg> installed: 
+There are a few options available to you. One of the packages that helps create Quarto - <pkg>knitr</pkg> -  can create tables from objects you create. There is a function called `kable()` which can create tables with no further arguments, but you will need to edit the object to make sure it has headers and labels consistent with APA. The following code creates a simple table if you have <pkg>knitr</pkg> installed: 
 
 ```{r eval=FALSE}
 knitr::kable(hits_by_judgedspeed)
 ```
 
-You will need to knit your document to see what it looks like, but it should look similar to @fig-img-kable-demo. The row labels are fine, but you would need to tidy up the headers and round `prop_hits` to three decimals (see the function `round()`). 
+You will need to Render your document to see what it looks like, but it should look similar to @fig-img-kable-demo. The row labels are fine, but you would need to tidy up the headers and round `prop_hits` to three decimals (see the function `round()`). 
 
 ```{r img-kable-demo, echo=FALSE}
 #| label: fig-img-kable-demo
-#| fig.cap: "Example of using kable() to create tables in R Markdown."
+#| fig.cap: "Example of using kable() to create tables in Quarto."
 
 knitr::include_graphics("images/kable_demo.png")
 
@@ -658,7 +670,7 @@ knitr::include_graphics("images/kable_demo.png")
 
 See [The R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html){target="_blank"} for a guide on creating tables using `kable()`.
 
-Alternatively, there is a package called <pkg>gt</pkg> which can also create tables with plenty of formatting options. See their documentation [https://gt.rstudio.com/](https://gt.rstudio.com/){target="_blank"} online for further information. 
+Alternatively, there are other packages like <pkg>gt</pkg> ([https://gt.rstudio.com/](https://gt.rstudio.com/){target="_blank"}) or <pkg>flextable</pkg> ([https://davidgohel.github.io/flextable/](https://davidgohel.github.io/flextable/){target="_blank"}) which can also create tables with plenty of formatting options.
 :::
 
 ### Ungrouping data
@@ -672,6 +684,23 @@ pong_data_grouped <- ungroup(pong_data_grouped)
 ```
 
 If you run `str(pong_data_grouped)` again, you will see we removed the grouping property. Remember, you only need to apply this if you are using the object in further steps. We will demonstrate in the next chapter how you can add this in a more streamlined way. 
+
+::: {.callout-note}
+#### Alternatives to `group_by()` 
+
+During these initial learning steps, we encourage longer but more explicit code to reinforce what you are doing. There are often more concise strategies but it might be easy to miss small details. 
+
+For example, instead of creating intermediary objects to group summaries by, there is an argument `.by = ` within `summarise()` to add a grouping variable. 
+
+```{r}
+hits_by_judgedspeed <- summarise(pong_data_filter,
+                                 sum_hits = sum(HitOrMiss),
+                                 prop_hits = mean(HitOrMiss),
+                                 .by = JudgedSpeedLabel)
+```
+
+In the next chapter, we will demonstrate another way of avoiding intermediary objects. 
+:::
 
 ## Test yourself
 
@@ -694,19 +723,19 @@ There are several different types of data as well as different levels of measure
 Note: in the last answer, 137 could also be double as it is not clear if it could take a decimal or not. 
 :::
 
-**Question 2**. Which of the <pkg>dplyr</pkg> functions would you use to count the number of observations in your data set or variables? `r longmcq(sample(c("select", "filter", "mutate", answer ="count", "group_by")))`
+**Question 2**. Which of the <pkg>dplyr</pkg> functions would you use to count the number of observations in your data set or variables? `r longmcq(sample(c("select()", "filter()", "mutate()", answer ="count()", "group_by()")))`
 
-**Question 3**. Which of the <pkg>dplyr</pkg> functions would you use to calculate the mean of a column? `r longmcq(sample(c("select", "filter", "mutate", "group_by", answer ="summarise")))`
+**Question 3**. Which of the <pkg>dplyr</pkg> functions would you use to calculate the mean of a column? `r longmcq(sample(c("select()", "filter()", "mutate()", "group_by()", answer ="summarise()")))`
 
-**Question 4**. Which of the <pkg>dplyr</pkg> functions would you use to remove certain observations (e.g., remove all males)? `r longmcq(sample(c("select", answer = "filter", "mutate", "count", "group_by", "summarise")))` 
+**Question 4**. Which of the <pkg>dplyr</pkg> functions would you use to retain certain observations (e.g., keep all females)? `r longmcq(sample(c("select()", answer = "filter()", "mutate()", "count()", "group_by()", "summarise()")))` 
 
-**Question 5**. Which of the <pkg>dplyr</pkg> functions would you use to subset summary statistics by? `r longmcq(sample(c("select", "filter", "mutate", "count", answer = "group_by", "summarise")))` 
+**Question 5**. Which of the <pkg>dplyr</pkg> functions would you use to subset summary statistics by? `r longmcq(sample(c("select()", "filter()", "mutate()", "count()", answer = "group_by()", "summarise()")))` 
 
 ### Error mode
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on data wrangling using the functions `filter()`, `count()`, and `group_by()` and `summarise()`. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load `tidyverse` and the data file: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load `tidyverse` and the data file: 
 
 ```{r eval=FALSE}
 # Load the tidyverse package below
@@ -716,9 +745,9 @@ library(tidyverse)
 pong_data <- read_csv("data/witt_2018.csv")
 ```
 
-Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your R Markdown file below the code chunk to load `tidyverse` and the data. Once you have copied the activities, click knit and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your Quarto file below the code chunk to load `tidyverse` and the data. Once you have copied the activities, click Render and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. We want to filter data to only include a paddle length of 50. You should receive the error starting with `Error in "filter()" ! We detected a named input`. 
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. We want to filter data to only include a paddle length of 50. You should receive the error starting with `Error in "filter()" ! We detected a named input`. 
 
 ````{verbatim, lang = "markdown"}
 
@@ -742,7 +771,7 @@ pong_data_filter <- filter(pong_data,
 ```
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. We want to count the number of trials per block (`BlockNumber`). This...works, but if you look at the output, have we counted the number of trials? 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. We want to count the number of trials per block (`BlockNumber`). This...works, but if you look at the output, have we counted the number of trials? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -775,7 +804,7 @@ count_blocknumbers <- summarise(group_blocks,
 ```
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. Here, we want the proportion of fast judgements per paddle length by taking the mean of `JudgedSpeed`. This code... works, but do we have a proportion of fast judgements per paddle length? 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. Here, we want the proportion of fast judgements per paddle length by taking the mean of `JudgedSpeed`. This code... works, but do we have a proportion of fast judgements per paddle length? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -801,7 +830,7 @@ hits_by_background <- summarise(pong_data_paddle,
 ```
 :::
 
-## Words from this Chapter
+## Words from this chapter
 
 Below you will find a list of words that were used in this chapter that might be new to you in case it helps to have somewhere to refer back to what they mean. The links in this table take you to the entry for the words in the [PsyTeachR Glossary](https://psyteachr.github.io/glossary/){target="_blank"}. Note that the Glossary is written by numerous members of the team and as such may use slightly different terminology from that shown in the chapter.
 
