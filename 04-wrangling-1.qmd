@@ -13,7 +13,7 @@ pinfo <- read_csv("data/participant-info.csv")
 
 In this chapter, we start our exploration of `r glossary("data wrangling")`. Some of you might have experience painstakingly copying and pasting values into new columns or trying to match up values from multiple spreadsheets. As well as taking a long time, there is so much room for error as you might repeat or miss values. 
 
-We have mentioned a few times now the benefits of working with R/RStudio to develop reproducible research practices over the first few chapters. But, if you take nothing else away from these materials, developing your data wrangling skills is one of the primary benefits that will benefit you in many assessments and careers. Researchers actually spend far more of their time cleaning and preparing their data than they spend analysing it. @dasu2003 estimated that up to 80% of time spent on data analysis involves data preparation tasks! Although every data set presents unique challenges, there are some systematic principles that you will constantly use to make your analyses less error-prone and more efficient. Our mantra is: the data changes but the skills stay the same. 
+We have mentioned a few times now the benefits of working with R/RStudio to develop reproducible research practices over the first few chapters. But, if you take nothing else away from these materials, developing your data wrangling skills is one of the primary benefits that will benefit you in many assessments and careers. Researchers actually spend far more of their time cleaning and preparing their data than they spend analysing it. @dasu2003 suggest that up to 80% of time spent on data analysis involves data preparation tasks! It is an incredibly important skill but unfortunately it is rarely taught in psychology programmes. Although every data set presents unique challenges, there are some systematic principles that you will constantly use to make your analyses less error-prone and more efficient. Our mantra is: the data changes but the skills stay the same. 
 
 Over the next three chapters, we are going to introduce you to a range of functions within the <pkg>tidyverse</pkg> for wrangling data. In this chapter, we will cover joining two data sets by a common identifier, selecting columns to simplify your data, arranging values within a data set, and mutating data to create new variables.   
 
@@ -47,26 +47,11 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_04_06_datawrangling` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. We will work within one folder, but create a new R Markdown for each chapter. Create a new R Markdown document and give it a sensible title describing the chapter, such as `04 Data Wrangling 1`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
+3. We will work within one folder, but create a new Quarto for each chapter. Create a new Quarto document and give it a sensible title describing the chapter, such as `04 Data Wrangling 1`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
 
-4. If you already have the two files from chapter 3, copy and paste them into the `data/` folder. If you need to download them again, the links are data file one ([ahi-cesd.csv](data/ahi-cesd.csv)) and data file two ([participant-info.csv](data/participant-info.csv)). Right click the links and select "save link as", or clicking the links will save the files to your Downloads. Make sure that both files are saved as ".csv". Save or copy the file to your `data/` folder within `Chapter_04_06_datawrangling`.
+4. If you already have the two files from Chapter 3, copy and paste them into the `data/` folder. If you need to download them again, the links are data file one ([ahi-cesd.csv](data/ahi-cesd.csv)) and data file two ([participant-info.csv](data/participant-info.csv)). Right click the links and select "save link as", or clicking the links will save the files to your Downloads. Make sure that both files are saved as ".csv". Save or copy the file to your `data/` folder within `Chapter_04_06_datawrangling`.
 
 You are now ready to start working on the chapter! 
-
-::: {.callout-note collapse="true"}
-#### Reminder of file management if you use the online server
-If we support you to use the online University of Glasgow R Server, working with files is a little different. If you downloaded R / RStudio to your own computer or you are using one of the library/lab computers, please ignore this section. 
-
-1. Log on to the **R server** using the link we provided to you.
-
-2. In the file pane, click `New folder` and create the same structure we demonstrated above.
-
-3. Download these two data files which we used in Chapter 3. Data file one: [ahi-cesd.csv](data/ahi-cesd.csv). Data file two: [participant-info.csv](data/participant_info.csv). Save the two files into the `data` folder you created for chapter 3. To download a file from this book, right click the link and select "save link as". Make sure that both files are saved as ".csv". Do not open them on your machine as often other software like Excel can change setting and ruin the files.
-
-4. Now that the files are stored on your computer, go to RStudio on the server and click `Upload` then `Browse` and choose the folder for the chapter you are working on.
-
-5. Click `Choose file` and go and find the data you want to upload.
-:::
 
 ### Activity 1 - Load <pkg>tidyverse</pkg> and read the data files
 
@@ -84,7 +69,7 @@ dat <- ?
 pinfo <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -104,9 +89,9 @@ pinfo <- read_csv("data/participant-info.csv")
 
 ## Tidyverse and the dplyr package
 
-So far, we have loaded a `r glossary("package")` called <pkg>tidyverse</pkg> in every chapter and it is going to be at the core of all the data skills you develop. The tidyverse ([https://www.tidyverse.org/](https://www.tidyverse.org/){target="_blank"},  @tidyverse is an ecosystem containing six core packages: <pkg>dplyr</pkg>, <pkg>tidyr</pkg>, <pkg>readr</pkg>, <pkg>purrr</pkg>,  <pkg>ggplot2</pkg>, and <pkg>tibble</pkg>. Within these six core packages, you have access to `r glossary("function", display = "functions")` that will pretty much cover everything you need to wrangle and visualise your data. 
+So far, we have loaded a `r glossary("package")` called <pkg>tidyverse</pkg> in every chapter and it is going to be at the core of all the data skills you develop. The tidyverse ([https://www.tidyverse.org/](https://www.tidyverse.org/){target="_blank"}  [@tidyverse] is an ecosystem containing six core packages: <pkg>dplyr</pkg>, <pkg>tidyr</pkg>, <pkg>readr</pkg>, <pkg>purrr</pkg>,  <pkg>ggplot2</pkg>, and <pkg>tibble</pkg>. Within these six core packages, you have access to `r glossary("function", display = "functions")` that will pretty much cover everything you need to wrangle and visualise your data. 
 
-In chapter 3, we introduced you to the package <pkg>ggplot2</pkg> for data visualisation. In this chapter, we focus on functions from the [<pkg>dplyr</pkg>](https://dplyr.tidyverse.org/){target="_blank"} package, which the authors describe as a grammar of data manipulation (in the wrangling sense, not deviously making up data). 
+In Chapter 3, we introduced you to the package <pkg>ggplot2</pkg> for data visualisation. In this chapter, we focus on functions from the [<pkg>dplyr</pkg>](https://dplyr.tidyverse.org/){target="_blank"} package, which the authors describe as a grammar of data manipulation (in the wrangling sense, not deviously making up data). 
 
 The <pkg>dplyr</pkg> package contains several key functions based on common English verbs to help you understand what the code is doing. For an overview, we will introduce you to the following functions:
 
@@ -203,7 +188,7 @@ knitr::include_graphics("images/alldat_previewdata.png")
 
 2. Use the `glimpse()` function to see an overview of the data objects. 
 
-We explored this in chapter 3, but `glimpse()` tells you how many rows and columns your data have, plus an overview of responses per column. Note: you will see a preview of all 54 columns, but we have shortened the preview to 10 columns to take up less space in the book. 
+We explored this in Chapter 3, but `glimpse()` tells you how many rows and columns your data have, plus an overview of responses per column. Note: you will see a preview of all 54 columns, but we have shortened the preview to 10 columns to take up less space in the book. 
 
 ```{r eval=FALSE}
 glimpse(all_dat)
@@ -229,7 +214,7 @@ For the two scales on happiness and depression, we have all their items, as well
 
 ### Activity 4 - Selecting variables you want to include
 
-If there are a smaller number of variables you want to include, then it will be more efficient to specify which variables you want to **include**. Returning to the data wrangling from chapter 3, we can select the columns from `all_dat` that we want to keep. 
+If there are a smaller number of variables you want to include, then it will be more efficient to specify which variables you want to **include**. Returning to the data wrangling from Chapter 3, we can select the columns from `all_dat` that we want to keep. 
 
 ```{r select1}
 summarydata <- select(.data = all_dat, # First argument as the data object
@@ -453,22 +438,22 @@ To break down the code:
 
 - We can add one or more arguments to modify or create variables. Here, we modify an existing variable `sex`, use an equals sign (=), then how we want to modify the variable. In this example, we convert sex to a factor by using the function `as.factor(sex)`. 
 
-You might not just want to turn a variable into a factor, you might want to completely recode what it's values represent. For this, there is a function called `r glossary("case_match()", def = "You can switch values from old to new. Statements are evaluated sequentially, meaning the old value is replaced with the first new value it matches.")` which you can use within `mutate()`. For example, if we wanted to make `sex` easier to interpret, we could overwrite it's values from 1 and 2: 
+You might not just want to turn a variable into a factor, you might want to completely recode what it's values represent. For this, there is a function called `r glossary("recode_values()", def = "You can switch values from old to new. Statements are evaluated sequentially, meaning the old value is replaced with the first new value it matches.")` which you can use within `mutate()`. For example, if we wanted to make `sex` easier to interpret, we could overwrite it's values from 1 and 2: 
 
 ```{r}
 sex_recode <- mutate(summarydata,
-                     sex = case_match(sex, # overwrite existing
-                                      "1" ~ "Female", # old to new
-                                      "2" ~ "Male")) # old to new
+                     sex = recode_values(sex, # overwrite existing
+                                         "1" ~ "Female", # old to new
+                                         "2" ~ "Male")) # old to new
 ```
 
 To break down this code, 
 
 - We create a new object `sex_recode` by mutating the `summarydata` object. 
 
-- We modify an existing variable `sex` by applying `case_match()` to `sex`. 
+- We modify an existing variable `sex` by applying `recode_values()` to `sex`. 
 
-- Within `case_match()`, the value on the left is the existing value in the data you want to recode. The value on the right is the new value you want to overwrite it to. So, we want to change all the 1s in the data to Female. We then add a new line for every old value we want to change. 
+- Within `recode_values()`, the value on the left is the existing value in the data you want to recode. The value on the right is the new value you want to overwrite it to. So, we want to change all the 1s in the data to Female. We then add a new line for every old value we want to change. 
 
 ::: {.callout-important}
 #### Error mode
@@ -481,7 +466,7 @@ If you applied this step *before* converting `sex` to a factor, then `1 ~ "Femal
 ::: {.callout-tip}
 #### Try this
 
-Using what you just learnt about using `mutate` and `case_match()`, recode the variable `income` and complete the code below. These are what the numeric values mean as labels: 
+Using what you just learnt about using `mutate` and `recode_values()`, recode the variable `income` and complete the code below. These are what the numeric values mean as labels: 
 
 1 = Below average
 
@@ -505,10 +490,10 @@ Following the same format as `sex`, we add a new label for each of the three lev
 
 ```{r eval=FALSE}
 income_recode <- mutate(summarydata,
-                     income = case_match(income, # overwrite existing
-                                      "1" ~ "Below average", # old to new
-                                      "2" ~ "Average", # old to new
-                                      "3" ~ "Above average")) # old to new
+                        income = recode_values(income, # overwrite existing
+                                               "1" ~ "Below average", # old to new
+                                               "2" ~ "Average", # old to new
+                                               "3" ~ "Above average")) # old to new
 ```
 
 :::
@@ -524,7 +509,23 @@ summarydata <- mutate(summarydata,
                       study = "Woodworth et al. (2018)")
 ```
 
-Using a similar kind of logic to `case_match()` we introduced you to earlier, there is an extremely flexible function called `r glossary("case_when()", def = "An if else statement to check old values against a set of criteria. Statements are evaluated sequentially, meaning each observation is checked against the criteria, and it receives the first match it passes.")` to help create new variables. Before we explain how it works, we will jump straight into an example to give you something concrete to work with. 
+Using a similar kind of logic to `recode_values()` we introduced you to earlier, there is an extremely flexible function called `r glossary("case_when()", def = "An if else statement to check old values against a set of criteria. Statements are evaluated sequentially, meaning each observation is checked against the criteria, and it receives the first match it passes.")` to help create new variables. Before we explain how it works, we will jump straight into an example to give you something concrete to work with.
+
+::: {.callout-note}
+#### recode_values() or case_when()?
+
+There are actually four variations of this function designed to produce the specific results you are trying to achieve: 
+
+1. `case_when()` creates a new vector (series of values in a variable) based on logical conditions. 
+
+2. `replace_when()` updates an existing vector based on logical conditions. The difference here is whether you are creating completely new values or replacing old ones. 
+
+3. `recode_values()` creates a new vector by mapping all old values to new values.
+
+4. `replace_values()` updates an existing vector by mapping some old values to new values. Like the first two entries, the difference here is whether you are creating completely new values or replacing old ones.
+
+It takes time to learn what function you need for a given task and do not forget: this is not a memory test. You will always be able to look up resources and past code. The important skill is knowing what you want to do with the data you are working with, you can always find the code that will help you do that. 
+:::
 
 @woodworth_data_2018 includes scores from the Center for Epidemiological Studies Depression (CES-D) scale. Scores range from 0 to 60, with scores of 16 or more considered a cut-off for being at risk of clinical depression. We have the scores, so we can use `case_when()` to label whether participants are at risk or not.
 
@@ -577,7 +578,7 @@ A %in% B 	|in 	                 |A is an element of vector B
 Vectors are essentially a group or list of elements of the same data type (you will learn more about data types in Chapter 5). For example, `c(1, 2, 3, 4)` or `c("James", "Jude", "Phil", "Gaby")`.  
 :::
 
-Boolean expressions will come up again in chapter 5 when it comes to `filter()`, so there will be plenty more practice as you apply your understanding to different data sets and use cases. 
+Boolean expressions will come up again in Chapter 5 when it comes to `filter()`, so there will be plenty more practice as you apply your understanding to different data sets and use cases. 
 
 ::: {.callout-tip}
 #### Try this
@@ -630,15 +631,15 @@ To end the chapter, we have some knowledge check questions to test your understa
 
 **Question 3**. Which of the following functions would you use if you wanted to add or modify a column? `r longmcq(c("select()", "arrange()", answer = "mutate()", "inner_join()"))`
 
-**Question 4**. When you use mutate(), which additional function could you use to recode an existing variable? `r longmcq(c("arrange()", "case_when()", answer = "case_match()", "filter()"))`
+**Question 4**. When you use mutate(), which additional function could you use to recode an existing variable? `r longmcq(c("arrange()", "case_when()", answer = "recode_values()", "filter()"))`
 
-**Question 5**. When you use mutate(), which additional function could you use to create a new variable depending on specific criteria you set? `r longmcq(c("arrange()", answer = "case_when()", "case_match()", "filter()"))`
+**Question 5**. When you use mutate(), which additional function could you use to create a new variable depending on specific criteria you set? `r longmcq(c("arrange()", answer = "case_when()", "recode_values()", "filter()"))`
 
 ### Error mode
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on data wrangling using the functions `inner_join()`, `select()`, and `mutate()`. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load `tidyverse` and the two data files: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load `tidyverse` and the two data files: 
 
 ```{r eval=FALSE}
 # Load the tidyverse package
@@ -649,9 +650,9 @@ dat <- read_csv("data/ahi-cesd.csv")
 pinfo <- read_csv("data/participant-info.csv")
 ```
 
-Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your R Markdown file below the code chunk to load `tidyverse` and the data. Once you have copied the activities, click knit and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your Quarto file below the code chunk to load `tidyverse` and the data. Once you have copied the activities, click Render and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. This...works, but we want 54 columns rather than 55 columns. Some of the columns do not look quite right?  
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. This...works, but we want 54 columns rather than 55 columns. Some of the columns do not look quite right?  
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -673,7 +674,7 @@ all_dat <- inner_join(x = dat,
 ```
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. You should receive an error like `! Can't subset columns that don't exist. x Column "interventnion" doesnt exist.` 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. You should receive an error like `Error in select(): ! Can't subset columns that don't exist. x Column "interventnion" doesnt exist.` 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -703,12 +704,17 @@ select_data <- select(.data = pinfo,
 ```
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. You should receive an error like `! Cant convert "..1 (left)" <character> to <double>.` 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. You should receive an error like:
+
+> `Error in mutate():`
+> `In argument: sex = recode_values(sex, "1" ~ "Female", "2" ~ "Male").`
+> `Caused by error in recode_values():`
+> `! Can't convert ..1 (left) <character> to <double>`
 
 ````{verbatim, lang = "markdown"}
 ```{r}
 recode_variable <- mutate(pinfo,
-                          sex = case_match(sex,
+                          sex = recode_values(sex,
                                            "1" ~ "Female",
                                            "2" ~ "Male"))
 ```
@@ -717,17 +723,17 @@ recode_variable <- mutate(pinfo,
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-This is the opposite problem to what we warned about in the `case_match` section. You need to honour data types and we have not converted sex to a factor or character in this example. So, R does not know how to match the character "1" against the number/double 1 in the data. To fix the error, you need to remove the double quotes to give R a number/double like it can see in the data: 
+This is the opposite problem to what we warned about in the `recode_values()` section. You need to honour data types and we have not converted sex to a factor or character in this example. So, R does not know how to match the character "1" against the number/double 1 in the data. To fix the error, you need to remove the double quotes to give R a number/double like it can see in the data: 
 
 ```{r eval = FALSE}
 recode_variable <- mutate(pinfo,
-                          sex = case_match(sex,
-                                           1 ~ "Female",
-                                           2 ~ "Male"))
+                          sex = recode_values(sex,
+                                              1 ~ "Female",
+                                              2 ~ "Male"))
 ```
 :::
 
-**Question 9**. Copy the following code chunk into your R Markdown file and press knit. We want to create two groups depending on if we consider a participant a teenager if they are younger than 20, or not a teenger if they are 20 years or older. The code below...works? This is a sneaky one, so think about the criteria we want vs the criteria we set. 
+**Question 9**. Copy the following code chunk into your Quarto file and press Render. We want to create two groups depending on if we consider a participant a teenager if they are younger than 20, or not a teenger if they are 20 years or older. The code below...works? This is a sneaky one, so think about the criteria we want vs the criteria we set. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -764,7 +770,7 @@ age_groups <- mutate(pinfo,
 ```
 :::
 
-## Words from this Chapter
+## Words from this chapter
 
 Below you will find a list of words that were used in this chapter that might be new to you in case it helps to have somewhere to refer back to what they mean. The links in this table take you to the entry for the words in the [PsyTeachR Glossary](https://psyteachr.github.io/glossary/){target="_blank"}. Note that the Glossary is written by numerous members of the team and as such may use slightly different terminology from that shown in the chapter.
 
@@ -772,7 +778,7 @@ Below you will find a list of words that were used in this chapter that might be
 glossary_table()
 ```
 
-## End of Chapter
+## End of chapter
 
 Excellent work so far! Data wrangling is a critical skill and being able to clean and prepare your data using code will save you time in the long run. Manually tidying data might seem quicker now when you are unfamilar with these functions, but it is open to errors which may not have a paper trail as you edit files. By reproducibly wrangling your data, you can still make mistakes, but they are reproducible mistakes you can fix. 
 
