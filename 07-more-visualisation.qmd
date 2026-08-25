@@ -45,7 +45,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_07_dataviz` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `07 Scatterplots Boxplots Violins`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_07_dataviz` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `07 Scatterplots Boxplots Violins`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_07_dataviz` folder. 
 
 4. We are working with a new data set, so please save the following data file: [Zhang_2014.csv](data/Zhang_2014.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the file as ".csv". Save or copy the file to your `data/` folder within `Chapter_07_dataviz`.
 
@@ -76,7 +76,7 @@ To wrangle the data, complete the following tasks:
     
     - `T2_Actual_Interest_Composite` renamed to `time2_interest`.
 
-4. There is currently no identifier, so create a new variable called `participant_ID`. Hint: try `participant_ID = row_number()`. 
+4. There is currently no identifier, so create a new variable called `participant_ID`. Hint: explore whether you can find a function to add a row number.  
 
 5. Recode two variables to be easier to understand and visualise: 
 
@@ -109,12 +109,12 @@ zhang_data <- zhang_data %>%
          time1_interest = T1_Predicted_Interest_Composite, 
          time2_interest = T2_Actual_Interest_Composite) %>%
   mutate(participant_ID = row_number(),
-         Condition = case_match(Condition, 
-                            1 ~ "Ordinary", 
-                            2 ~ "Extraordinary"),
-         Gender = case_match(Gender,
-                             1 ~ "Male",
-                             2 ~ "Female")) 
+         Condition = recode_values(Condition, 
+                                   1 ~ "Ordinary", 
+                                   2 ~ "Extraordinary"),
+         Gender = recode_values(Gender,
+                                1 ~ "Male",
+                                2 ~ "Female")) 
 ```
 
 :::
@@ -222,7 +222,7 @@ zhang_data %>%
 
 With the regression line, we can see there is very little relationship between age and interest score at time 1. 
 
-::: {.callout-important}
+::: {.callout-note}
 Remember, you can save your plots using the function `ggsave()`. You can use the function after creating the last plot, or saving your plot as an object and using the `plot` argument. You have a `Figures/` directory for the chapter, so try and save the plots you make to remind yourself later. 
 :::
 
@@ -256,7 +256,7 @@ zhang_data %>%
 Before we move on, we can add a third variable to show how the relationship might differ for different groups within our data. We can do this by adding the `colour` argument to `aes()` and setting it as whatever variable we would like to distinguish between. In this case, we will see how the relationship between age and interest at time 1 differs for the male and female participants. There are a few participants with missing gender, so we will first filter them out.
 
 
-```{r, scat4, fig.cap = "Grouped scatterplot", warning=FALSE}
+```{r, scat4, warning=FALSE}
 zhang_data %>%
   drop_na(Gender) %>% 
   ggplot(aes(x = time1_interest, y = Age, colour = Gender)) +
@@ -400,7 +400,7 @@ zhang_data_long %>%
 
 Alternatively (and what we recommend), you can use `scale_fill_viridis_d()`. This function does exactly the same thing but it uses a colour-blind friendly palette (which also prints in black and white). There are 5 different options for colours and you can see them by changing `option` to A, B, C, D or E. We like option E with `alpha = 0.6` (to control transparency and soften the tone) but play around with the options to see what you prefer.
 
-```{r, fig.cap= "Boxplots with friendly colours"}
+```{r}
 zhang_data_long %>% 
   drop_na(Gender) %>% 
   ggplot(aes(y = Interest, x = Gender, fill = Gender)) +
@@ -409,7 +409,7 @@ zhang_data_long %>%
                      breaks = c(1:7)) + 
   scale_fill_viridis_d(option = "E", 
                        alpha = 0.6) + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 ::: {.callout-tip}
@@ -432,7 +432,7 @@ zhang_data_long %>%
                      breaks = c(1:7)) + 
   scale_fill_viridis_d(option = "E", 
                        alpha = 0.6) + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 :::
@@ -454,7 +454,7 @@ zhang_data_long %>%
                      breaks = c(1:7)) + 
   scale_fill_viridis_d(option = "E", 
                        alpha = 0.6) + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 
@@ -474,19 +474,17 @@ zhang_data_long %>%
                        alpha = 0.6)
 ```
 
-As a final point here, the `fill` values on the legend are not the most professional looking. Like reordering factors, the easiest way of addressing this is editing the underlying data before piping to <pkg>ggplot2</pkg>. 
+As a final point here, the `fill` values on the legend are not the most professional looking. You can edit the labels here through the `scale_fill_viridis_d()` layer, similar to editing the axis labels. 
 
 ```{r}
 zhang_data_long %>% 
-  mutate(Time = case_match(Time,
-                           "time1_interest" ~ "Time 1",
-                           "time2_interest" ~ "Time 2")) %>% 
   ggplot(aes(y = Interest, x = Condition, fill = Time)) +
   geom_boxplot() + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
   scale_fill_viridis_d(option = "E", 
-                       alpha = 0.6)
+                       alpha = 0.6,
+                       labels = c("Time 1", "Time 2"))
 ```
 
 
@@ -538,18 +536,19 @@ zhang_data_long %>%
                      breaks = c(1:7))
 ```
 
-On it's own, this does not look great. We can edit the settings to reduce the width of the boxplots, add a colour scheme, and add transparency to the violin layer to make it easier to see the boxplot. 
+On it's own, this does not look great. We can edit the settings to reduce the width of the boxplots, add a colour scheme, and add transparency to the layers to make it easier to see the boxplot. 
 
 ```{r}
 zhang_data_long %>% 
   drop_na(Gender) %>% 
   ggplot(aes(y = Interest, x = Gender, fill = Gender)) +
   geom_violin(alpha = 0.5) + 
-  geom_boxplot(width = 0.2) + 
+  geom_boxplot(width = 0.2, 
+               alpha = 0.7) + 
   scale_fill_viridis_d(option = "E") + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 The boxplot uses the median for the centre line, but in your report you might be presenting means per category which will be slightly different. One further variation is removing the centre median line, and replacing it with the mean and 95% confidence interval (more on that in the lectures and Chapter 8). This way, you get three layers: the violin plot for the density, the boxplot for distribution summary statistics, and the mean and 95% confidence interval. 
@@ -563,7 +562,8 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Gender, fill = Gender)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL) + 
+               alpha = 0.7,
+               median.linewidth = 0) + # remove the median line
   stat_summary(fun = "mean", 
                geom = "point") +
   stat_summary(fun.data = "mean_cl_boot", # confidence interval
@@ -572,7 +572,7 @@ zhang_data_long %>%
   scale_fill_viridis_d(option = "E") + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 
 ```
 
@@ -590,7 +590,8 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Condition, fill = Condition)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL) + 
+               alpha = 0.7,
+               median.linewidth = 0) + # remove the median line
   stat_summary(fun = "mean", 
                geom = "point") +
   stat_summary(fun.data = "mean_cl_boot", 
@@ -600,7 +601,7 @@ zhang_data_long %>%
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
   theme_minimal() + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 :::
@@ -614,7 +615,8 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Condition, fill = Condition)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL) + 
+               alpha = 0.7,
+               median.linewidth = 0) + 
   stat_summary(fun = "mean", 
                geom = "point") +
   stat_summary(fun.data = "mean_cl_boot", 
@@ -624,7 +626,7 @@ zhang_data_long %>%
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
   theme_minimal() + 
-  guides(fill = "none")
+  guides(fill = FALSE)
 ```
 
 :::
@@ -638,13 +640,15 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Condition, fill = Time)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL) + 
+               alpha = 0.7,
+               median.linewidth = 0) + # remove the median line
   stat_summary(fun = "mean", 
                geom = "point") +
   stat_summary(fun.data = "mean_cl_boot", 
                geom = "errorbar", 
                width = .1) +
-  scale_fill_viridis_d(option = "E") + 
+  scale_fill_viridis_d(option = "E",
+                       labels = c("Time 1", "Time 2")) + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7)) + 
   theme_minimal()
@@ -660,7 +664,8 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Condition, fill = Time)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL,
+               alpha = 0.7,
+               median.linewidth = 0,  # remove the median line
                position = position_dodge(dodge_value)) + 
   stat_summary(fun = "mean", 
                geom = "point",
@@ -669,12 +674,13 @@ zhang_data_long %>%
                geom = "errorbar", 
                width = .1,
                position = position_dodge(dodge_value)) +
-  scale_fill_viridis_d(option = "E") + 
+  scale_fill_viridis_d(option = "E",
+                       labels = c("Time 1", "Time 2")) + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7))
 ```
 
-This looks much better! Remember, if you want to change the legend labels, the easiest way is recoding the data before piping to <pkg>ggplot2</pkg>. 
+This looks much better! 
 
 Finally, we might want to add a third variable to group the data by. There is a facet function that produces different plots for each level of a grouping variable which can be very useful when you have more than two factors. The following code shows interest ratings for all three variables we have worked with: Condition, Time, and Gender. 
 
@@ -687,7 +693,8 @@ zhang_data_long %>%
   ggplot(aes(y = Interest, x = Condition, fill = Time)) +
   geom_violin(alpha = 0.5) + 
   geom_boxplot(width = 0.2, 
-               fatten = NULL,
+               alpha = 0.7,
+               median.linewidth = 0,
                position = position_dodge(dodge_value)) + 
   stat_summary(fun = "mean", 
                geom = "point",
@@ -697,12 +704,19 @@ zhang_data_long %>%
                width = .1,
                position = position_dodge(dodge_value)) +
   facet_wrap(~ Gender) + # facet by Gender
-  scale_fill_viridis_d(option = "E") + 
+  scale_fill_viridis_d(option = "E",
+                       labels = c("Time 1", "Time 2")) + 
   scale_y_continuous(name = "Interest score (1-7)", 
                      breaks = c(1:7))
 ```
 
-Facets work in the same way as adding a variable to `fill`. It is not easy to change the labels within <pkg>ggplot2</pkg>, you are better off editing the values in your data first. 
+::: {.callout-tip}
+#### How do I remember all of this?!
+
+By this final plot, we have around 20 lines of <pkg>ggplot2</pkg> code. You might be worrying at this point how you will write everything from scratch when you want to create a plot. 
+
+Like previous advice, none of this is a memory test. You will rarely write all of this and check it runs. Complex plots like this are normally an iterative process where you start with the basic components of say a violin-boxplot. Something does not look right, so you change the axis labels. Then you change the transparency of the layers. Before you know it, you have added ten edits and produced a plot you are satisfied with. Furthermore, once you have plots you are happy with, you will also find you recycle past code to adapt to new data.
+:::
 
 ## Test yourself
 
@@ -751,7 +765,7 @@ In addition to the layer order, we also added an error mode feature to recognise
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on the new types of data visualisation. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files: 
 
 ```{r eval=FALSE}
 # Load the tidyverse package below
@@ -785,9 +799,9 @@ zhang_data_long <- zhang_data %>%
                values_to = "Interest")
 ```
 
-Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your R Markdown file below the code chunk to load <pkg>tidyverse</pkg> and the data files. Once you have copied the activities, click knit and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your Quarto file below the code chunk to load <pkg>tidyverse</pkg> and the data files. Once you have copied the activities, click Render and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. This code... works, but it does not look quite right? Why are the tick marks not displaying properly? 
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. This code... works, but it does not look quite right? Why are the tick marks not displaying properly? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -821,7 +835,7 @@ zhang_data %>%
 ```
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. You should receive an error like `Error in "fortify()":! "data" must be a <data.frame>, or an object coercible by "fortify()"` which is a little cryptic. 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. You should receive an error like `Error in "fortify()":! "data" must be a <data.frame>, or an object coercible by "fortify()"` which is a little cryptic. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -853,7 +867,7 @@ zhang_data_long %>%
 ```
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. We want to change the order of the categories to present males then female. This code...works, but is it doing what we think it is doing? 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. We want to change the order of the categories to present males then female. This code...works, but is it doing what we think it is doing? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -870,7 +884,7 @@ zhang_data_long %>%
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-We have introduced this error several times, but we see it so often it is worth reinforcing. When we change the labels, this is really just to tidy things up. The underlying data does not change, we are just trying to communicate it clearer. If we want to change the order of categories, we must change the underlying order of the data as a factor or R will default to alphabetical/numerical. So, we mutate Gender as a factorm, then pipe to <pkg>ggplot2</pkg>. 
+We have introduced this error several times, but we see it so often it is worth reinforcing. When we change the labels, this is really just to tidy things up. The underlying data does not change, we are just trying to communicate it clearer. If we want to change the order of categories, we must change the underlying order of the data as a factor or R will default to alphabetical/numerical. So, we mutate Gender as a factor, then pipe to <pkg>ggplot2</pkg>. 
 
 ```{r eval = FALSE}
 zhang_data_long %>% 
@@ -896,4 +910,4 @@ glossary_table()
 
 Well done, you have completed the second chapter dedicated to data visualisation! This is a key area for psychology research and helping to communicate your findings to your audience. Data visualisation also comes with a lot of responsibility. There are lots of design choices to make and help communicate your findings as effectively and transparently as possible. We could dedicate a whole book to data visualisation possibilities in R and <pkg>ggplot2</pkg>, so we have added a range of further reading sources in the [Additional Resources](#additional-resources) appendix. 
 
-In the next chapter, we start on inferential statistics introducing you to the concept of regression by focusing on one continuous predictor variable. 
+In the next chapter, we start on inferential statistics introducing you to the concept of correlation and regression by focusing on one continuous predictor variable and one continuous outcome variable. 
