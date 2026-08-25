@@ -23,8 +23,6 @@ In this chapter, we focus on simple linear regression for testing research quest
 
 By the end of this chapter, you will be able to: 
 
-- Visualise the relationship between two continuous variables using a scatterplot. 
-
 - Apply and interpret a Pearson's and Spearman's correlation. 
 
 - Apply and interpret linear regression with one continuous predictor variable. 
@@ -51,7 +49,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_08_regression_continuous` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `08 Correlations and Regression`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_08_regression_continuous` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `08 Correlations and Regression`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_08_regression_continuous` folder. 
 
 4. We are working with a new data set, so please save the following data file: [Dawtry_2015.csv](data/Dawtry_2015.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the file as ".csv". Save or copy the file to your `data/` folder within `Chapter_08_regression_continuous`.
 
@@ -105,7 +103,7 @@ As the first activity, try and test yourself by completing the following task li
 
 To wrangle the data, complete the following tasks: 
 
-1. Load the following packages (three of these are new, so revisit [Chapter 1](#install-tidy) if you need a refresher of installing R packages, but remember not to install packages on the university computers / online server):
+1. Load the following packages (three of these are new, so revisit [Chapter 1](#install-tidy) if you need a refresher of installing R packages, but remember not to install packages on the university computers.):
 
     - <pkg>tidyverse</pkg>
     
@@ -392,7 +390,7 @@ fairness_redist_object <- correlation(data = dawtry_clean,
                                       alternative = "two.sided")
 ```
 
-If you look in the Environment, the <pkg>correlation</pkg> package helpfully saves the output as a data frame which makes it easy to work with. For the following code, this is a function we have created, so we do not expect you to understand everything at this point. You just need to copy and paste it into your .Rmd file before you want to reference the correlation. Click show the correlation formatting function as we initially hide it to avoid taking up lots of space. 
+If you look in the Environment, the <pkg>correlation</pkg> package helpfully saves the output as a data frame which makes it easy to work with. For the following code, this is a function we have created, so we do not expect you to understand everything at this point. You just need to copy and paste it into your .qmd file before you want to reference the correlation. Click show the correlation formatting function as we initially hide it to avoid taking up lots of space. 
 
 ```{r}
 #| code-fold: true
@@ -442,7 +440,7 @@ Once you have saved the object and added the formatting function, you can use th
 report_correlation(fairness_redist_object)
 ```
 
-You can add that as inline code to insert into your report to make your inferential statistics reproducible. Just note it's difficult to apply all the APA format details, so you might need to remove leading zeros, add italics to the math symbols etc. 
+You can add the function as inline code to insert into your report to make your inferential statistics reproducible. Just note it's difficult to apply all the APA formatting details, so you might need to remove leading zeros, add italics to the math symbols etc. 
 
 ## Linear regression with one continuous predictor
 
@@ -450,30 +448,7 @@ Now you know how to calculate a correlation in R, we can turn to simple linear r
 
 In Research Methods 1, we focus on just two variables, before scaling up to more complicated models in Research Methods 2. In this chapter, we focus the relationship between a continuous `r glossary("outcome", def = "The outcome (also known as the dependent variable) is the variable you are interested in seeing a potential change in.")` and one continuous `r glossary("predictor", def = "The predictor (also known as an independent variable) is the variable you measure or manipulate to see how it is associated with changes in the outcome variable.")`, before extending the framework to one categorical predictor in Chapter 9. There is also a chapter in the Handy Workbook ([McAleer, 2023](https://psyteachr.github.io/handyworkbook/simple-linear-regression.html){target="_blank"}) dedicated to manually calculating simple linear regression.
 
-### Activity 5- Calculating descriptive statistics
-
-For all the information we want to include in a report, calculating descriptive statistics is helpful for the reader to show the context behind the results you present. Here, we can report the mean and standard deviation of our two variables.
-
-```{r}
-dawtry_clean %>% 
-  # pivot longer to avoid repeating yourself
-  pivot_longer(cols = fairness_satisfaction:redistribution,
-               names_to = "Variable", 
-               values_to = "Value") %>% 
-  # group by Variable to get one value per variable
-  group_by(Variable) %>% 
-  # mean and SD, rounded to 2 decimals
-  summarise(mean_variable = round(mean(Value), 2),
-            sd_variable = round(sd(Value), 2))
-```
-
-::: {.callout-note}
-If you want some reinforcement of how these skills apply to published research, look at Table 1 in @dawtry_why_2015. The means and standard deviations here (and the correlation in Activity 4) exactly reproduce the values they report.
-:::
-
-If other types of descriptive statistic would be more suitable to your data, then you can just replace the functions you use within `summarise()`. 
-
-### Activity 6 - Using the `lm()` function 
+### Activity 5 - Using the `lm()` function 
 
 For our research question of "is there a relationship between support for wealth redistribution and fairness and satisfaction", we can address it with simple linear regression. 
 
@@ -537,21 +512,22 @@ format(2e-16, scientific = FALSE)
 ```
 :::
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 #### How are correlation and regression the same? 
 
 If you are interested in the relationship between the two concepts, we said correlation was a specific application of the general linear model. It describes the - standardised - covariation between two variables compared to their total variability. For values of -1 and 1, knowing the value of one variable perfectly correlates to the value of your other variable. As you approach 0, the relationship between the variables is less perfect, meaning there is more variability left over compared to the covariance.
 
 In regression, we frame it as how much variance you explain compared to the total amount of variance. The more variance your predictor explains, the less unexplained variance there is left over. We no longer calculate *r*, we calculate $R^2$ as the proportion of variance in your outcome explained by your model. A value of 0 would be you explain no variance and a value of 1 means you explain all the variance.  
 
-You can see the connection between the two by comparing the value of Pearson's *r* from Activity 4 (-.70) to the value of $R^2$ = .4905. If you take the square root to get *r* (`sqrt(.4905)`), you get .70, which is exactly the same absolute value since $R^2$ can only be positive. 
+You can see the connection between the two by comparing the value of Pearson's *r* from Activity 4 (-.70) to the value of $R^2$ = .4905. If you take the square root to get *r* (`sqrt(.4905)`), you get .70, which is exactly the same absolute value since $R^2$ can only be positive. So, when you have a single continuous predictor, it is the exact same process as correlation, just expressed slightly different. 
 
-So, when you have a single continuous predictor, it is the exact same process as correlation, just expressed slightly different. 
+In psychology, most textbooks and journal articles will use these specialised versions of linear regression as a toolbox of statistical tests for different designs. We prefer grounding things in a linear models approach as it provides a more flexible toolkit you can adapt to your design. However, we still want to explain the other tests, so that you can understand them when you come across them in your research. 
 :::
 
-### Activity 7 - Calculating confidence intervals
+### Activity 6 - Calculating confidence intervals
 
 In the standard `lm()` and `summary()` output, we get most of the key values we need for our inferential statistics, but the one thing missing is confidence intervals around our estimates. Fortunately, R has a built-in function called `confint()` for calculating confidence intervals using your linear model object. 
+
 ```{r}
 confint(lm_redistribution)
 ```
@@ -596,7 +572,7 @@ confint(lm_age)
 
 :::
 
-### Activity 8 - Centering and standardising predictors
+### Activity 7 - Centering and standardising predictors
 
 So far, we have covered specifying your outcome and predictor variables as their raw values in the data. However, there are two variations that are useful to understand: centering and standardising predictors. These do not change the model fitting or *p*-values, but change how you interpret the intercept and/or slope. 
 
@@ -683,13 +659,16 @@ It is important to demonstrate the underlying concepts first but if you want a s
 ```{r}
 standardize_parameters(lm_redistribution)
 ```
+
+Reassuringly, we get the same values as the manual process above.
+
 :::
 
 ## Checking assumptions
 
-For the inferential statistics to work as intended, the model makes certain assumptions about the data you are putting into it and the accuracy of the inferences depends on how sensible these assumption are. Remember these functions will always work even if the numbers you enter are nonsense, so it's important for you as the researcher to recognise when it's appropriate to use these techniques and when it is not.
+For the inferential statistics to work as intended, the model makes certain assumptions about the data you are putting into it and the accuracy of the inferences depends on how sensible these assumptions are. Remember these functions will always work even if the numbers you enter are nonsense, so it's important for you as the researcher to recognise when it's appropriate to use these techniques and when it is not.
 
-### Activity 9 - Diagnostic plots for linear regression
+### Activity 8 - Diagnostic plots for linear regression
 
 As a reminder, the assumptions for simple linear regression are:
 
@@ -729,9 +708,16 @@ Try the following in the console to see what it does:
 If you type an object name into the console and add the `$`, you will see all the components appear to auto complete. 
 :::
 
-In your reading, you might see individual statistical tests to check these assumptions, but they have more limitations than benefits. The best way to check the assumptions is through diagnostic plots which express the model residuals in different ways. We want to walk through this longer way of checking assumptions to develop a solid understanding before showing you a shortcut to see them all below. 
+::: {.callout-warning}
+#### Avoid assumption tests like the plague
 
-In the code below, we use a format you will be less familiar with as all these functions come from base R. If you just run the code for the diagnostic plots `plot(lm_redistribution)`, each one gets individually printed to your Plots window. Here, we create a 2x2 panel to show them all together. 
+In your reading, you might see individual statistical tests to check assumptions. The two most common are the Shapiro-Wilk for normality of residuals and Levene's test for homoscedasticity. If they worked perfectly, they would be great but they have more limitations than benefits. 
+
+They flip standard NHST logic to treat the null hypothesis as say the residuals are perfectly normal. The larger the difference between the null and your observed residuals, the more likely the test is to be statistically significant. This means if the test is statistically significant, the logic goes you reject the null and conclude the residuals **are not** normal. However, because it is based on NHST, there are two major fallacies. First, *p*-values are sensitive to sample size, so when you have a large sample size, almost any minor variation would be statistically significant, even when there is not a problem. Second, for a non-significant result, you cannot conclude the null is true, just that you cannot reject the null. As attractive an idea as they are, we heavily recommend avoiding the assumption tests. 
+
+:::
+
+We want to walk through this longer way of checking assumptions to develop a solid understanding before showing you a shortcut to see them all below. In the code, we use a format you will be less familiar with as all these functions come from base R. If you just run the code for the diagnostic plots `plot(lm_redistribution)`, each one gets individually printed to your Plots window. Here, we create a 2x2 panel to show them all together. 
 
 ```{r}
 # Change the panel layout to 2 x 2
@@ -895,7 +881,7 @@ All in all, there do not appear to be any issues with the assumptions here.
 
 ## Reporting your results
 
-Now we have some results to go with, there are a few recommendations on how to communicate that information. In psychology (and other disciplines), we tend to follow the American Psychological Association (APA) formatting guidelines as they provide a comprehensive standardised style to make sure information is being reported as easily digestible and consistent as possible. You can see [this PDF online](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf){target="_blank"} for a little cheat sheet for numbers and statistics, but we will outline some key principles to ensure you provide your reader with enough information.
+Now we have some results to go with, there are a few recommendations on how to communicate that information. In psychology, we tend to follow the American Psychological Association (APA) formatting guidelines as they provide a comprehensive standardised style to make sure information is being reported as easily digestible and consistent as possible. You can see [this PDF online](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf){target="_blank"} for a little cheat sheet for numbers and statistics, but we will outline some key principles to ensure you provide your reader with enough information.
 
 1. Explain to the reader what your linear regression model was. For example, what was your outcome and predictor variable?
 
@@ -950,9 +936,9 @@ report_regression_model <- function(regression_object){
   # Save adjusted R2 with any trailing zeroes
   adj_r2 <- sprintf("%.3f", round(model_summary$adj.r.squared, 3))
   # save model degrees of freedom
-  df1 <- model_summary$df[1]
+  df1 <- model_summary$fstatistic[2]
   # save residual degrees of freedom
-  df2 <- model_summary$df[2]
+  df2 <- model_summary$fstatistic[3]
   # save F rounded to 2 decimals with any trailing zeroes
   Fval <- sprintf("%.2f", round(model_summary$fstatistic, 2))[1]
   # save p value with formatting if less than .001
@@ -1075,7 +1061,7 @@ The outcome variable in this model is `r mcq(c(answer = "Attitudes on Wealth Red
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on simple linear regression between two continuous variables. There are not many outright errors that people make here, more misspecifications that are not doing what you think they are doing. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files: 
 
 ```{r eval=FALSE}
 # Load the packages below
@@ -1118,9 +1104,9 @@ dawtry_clean <- dawtry_data %>%
   select(PS, Household_Income:redistribution, -redist2_R, -redist4_R)
 ```
 
-Below, we have several variations of a misspecification. Copy and paste them into your R Markdown file below the code chunk to wrangle the data. Once you have copied the activities, click knit and look at the output you receive. See if you can identify the mistake and fix it before checking the answer.
+Below, we have several variations of a misspecification. Copy and paste them into your Quarto file below the code chunk to wrangle the data. Once you have copied the activities, click Render and look at the output you receive. See if you can identify the mistake and fix it before checking the answer.
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. We want to create a simple linear regression model to specify `fairness_satisfaction` as our outcome variable and `Political_Preference` as our predictor. Have we expressed that accurately? 
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. We want to create a simple linear regression model to specify `fairness_satisfaction` as our outcome variable and `Political_Preference` as our predictor. Have we expressed that accurately? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -1134,7 +1120,7 @@ summary(lm_fairness)
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-In this example, we mixed up the variables. The formula in `lm()` has the form `outcome ~ predictor`, so we mixed up the order. In simple linear regression, it makes no difference to the slope, but it is important to be able to express your model accurately and it would make a difference once you scale up to multiple linear regression. 
+In this example, we mixed up the variables. The formula in `lm()` has the form `outcome ~ predictor`, so we mixed up the order. In simple linear regression with a continuous predictor, it makes no difference to the slope, but it is important to be able to express your model accurately and it would make a difference once you scale up to multiple linear regression. 
 
 ```{r eval = FALSE}
 lm_fairness <- lm(fairness_satisfaction ~ Political_Preference,
@@ -1144,7 +1130,7 @@ summary(lm_fairness)
 ```
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. We want to standardise the outcome and predictors, so that we get the intercept and slope estimates in standard deviations. Have we expressed that accurately? 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. We want to standardise the outcome and predictors, so that we get the intercept and slope estimates in standard deviations. Have we expressed that accurately? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
