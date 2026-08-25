@@ -90,6 +90,7 @@ format:
     - include/glossary.css
     - include/style.css
     df-print: kable
+    toc-depth: 3
     html-table-processing: none
     code-link: true
     code-fold: false

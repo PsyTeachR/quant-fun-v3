@@ -735,7 +735,7 @@ Note: in the last answer, 137 could also be double as it is not clear if it coul
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on data wrangling using the functions `filter()`, `count()`, and `group_by()` and `summarise()`. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load `tidyverse` and the data file: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load `tidyverse` and the data file: 
 
 ```{r eval=FALSE}
 # Load the tidyverse package below
@@ -778,13 +778,15 @@ pong_data_filter <- filter(pong_data,
 # Count block numbers from pong_data
 count_blocknumbers <- summarise(pong_data,
                                 N_blocks = sum(BlockNumber))
+                                
+count_blocknumbers
 ```
 ````
 
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-The mistake is using `sum()` to count the number of trials per block. `sum()` would only work when you have 0s and 1s. Here, it just adds up all the numbers, totalling 29952. There are two options here. In every other scenario, you need to either `count()`:
+The mistake is using `sum()` to count the number of trials per block. `sum()` would only work when you have 0s and 1s. Here, it just adds up all the numbers, totaling 29952. There are two options here. In every other scenario, you need to either `count()`:
 
 ```{r}
 # Count block numbers from pong_data
@@ -811,6 +813,8 @@ count_blocknumbers <- summarise(group_blocks,
 # Mean judged speed for the proportion of fast judgements
 hits_by_background <- summarise(pong_data,
                                 prop_fast = mean(JudgedSpeed))
+                                
+hits_by_background
 ```
 ````
 
@@ -828,6 +832,16 @@ pong_data_paddle <- group_by(pong_data,
 hits_by_background <- summarise(pong_data_paddle,
                                  prop_fast = mean(JudgedSpeed))
 ```
+
+Alternatively, you could use the `.by` argument to avoid the intermediary group object. 
+
+```{r}
+# Mean judged speed for the proportion of fast judgements
+hits_by_background <- summarise(pong_data,
+                                 prop_fast = mean(JudgedSpeed),
+                                .by = PaddleLength)
+```
+
 :::
 
 ## Words from this chapter
