@@ -19,7 +19,7 @@ In the last chapter, we added two more functions to your data wrangling toolkit.
 
 In this chapter, we start with another recap of all your data wrangling skills so far on a new data set. There is no substitute for practice when it comes to data skills. By applying your skills to new data, you can transfer your knowledge to novel scenarios and develop independence. We then add two more sets of data wrangling functions. First, we demonstrate pivots to restructure your data from wide format into long format, and vice versa. Second, we show how you can string together multiple functions from the <pkg>tidyverse</pkg> using pipes. These help streamline your code to avoid creating lots of intermediary objects. 
 
-After this chapter, you will be ready for the first data analysis journey chapter: [Analysis Journey 1: Data Wrangling](#journey-01-wrangling). This is where you can test the skills you have developed so far on a more independent task as a bridge between the core chapters and your assessments. 
+After this chapter, you will be ready for the first data analysis journey chapter: [Analysis Journey 1: Data Wrangling](#journey-01-wrangling). This is where you can test the skills you have developed so far on a more independent task as a bridge between the core chapters and your assessments. If you want *even* more practice, you can explore the wrangling section of our [Data Analysis Journeyse](https://psyteachr.github.io/analysis_journeys/){target="_blank"} book which provides further practice opportunities with less structure than these chapters.
 
 **Chapter Intended Learning Outcomes (ILOs)**
 
@@ -49,9 +49,9 @@ In this chapter, we will wrangle their data to reinforce skills from Chapter 4 a
 
 Before we can get started, you need to organise your files and project for the chapter, so your working directory is in order.
 
-1. In your folder for research methods and the book `ResearchMethods1_2/Quant_Fundamentals`, you should have a folder from chapter 4 called `Chapter_04_06_datawrangling` where you created an R Project. 
+1. In your folder for research methods and the book `ResearchMethods1_2/Quant_Fundamentals`, you should have a folder from Chapter 4 called `Chapter_04_06_datawrangling` where you created an R Project. 
 
-2. Create a new R Markdown document and give it a sensible title describing the chapter, such as `06 Data Wrangling 3`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
+2. Create a new Quarto document and give it a sensible title describing the chapter, such as `06 Data Wrangling 3`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_04_06_datawrangling` folder. 
 
 4. We are working with a new data set separated into two files. The links are data file one ([Alter_2024_demographics.csv](data/Alter_2024_demographics.csv)) and data file two ([Alter_2024_scales.csv](data/Alter_2024_scales.csv)). Right click the links and select "save link as", or clicking the links will save the files to your Downloads. Make sure that both files are saved as ".csv". Save or copy the file to your `data/` folder within `Chapter_04_06_datawrangling`.
 
@@ -77,7 +77,7 @@ demog <- ?
 scales <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -142,7 +142,7 @@ Create a new data object called `full_data` and see if you can spot a common var
 full_data <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -179,7 +179,7 @@ Remember: you can select variables either by **retaining** the variables you wan
 full_data_select <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk if you chose to retain: 
 
@@ -229,7 +229,7 @@ For a quick check of the data, order the values of `AgeE` using the object `full
 ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -279,26 +279,27 @@ Using the `full_data_select` object, use `mutate()` to recode these two existing
 full_data_mutate <- ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk (some lines wrap due to being quite long, but it will look right if you copy and paste it to your RStudio): 
 
 ```{r}
 # recode gender and race to labels
 full_data_mutate <- mutate(full_data_select,
-                           GenderE = case_match(GenderE,
-                                                1 ~ "Female",
-                                                2 ~ "Male",
-                                                3 ~ "Non-binary"),
-                           RaceEthE = case_match(RaceEthE,
-                                                 1 ~ "Black/African American",
-                                                 2 ~ "Hispanic/Other Latinx",
-                                                 3 ~ "White",
-                                                 4 ~ "Multiracial",
-                                                 5 ~ "Asian/Pacific Islander",
-                                                 6 ~ "Native American/Alaska Native",
-                                                 7 ~ "South/Central American"))
+                           GenderE = recode_values(GenderE,
+                                                   1 ~ "Female",
+                                                   2 ~ "Male",
+                                                   3 ~ "Non-binary"),
+                           RaceEthE = recode_values(RaceEthE,
+                                                    1 ~ "Black/African American",
+                                                    2 ~ "Hispanic/Other Latinx",
+                                                    3 ~ "White",
+                                                    4 ~ "Multiracial",
+                                                    5 ~ "Asian/Pacific Islander",
+                                                    6 ~ "Native American/Alaska Native",
+                                                    7 ~ "South/Central American"))
 ```
+
 :::
 
 #### Bonus activity - reverse coding scales {#06-reverse-coding}
@@ -315,31 +316,31 @@ scales_reverse <- mutate(scales,
                          SPSS10_R = ?)
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 Based on what we covered before, we expect you will have completed a perfectly accurate but long process of recoding each item one by one: 
 
 ```{r eval=FALSE}
 # recode items 2, 3, and 10
 scales_reverse <- mutate(scales,
-                         SPSS2_R = case_match(SPSS2E,
-                                              1 ~ 5,
-                                              2 ~ 4,
-                                              3 ~ 3,
-                                              4 ~ 2,
-                                              5 ~ 1),
-                         SPSS3_R = case_match(SPSS3E,
-                                              1 ~ 5,
-                                              2 ~ 4,
-                                              3 ~ 3,
-                                              4 ~ 2,
-                                              5 ~ 1),
-                         SPSS10_R = case_match(SPSS10E,
-                                              1 ~ 5,
-                                              2 ~ 4,
-                                              3 ~ 3,
-                                              4 ~ 2,
-                                              5 ~ 1))
+                         SPSS2_R = recode_values(SPSS2E,
+                                                 1 ~ 5,
+                                                 2 ~ 4,
+                                                 3 ~ 3,
+                                                 4 ~ 2,
+                                                 5 ~ 1),
+                         SPSS3_R = recode_values(SPSS3E,
+                                                 1 ~ 5,
+                                                 2 ~ 4,
+                                                 3 ~ 3,
+                                                 4 ~ 2,
+                                                 5 ~ 1),
+                         SPSS10_R = recode_values(SPSS10E,
+                                                  1 ~ 5,
+                                                  2 ~ 4,
+                                                  3 ~ 3,
+                                                  4 ~ 2,
+                                                  5 ~ 1))
 ```
 
 However, there is a neat shortcut where you can subtract the response from the biggest scale unit plus 1. For example, if you have a 5-point scale, you would subtract the response from 6, if you have a 7-point scale, from 8 etc. 
@@ -375,7 +376,7 @@ After creating the objects, answer the following questions:
 
 2. We have `r fitb(9)` female, Asian/Pacific Islander participant(s) in the data set.
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -393,7 +394,7 @@ F_asian_participants <- filter(full_data_mutate,
 
 #### Bonus activity - Removing NAs with `drop_na()` {#06-drop-NAs}
 
-One concept we will spend more time on in [Chapter 11 - Screening Data]() - is removing participants who do not provide an answer. We delve more into the decision making in the course materials, but there is a handy function in <pkg>tidyr</pkg> called `drop_na()`. You could do this using filter, but the standalone function streamlines things. If you run the function on your whole data set, it will remove observations with one or more NAs in all their variables: 
+One concept we will spend more time on in [Chapter 11 - Screening Data]() - is removing participants who do not provide an answer. We explore the decision making in the course materials in more detail, but there is a handy function in <pkg>tidyr</pkg> called `drop_na()`. You could do this using filter, but the standalone function streamlines things. If you run the function on your whole data set, it will remove observations with one or more NAs in all their variables: 
 
 ```{r}
 # remove observations with any NAs
@@ -418,7 +419,7 @@ As the final recap activity, it is time to calculate some summary statistics to 
 
 1. How many observations do we have of each gender? `r fitb(29)` males, `r fitb(149)` females, and `r fitb(1)` non-binary. 
 
-2. How many observations do we have of each race? `r fitb(131)` white, `r fitb(13)` Black/African American, and `r fitb(1)` NA with missing data. 
+2. How many observations do we have of each race? `r fitb(131)` White, `r fitb(13)` Black/African American, and `r fitb(1)` NA with missing data. 
 
 ```{r eval=FALSE}
 # count each group in GenderE
@@ -428,7 +429,7 @@ As the final recap activity, it is time to calculate some summary statistics to 
 ?
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 
@@ -447,6 +448,13 @@ count(full_data_mutate,
 
 One useful demographic summary is the mean and standard deviation (*SD*) of participant ages. We have covered the function for the mean (`mean()`) several times, but a key part of coding is knowing what you want, but not the function to do it. So, in the process of the next answer, try and find the function for the standard deviation on your own. If you are really stuck though, you can see the hint below. 
 
+```{r eval=FALSE}
+# Mean and SD age
+mean_age <- summarise(full_data_mutate,
+                      mean_age = ?,
+                      SD_age = ?)
+```
+
 ::: {.callout-note collapse="true"}
 #### Give me a hint for the SD function
 
@@ -456,14 +464,7 @@ sd()
 ```
 :::
 
-```{r eval=FALSE}
-# Mean and SD age
-mean_age <- summarise(full_data_mutate,
-                      mean_age = ?,
-                      SD_age = ?)
-```
-
-::: {.callout-tip collapse="true"}
+::: {.callout-caution collapse="true"}
 #### Show me the solution
 You should have the following in a code chunk: 
 ```{r eval=FALSE}
@@ -512,7 +513,7 @@ For most of this book, we use a type of data organisation known as `r glossary("
 ::: {.callout-note}
 If you have worked with any kind of data before, particularly if you have used Excel, it is likely that you will have used **wide format** or **long format** data. In wide format, each participant's data is all in one row with multiple columns for different data points. This means that the data set tends to be very wide and you will have as many rows as you have participants. 
 
-Long format is where each **row** is a single observation, typically a single trial in an experiment or a response to a single item on a questionnaire. When you have multiple trials per participant, you will have multiple rows for the same participant. To identify participants, you would need a variable with some kind of participant id, which can be as simple as a distinct integer value for each participant. In addition to the participant identifier, you would have any measurements taken during each observation (e.g., response time) and what experimental condition the observation was taken under.
+Long format is where each **row** is a single observation, typically a single trial in an experiment or a response to a single item on a questionnaire. When you have multiple trials per participant, you will have multiple rows for the same participant. To identify participants, you would need a variable with some kind of participant ID, which can be as simple as a distinct integer value for each participant. In addition to the participant identifier, you would have any measurements taken during each observation (e.g., response time) and what experimental condition the observation was taken under.
 
 In wide format data, each **row** corresponds to a single participant, with multiple observations for that participant spread across columns. So for instance, with survey data, you would have a separate column for each survey question.
 
@@ -615,7 +616,7 @@ To check your answers:
 :::
 
 ::: {.callout-caution collapse="true"} 
-#### Solution
+#### Show me the solution
 
 We complete the task in three steps. First, we pivot longer using the four columns QANX1E to QANX4E to create the new `quant_anxiety_long` object. Second, we group that new long data object by the participant ID. Third, we calculate the sum quantitative anxiety score by taking the sum of the responses per participant ID. 
 
@@ -717,18 +718,18 @@ full_data_pipe <-  demog %>%
          QHIND1E:QHIND5E, 
          SPSS1E, SPSS4E, SPSS5E, SPSS6E, SPSS7E, SPSS8E, SPSS9E) %>% 
   # Recode variables with labels
-  mutate(GenderE = case_match(GenderE,
-                              1 ~ "Female",
-                              2 ~ "Male",
-                              3 ~ "Non-binary"),
-         RaceEthE = case_match(RaceEthE,
-                               1 ~ "Black/African American",
-                               2 ~ "Hispanic/Other Latinx",
-                               3 ~ "White",
-                               4 ~ "Multiracial",
-                               5 ~ "Asian/Pacific Islander",
-                               6 ~ "Native American/Alaska Native",
-                               7 ~ "South/Central American"))
+  mutate(GenderE = recode_values(GenderE,
+                                 1 ~ "Female",
+                                 2 ~ "Male",
+                                 3 ~ "Non-binary"),
+         RaceEthE = recode_values(RaceEthE,
+                                  1 ~ "Black/African American",
+                                  2 ~ "Hispanic/Other Latinx",
+                                  3 ~ "White",
+                                  4 ~ "Multiracial",
+                                  5 ~ "Asian/Pacific Islander",
+                                  6 ~ "Native American/Alaska Native",
+                                  7 ~ "South/Central American"))
   
 ```
 
@@ -755,18 +756,18 @@ full_data_select <- select(full_data,
 
 # recode gender and race to labels
 full_data_mutate <- mutate(full_data_select,
-                           GenderE = case_match(GenderE,
-                                                1 ~ "Female",
-                                                2 ~ "Male",
-                                                3 ~ "Non-binary"),
-                           RaceEthE = case_match(RaceEthE,
-                                                 1 ~ "Black...",
-                                                 2 ~ "Hispanic...",
-                                                 3 ~ "White",
-                                                 4 ~ "Multiracial",
-                                                 5 ~ "Asian...",
-                                                 6 ~ "Native American...",
-                                                 7 ~ "South..."))
+                           GenderE = recode_values(GenderE,
+                                                   1 ~ "Female",
+                                                   2 ~ "Male",
+                                                   3 ~ "Non-binary"),
+                           RaceEthE = recode_values(RaceEthE,
+                                                    1 ~ "Black...",
+                                                    2 ~ "Hispanic...",
+                                                    3 ~ "White",
+                                                    4 ~ "Multiracial",
+                                                    5 ~ "Asian...",
+                                                    6 ~ "Native American...",
+                                                    7 ~ "South..."))
 ```
 
 #### Combining functions using pipes
@@ -786,18 +787,18 @@ full_data_pipe <-  demog %>%
          QHIND1E:QHIND5E, 
          SPSS1E, SPSS4E:SPSS9E) %>% 
   # Recode variables with labels
-  mutate(GenderE = case_match(GenderE,
-                              1 ~ "Female",
-                              2 ~ "Male",
-                              3 ~ "Non-binary"),
-         RaceEthE = case_match(RaceEthE,
-                               1 ~ "Black...",
-                               2 ~ "Hispanic...",
-                               3 ~ "White",
-                               4 ~ "Multiracial",
-                               5 ~ "Asian...",
-                               6 ~ "Native American...",
-                               7 ~ "South..."))
+  mutate(GenderE = recode_values(GenderE,
+                                 1 ~ "Female",
+                                 2 ~ "Male",
+                                 3 ~ "Non-binary"),
+         RaceEthE = recode_values(RaceEthE,
+                                  1 ~ "Black...",
+                                  2 ~ "Hispanic...",
+                                  3 ~ "White",
+                                  4 ~ "Multiracial",
+                                  5 ~ "Asian...",
+                                  6 ~ "Native American...",
+                                  7 ~ "South..."))
 ```
 :::
 
@@ -812,6 +813,8 @@ As you get used to using pipes, remember you can interpret them as "and then". S
 - Mutate to recode gender and race.
 
 It can be tricky at first to understand what pipes are doing from a conceptual point of view, but it is well worth learning to use them. When your code starts getting longer, they are much more efficient and you write less code which is always a good thing to debug and find errors. You also have fewer objects in your environment as we created one object instead of three, tidying your workspace. 
+
+We focus on <pkg>tidyverse</pkg> packages/functions in this course, so we focus on the pipe (`%>%`). This was introduced through the <pkg>magrittr</pkg> package and was popular enough that base R introduced a "native" pipe: `|>`. You might see people use this instead of the pipe but we stick with the <pkg>tidyverse</pkg> version in this book. 
 
 ::: {.callout-important}
 #### Error mode
@@ -864,7 +867,7 @@ age_groups <- full_data_mutate %>%
 :::
 
 ::: {.callout-caution collapse="true"} 
-#### Solution
+#### Show me the solution
 
 We complete this task in three steps. First, we filter `full_data_mutate` to just focus on White and Black/African American participants. Second, we group the data by `RaceEthE` so our summary statistics are split into two groups. Third, we calculate the mean and SD age.
 
@@ -876,6 +879,29 @@ age_groups <- full_data_mutate %>%
   summarise(mean_age = mean(AgeE, na.rm = TRUE),
             SD_age = sd(AgeE, na.rm = TRUE))
 ```
+
+:::
+
+::: {.callout-note}
+#### Is there a shorter way to calculate scale scores? 
+
+In previous chapters, we have explained we opt for longer but more readable code as you develop your understanding of R and working with data. There are often more efficient ways to achieve a goal but they involve several functions we have not covered yet or they can look a little nasty to make sense of. Now we have covered pipes, we could calculate scale scores in a few lines: 
+
+```{r}
+VSSL_sum <- full_data_mutate %>% 
+  rowwise() %>% 
+  mutate(VSSL_sum = sum(c_across(SPSS1E:SPSS9E), 
+                        na.rm = TRUE)) %>% 
+  ungroup()
+```
+
+There are two functions here we have not covered in the materials: 
+
+- `rowwise()` is kind of like `group_by()` where it applies functions across rows rather than columns.
+
+- `c_across()` is a helper function to apply a function to multiple columns.
+
+So, you can read this code as take `full_data_mutate` **and then** apply functions across rows **and then** create a new variable for the sum VSSL score across items SPSS1E to SPSS9E (ignoring NAs) **and then** ungroup to stop applying functions by row. 
 
 :::
 
@@ -911,7 +937,7 @@ Which function(s) would you use to approach each of the following problems?
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on data wrangling using past functions, `pivot_longer()`, and pipes (`%>%`). Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load <pkg>tidyverse</pkg> and the data files: 
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load <pkg>tidyverse</pkg> and the data files: 
 
 ```{r eval=FALSE}
 # Load the tidyverse package below
@@ -925,11 +951,11 @@ demog <- read_csv("data/Alter_2024_demographics.csv")
 scales <- read_csv("data/Alter_2024_scales.csv")
 ```
 
-Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your R Markdown file below the code chunk to load <pkg>tidyverse</pkg> and the data files. Once you have copied the activities, click knit and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your Quarto file below the code chunk to load <pkg>tidyverse</pkg> and the data files. Once you have copied the activities, click Render and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-**Question 6**. Copy the following code chunk into your R Markdown file and press knit. In this code chunk, we want to calculate the mean and SD age of all participants using `demog`. There are two errors/omissions here to try and fix: 
+**Question 6**. Copy the following code chunk into your Quarto file and press Render. In this code chunk, we want to calculate the mean and SD age of all participants using `demog`. There are two errors/omissions here to try and fix: 
 
-1. One causes the document not to knit. You should receive an error like `Caused by error in "SD()": ! could not find function "SD"`.  
+1. One causes the document not to render. You should receive an error like `Caused by error in "SD()": ! could not find function "SD"`.  
 
 2. The other looks like we just get NA values?
 
@@ -957,7 +983,7 @@ demog %>%
 ```
 :::
 
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. We want to calculate the sum of the five quantitative hindrances items per participant. This code... works, but does it look like it fits in the possible 5-25 range? 
+**Question 7**. Copy the following code chunk into your Quarto file and run the code. We want to calculate the sum of the five quantitative hindrances items per participant. This code... works, but does it look like it fits in the possible 5-25 range? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -988,7 +1014,7 @@ sum_quant_hindrance <- scales %>%
 ```
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. We want to filter `demog` to focus on female participant and calculate the mean age of the female participants. You should receive an error containing `Caused by error:! "..1$StudentIDE" must be a logical vector, not a double vector` which is not the most helpful error for diagnosing the problem. 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. We want to filter `demog` to focus on female participant and calculate the mean age of the female participants. You should receive an error containing `Caused by error:! "..1$StudentIDE" must be a logical vector, not <spec_tbl_df/tbl_df/tbl/data.frame> object` which is not the most helpful error for diagnosing the problem. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -1004,7 +1030,7 @@ demog %>%
 ::: {.callout-caution collapse="true"} 
 #### Explain the solution
 
-We are using pipes but we tried adding in the `.data` argument in each line. Remember `%>%` "pipes" the previous line into the next line, so you do not need to specify an object for it to work with. If you try and specify the .data argument with pipes, it thinks you are trying to set the next argument in the list. 
+We are using pipes but we tried adding in the `.data` argument in each line. Remember `%>%` "pipes" the previous line into the next line, so you do not need to specify an object for it to work with. If you try and specify the `.data` argument with pipes, it thinks you are trying to set the next argument in the list. 
 
 ```{r eval = FALSE}
 # filter for females then calculate mean age
@@ -1014,7 +1040,7 @@ demog %>%
 ```
 :::
 
-## Words from this Chapter
+## Words from this chapter
 
 Below you will find a list of words that were used in this chapter that might be new to you in case it helps to have somewhere to refer back to what they mean. The links in this table take you to the entry for the words in the [PsyTeachR Glossary](https://psyteachr.github.io/glossary/){target="_blank"}. Note that the Glossary is written by numerous members of the team and as such may use slightly different terminology from that shown in the chapter.
 
@@ -1028,7 +1054,7 @@ Brilliant work again! You recapped data wrangling functions from the past two ch
 
 This is a key milestone, so remember to go over anything you are unsure of. If you have any questions about data wrangling, please post them on Teams, visit the GTA support sessions, or pop into office hours. 
 
-At this point, we direct you to the first data analysis journey chapter: [Analysis Journey 1: Data Wrangling](#journey-01-wrangling). This is a bridge between the structured learning in these chapters and your assessments. We present you with a new data set, show you what the end product should look like, and see if you can apply your data wrangling skills to get there. If you get stuck, we have a range of hints and steps you can unhide, then the solution to check your attempts against. 
+At this point, we direct you to the first data analysis journey chapter: [Analysis Journey 1: Data Wrangling](#journey-01-wrangling). This is a bridge between the structured learning in these chapters and your assessments. We present you with a new data set, show you what the end product should look like, and see if you can apply your data wrangling skills to get there. If you get stuck, we have a range of hints and steps you can unhide, then the solution to check your attempts against. If you want *even* more practice, you can explore the wrangling section of our [Data Analysis Journeyse](https://psyteachr.github.io/analysis_journeys/){target="_blank"} book.
 
 In the next core chapter though, we turn to more advanced data visualisation to demonstrate how to create scatterplots, boxplots, and violin-boxplots. 
 
