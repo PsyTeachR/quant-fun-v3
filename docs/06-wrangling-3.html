@@ -431,24 +431,6 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-analysis-journeys.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Analysis Journeys</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17-analysis-journey-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Analysis Journey 1: Data Wrangling</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./18-analysis-journey-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis Journey 2: Simple Linear Regression</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -548,7 +530,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 
 </header><p>In the last chapter, we added two more functions to your data wrangling toolkit. You learnt how to filter data to retain or remove observations and summarise data to calculate different summary statistics.</p>
 <p>In this chapter, we start with another recap of all your data wrangling skills so far on a new data set. There is no substitute for practice when it comes to data skills. By applying your skills to new data, you can transfer your knowledge to novel scenarios and develop independence. We then add two more sets of data wrangling functions. First, we demonstrate pivots to restructure your data from wide format into long format, and vice versa. Second, we show how you can string together multiple functions from the <pkg>tidyverse</pkg> using pipes. These help streamline your code to avoid creating lots of intermediary objects.</p>
-<p>After this chapter, you will be ready for the first data analysis journey chapter: <a href="17-analysis-journey-1.html">Analysis Journey 1: Data Wrangling</a>. This is where you can test the skills you have developed so far on a more independent task as a bridge between the core chapters and your assessments. If you want <em>even</em> more practice, you can explore the wrangling section of our <a href="https://psyteachr.github.io/analysis_journeys/" target="_blank">Data Analysis Journeyse</a> book which provides further practice opportunities with less structure than these chapters.</p>
+<p>After this chapter, you will be ready for the first data analysis journey chapter we designed for this milestone - <a href="https://psyteachr.github.io/analysis_journeys/Bartlett-wrangle.html" target="_blank">Data Analysis Journeys: Bartlett et al.&nbsp;(2022)</a>. This is where you can test the skills you have developed so far on a more independent task as a bridge between the core chapters and your assessments. If you want <em>even</em> more practice, you can explore the other chapters in the wrangling section of our supporting book.</p>
 <p><strong>Chapter Intended Learning Outcomes (ILOs)</strong></p>
 <p>By the end of this chapter, you will be able to:</p>
 <ul>
@@ -1832,24 +1814,24 @@ Note
 <span class="header-section-number">6.5.1</span> Knowledge check</h3>
 <p>Which function(s) would you use to approach each of the following problems?</p>
 <p><strong>Question 1</strong>. We have a data set of 400 adults but we want to remove anyone with an age of 50 years or more. To do this, we could use:</p>
-<div id="radio_WMMOKBVSVR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value="answer"><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value=""><span>group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value=""><span>summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_WMMOKBVSVR" value=""><span>select()</span></label>
+<div id="radio_TCRWYUQDXQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value=""><span>group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value="answer"><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_TCRWYUQDXQ" value=""><span>summarise()</span></label>
 </div>
 <p><strong>Question 2</strong>. We are interested in overall summary statistics for our data, such as the mean and total number of observations for a variable. To do this, we could use:</p>
-<div id="radio_HUZVUPCXDV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value=""><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value=""><span>group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value="answer"><span>summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_HUZVUPCXDV" value=""><span>select()</span></label>
+<div id="radio_LGHTAQDHGZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value=""><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value=""><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value="answer"><span>summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_LGHTAQDHGZ" value=""><span>group_by()</span></label>
 </div>
 <p><strong>Question 3</strong>. Our data set has a column with the number of cats a person has and a column with the number of dogs. We want to calculate a new column which contains the total number of pets each participant has. To do this, we could use:</p>
-<div id="radio_MCPVNHQTCJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value="answer"><span>mutate()</span></label><label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value=""><span>summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value=""><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value=""><span>group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_MCPVNHQTCJ" value=""><span>arrange()</span></label>
+<div id="radio_LPRZBXYZIU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value=""><span>filter()</span></label><label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value=""><span>group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value=""><span>summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value=""><span>select()</span></label><label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value=""><span>arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_LPRZBXYZIU" value="answer"><span>mutate()</span></label>
 </div>
 <p><strong>Question 4</strong>. We want to calculate the mean value of a column for several groups in our data set. To do this, we could use:</p>
-<div id="radio_RPQAHLMXKO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RPQAHLMXKO" value=""><span>filter() and select()</span></label><label><input type="radio" autocomplete="off" name="radio_RPQAHLMXKO" value="answer"><span>group_by() and summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_RPQAHLMXKO" value=""><span>group_by() and arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_RPQAHLMXKO" value=""><span>arrange() and mutate()</span></label>
+<div id="radio_QSUDBRZCZM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QSUDBRZCZM" value="answer"><span>group_by() and summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_QSUDBRZCZM" value=""><span>filter() and select()</span></label><label><input type="radio" autocomplete="off" name="radio_QSUDBRZCZM" value=""><span>group_by() and arrange()</span></label><label><input type="radio" autocomplete="off" name="radio_QSUDBRZCZM" value=""><span>arrange() and mutate()</span></label>
 </div>
 <p><strong>Question 5</strong>. If we wanted to apply the following wrangling steps with pipes, which series of functions would work? With the object <code>wide_data</code>, select several columns <strong>and then</strong>, pivot three columns longer <strong>and then</strong>, group by a participant ID <strong>and then</strong>, calculate the sum of responses.</p>
-<div id="radio_VTDVGOOQQP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VTDVGOOQQP" value=""><span>long_data %&gt;% select() %&gt;% pivot__longer_wider() %&gt;% group_by() %&gt;% summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_VTDVGOOQQP" value=""><span>wide_data %&gt;% pivot_longer() %&gt;% select() %&gt;% summarise() %&gt;% group_by()</span></label><label><input type="radio" autocomplete="off" name="radio_VTDVGOOQQP" value=""><span>select() %&gt;% pivot_longer() %&gt;% group_by() %&gt;% summarise() %&gt;% wide_data</span></label><label><input type="radio" autocomplete="off" name="radio_VTDVGOOQQP" value="answer"><span>wide_data %&gt;% select() %&gt;% pivot_longer() %&gt;% group_by() %&gt;% summarise()</span></label>
+<div id="radio_YYVVFAHSPX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YYVVFAHSPX" value=""><span>long_data %&gt;% select() %&gt;% pivot__longer_wider() %&gt;% group_by() %&gt;% summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_YYVVFAHSPX" value="answer"><span>wide_data %&gt;% select() %&gt;% pivot_longer() %&gt;% group_by() %&gt;% summarise()</span></label><label><input type="radio" autocomplete="off" name="radio_YYVVFAHSPX" value=""><span>select() %&gt;% pivot_longer() %&gt;% group_by() %&gt;% summarise() %&gt;% wide_data</span></label><label><input type="radio" autocomplete="off" name="radio_YYVVFAHSPX" value=""><span>wide_data %&gt;% pivot_longer() %&gt;% select() %&gt;% summarise() %&gt;% group_by()</span></label>
 </div>
 </section><section id="error-mode-2" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="error-mode-2">
 <span class="header-section-number">6.5.2</span> Error mode</h3>
@@ -2004,7 +1986,7 @@ Note
 <span class="header-section-number">6.7</span> End of chapter</h2>
 <p>Brilliant work again! You recapped data wrangling functions from the past two chapters to a new data set, and added two more concepts to your arsenal: pivots and pipes. There really is no substitute for practicing on new data to transfer your knowledge and understanding. As you work with more and more data, you will see how far these data wrangling functions take you. They will your foundational skills for any new data set and give you the confidence to search for new functions when there is a new problem to solve.</p>
 <p>This is a key milestone, so remember to go over anything you are unsure of. If you have any questions about data wrangling, please post them on Teams, visit the GTA support sessions, or pop into office hours.</p>
-<p>At this point, we direct you to the first data analysis journey chapter: <a href="17-analysis-journey-1.html">Analysis Journey 1: Data Wrangling</a>. This is a bridge between the structured learning in these chapters and your assessments. We present you with a new data set, show you what the end product should look like, and see if you can apply your data wrangling skills to get there. If you get stuck, we have a range of hints and steps you can unhide, then the solution to check your attempts against. If you want <em>even</em> more practice, you can explore the wrangling section of our <a href="https://psyteachr.github.io/analysis_journeys/" target="_blank">Data Analysis Journeyse</a> book.</p>
+<p>At this point, we encourage you to complete the first data analysis journey chapter we designed for this milestone - <a href="https://psyteachr.github.io/analysis_journeys/Bartlett-wrangle.html" target="_blank">Data Analysis Journeys: Bartlett et al.&nbsp;(2022)</a>. This is a bridge between the structured learning in these chapters and your assessments. We present you with a new data set, show you what the end product should look like, and see if you can apply your data wrangling skills to get there. If you get stuck, we have a range of hints and steps you can unhide, then the solution to check your attempts against.</p>
 <p>In the next core chapter though, we turn to more advanced data visualisation to demonstrate how to create scatterplots, boxplots, and violin-boxplots.</p>
 
 
