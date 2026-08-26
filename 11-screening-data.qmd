@@ -31,7 +31,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_11_screening_data` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `11 Missing Data, Outliers, and Assumptions`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_11_screening_data` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `11 Missing Data, Outliers, and Assumptions`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_11_screening_data` folder. 
 
 4. The @dawtry_why_2015 data wrangling steps were quite long, so please save this clean version of the data to focus on screening data in this chapter: [Dawtry_2015_clean.csv](data/Dawtry_2015_clean.csv). You will also need to save the data from @lopez_visual_2023 if you have not downloaded it yet: [Lopez_2023.csv](data/Lopez_2023.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the files as ".csv". Save or copy the files to your `data/` folder within `Chapter_11_screening_data`.
 
@@ -79,9 +79,9 @@ lopez_data <- read_csv("data/Lopez_2023.csv")
 
 # recode condition
 lopez_clean <- lopez_data %>% 
-  mutate(Condition_label = case_match(Condition,
-                                      0 ~ "Control",
-                                      1 ~ "Experimental"))
+  mutate(Condition_label = recode_values(Condition,
+                                         0 ~ "Control",
+                                         1 ~ "Experimental"))
 ```
 
 :::
@@ -138,9 +138,9 @@ summary(lopez_clean)
 
 Once we know whether missing data are present, we must consider what to do with them. For this chapter, we are only going to control removing participants, but you could apply a data imputation technique at this point if appropriate. 
 
-For all the modelling techniques we apply in this book, the functions will remove participants who have one or more missing values from any variable involved in the analysis. The functions will give you a warning to highlight when this happens, but it is normally a good idea to remove participants with missing data yourself so you have a note of how many participants you remove. 
+For all the modelling techniques we apply in this book, the functions will remove participants who have one or more missing values from any variable involved in the analysis. The functions will give you a warning to highlight when this happens, but it is normally a good idea to remove participants with missing data yourself, so that you have a note of how many participants you remove and you can report it in your participants section. 
 
-For `dawtry_clean`, the <pkg>tidyverse</pkg> function `drop_na()` is the easiest way of removing missing data, either participants with any missing data or by specifying individual variables. 
+For `dawtry_clean`, the <pkg>tidyr</pkg> function `drop_na()` is the easiest way of removing missing data, either participants with any missing data or by specifying individual variables. 
 
 ```{r}
 dawtry_all_missing <- dawtry_clean %>% 
@@ -163,7 +163,7 @@ nrow(dawtry_income_missing)
 nrow(dawtry_all_missing)
 ```
 
-Like most data skills and statistics concepts, the key skill here comes in decision making; documenting and justifying the approach that you take. 
+Like most data skills and statistics concepts, the key skill here comes in decision making: documenting and justifying the approach that you take. 
 
 ## Outliers
 
@@ -177,7 +177,7 @@ The next data screening concept revolves around identifying potential outliers. 
 
 Even simpler, we can consider values as legitimate or not legitimate. Error outliers would be not legitimate as they represent a mistake or error, so they would potentially provide misleading results. These are values you can justify removing or correcting as they should not be there in the first place. 
 
-Interesting and random outliers would be legitimate as they are not clear mistakes or errors; they are just different to the majority of values in the data. In most cases, it is not a good idea to remove these kind of values as they potentially tell you something interesting, but you might need to approach the data analysis in a different way to ensure the results are robust to extreme values. 
+Interesting and random outliers would be legitimate as they are not clear mistakes or errors, they are just different to the majority of values in the data. In most cases, it is not a good idea to remove these kind of values as they potentially tell you something interesting, but you might need to approach the data analysis in a different way to ensure the results are robust to extreme values. 
 
 ### Activity 4- Identifying error outliers
 
@@ -326,7 +326,7 @@ dawtry_mad %>%
 
 :::
 
-Remember: identifying outliers is a crucial researcher degree of freedom, so pre-register your choice of outlier detection wherever possible, and document how many outliers you removed. We still recommend favouring a more robust model, but you can make an informed decision now you know how to identify outliers in the data. 
+Remember: identifying outliers is a crucial researcher degree of freedom, so register your choice of outlier detection wherever possible, and document how many outliers you removed. We still recommend favouring a more robust model, but you can make an informed decision now you know how to identify outliers in the data. 
 
 ## Checking assumptions
 
@@ -444,7 +444,7 @@ For further reinforcement of how this is the same process underlying Spearman's 
 
 The third and final option is considering whether a parametric test is the right choice in the first place. The default assumption in psychology research is assuming everything is linear and normal as it is convenient and applies to many scenarios, but there are some outcomes and models which will always be inappropriate to model as linear and normal. For example, if your outcome is dichotomous (0 or 1; correct or incorrect), then you must assume a **`r glossary(term = "binomial distribution", def = "Instead of the parameters mean and standard deviation in a normal distribution, you have *N* trials with *n* number of successes.")`** and use something like a **`r glossary(term = "logistic regression", def = "Modelling the log-odds of a dichotomous outcome as a linear combination of one or more predictors.")`** model.  
 
-However, these models are beyond the scope of this introductory course. If you are interested, a PsyTeachR book from another one of our courses has a [chapter on generalised linear regression](https://psyteachr.github.io/statsres-v1/introduction-to-generalised-linear-models.html){target="_blank"} for modelling different distributions, but we do not expect you to learn this for RM1 or RM2. As long as you show awareness of checking modelling assumptions and consider the first and second options above, that is all we ask of you. 
+However, these models are beyond the scope of this introductory course. If you are interested, Statistics and Research Design - one of our other course books - has a [chapter on generalised linear regression](https://psyteachr.github.io/statsres-v2/01-05-glm.html){target="_blank"} for modelling different distributions, but we do not expect you to learn this for RM1 or RM2. As long as you show awareness of checking modelling assumptions and consider the first and second options above, that is all we ask of you. 
 
 ## Test yourself
 
@@ -515,7 +515,7 @@ df <- df %>%
 df %>% 
   drop_na() %>% 
   ggplot(aes(x = group, y = objectivity)) + 
-  geom_boxplot() + 
+  geom_boxplot(outliers = FALSE) + 
   geom_point(aes(color = obj_outlier), alpha = 0.5, width = 0.2)  + 
   scale_y_continuous(name = "Perceived Objectivity",
                      breaks = seq(0, 10, 2), 
@@ -525,7 +525,7 @@ df %>%
   theme_classic()
 ```
 
-**Question 4**. If we fit a linear regression model, the effect of group is `r mcq(sample(c(answer = "statistically significant", "not statistically significant")))` and the `r mcq(sample(c(answer = "scientist", "highly-educated lay person")))` scored higher on objectivity. 
+**Question 4**. If we fit a linear regression model, the effect of group is `r mcq(sample(c(answer = "statistically significant", "not statistically significant")))` and the `r mcq(sample(c(answer = "scientist", "highly-educated lay person")))` group scored higher on objectivity. 
 
 ```{r echo=FALSE}
 lm_objectivity <- lm(objectivity ~ group, data = df)
