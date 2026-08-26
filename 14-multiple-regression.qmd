@@ -38,7 +38,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_14_multiple_regression` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `14 Multiple Regression`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_14_multiple_regression` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `14 Multiple Regression`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_14_multiple_regression` folder. 
 
 4. For this chapter, there are three data files you need. Please save the following files: 
 
@@ -569,7 +569,7 @@ Comparing the observed effect size against the effect size the study was sensiti
 
 ## Reporting the results of multiple linear regression {#mulregression-a11}
 
-The same as previous chapters like ANOVA and factorial ANOVA, we can use inline code to help with the write-up. First, copy and paste the code below into **white-space** in your R Markdown document and then knit. Note that we enter the *p*-values manually because of the APA "*p* < .001" formatting.
+The same as previous chapters like ANOVA and factorial ANOVA, we can use inline code to help with the write-up. First, copy and paste the code below into **white-space** in your Quarto document and then render. Note that we enter the *p*-values manually because of the APA "*p* < .001" formatting.
 
 ```{r writeup2, eval = FALSE}
 All continuous predictors were mean-centered and deviation coding was used for categorical predictors. The results of the regression indicated that the model significantly predicted course engagement (F(`r mod_summary$fstatistic[2]`, `r mod_summary$fstatistic[3] %>% round(2)`) = `r mod_summary$fstatistic[1] %>% round(2)`, p < .001, Adjusted R2 = `r mod_summary$adj.r.squared %>% round(2)`, f^2^ = `r f2%>% round(2)`), accounting for `r (mod_summary$adj.r.squared %>% round(2))*100`% of the variance. Total screen time was a significant negative predictor of wellbeing scores (β = `r ml_model$coefficients[2] %>% round(2)`, *p* < .001, as was gender (β = `r ml_model$coefficients[3] %>% round(2)`, *p* < .001, with girls having lower wellbeing scores than boys. Importantly, there was a significant interaction between screentime and gender (β = `r ml_model$coefficients[4] %>% round(2)`, *p* < .001), smartphone use was more negatively associated with wellbeing for girls than for boys. 

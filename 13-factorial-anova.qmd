@@ -36,7 +36,7 @@ Before we can get started, you need to organise your files and project for the c
 
 2. Create an R Project for `Chapter_13_F_ANOVA` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `13 Factorial ANOVA`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_13_F_ANOVA` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `13 Factorial ANOVA`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_13_F_ANOVA` folder. 
 
 4. If you must download the data again, please save the following file: [Zhang_2014.csv](data/Zhang_2014.csv). Right click the link and select "save link as", or clicking the link will save the files to your Downloads. Make sure that you save the file as ".csv". Save or copy the file to your `data/` folder within `Chapter_13_F_ANOVA`.
 
@@ -454,7 +454,7 @@ The values of partial eta-squared do not match between our analysis and those re
 
 We have also replaced the simple effects in the main paper with our pairwise comparisons. 
 
-Copy and paste the text and inline code below into **white-space** in your R Markdown document. If you saved all the descriptives, model, and contrasts using the same object names as us, this should knit. 
+Copy and paste the text and inline code below into **white-space** in your Quarto document. If you saved all the descriptives, model, and contrasts using the same object names as us, this should render. 
 
 ```{r writeup, eval = FALSE}
 We conducted the same repeated measures ANOVA with interest as the dependent measure and again found a main effect of time, F(`r factorial_output$num.Df[2]`, `r factorial_output$den.Df[2]`) = `r factorial_output$statistic[2] %>% round(2)`, p < .001, ηp2 = `r factorial_output$pes[2] %>% round(3)`; anticipated interest at Time 1 (M = `r zhang_descriptives$mean[1] %>% round(2)`), SD = `r zhang_descriptives$sd[1]%>% round(2)`)) was lower than actual interest at Time 2 (M = `r zhang_descriptives$mean[2]%>% round(2)`, SD = `r zhang_descriptives$sd[2]%>% round(2)`). We also observed an interaction between time and type of experience, F(`r factorial_output$num.Df[3]`, `r factorial_output$den.Df[3]`) = `r factorial_output$statistic[3] %>% round(3)`, p = `r factorial_output$p.value[3] %>% round(2)`, ηp2 = `r factorial_output$pes[3] %>% round(3)`. Pairwise comparisons revealed that for ordinary events, predicted interest at Time 1 (M = `r zhang_descriptives$mean[3]%>% round(2)`, SD = `r zhang_descriptives$sd[3]%>% round(2)`) was lower than experienced interest at Time 2 (M = `r zhang_descriptives$mean[4]%>% round(2)`, SD = `r zhang_descriptives$sd[4]%>% round(2)`), t(`r contrasts_factorial$df[2]%>% round(2)`) = `r contrasts_factorial$statistic[2]%>% round(2)`, p < .001, d = `r contrasts_factorial$Cohens_d[2]%>% round(2)`. Although predicted interest for extraordinary events at Time 1 (M = `r zhang_descriptives$mean[1]%>% round(2)`, SD = `r zhang_descriptives$sd[1]%>% round(2)`) was lower than experienced interest at Time 2 (M = `r zhang_descriptives$mean[2]%>% round(2)`, SD = `r zhang_descriptives$sd[2]%>% round(2)`), t(`r contrasts_factorial$df[1]%>% round(2)`) = `r contrasts_factorial$statistic[1]%>% round(2)`, p < .001, d = `r contrasts_factorial$Cohens_d[1]%>% round(2)`, the magnitude of underestimation was smaller than for ordinary events.

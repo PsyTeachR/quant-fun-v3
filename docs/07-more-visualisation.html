@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
-
+<meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
-
 <title>7&nbsp; Scatterplots, boxplots, and violin-boxplots – Fundamentals of Quantitative Analysis</title>
 <style>
 /* Default styles provided by pandoc.
@@ -81,7 +78,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -97,15 +93,14 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-5a2acb6f4ed5aeb23a104ba421924b87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ec624fd271699fd99ed06233d2577880.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3ef0dc11fbe9a93113d104f6ec40ffea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -131,25 +126,18 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-</script>
-
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <link rel="stylesheet" href="include/booktem.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/glossary.css">
 <link rel="stylesheet" href="include/style.css">
 </head>
-
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -315,9 +303,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -328,13 +314,9 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Fundamentals of Quantitative Analysis</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -351,7 +333,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -461,8 +443,8 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-a2-additional-learning-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Additional Resources</span></span></a>
@@ -481,61 +463,64 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chapter-preparation" id="toc-chapter-preparation" class="nav-link active" data-scroll-target="#chapter-preparation"><span class="header-section-number">7.1</span> Chapter preparation</a>
+<li>
+<a href="#chapter-preparation" id="toc-chapter-preparation" class="nav-link active" data-scroll-target="#chapter-preparation"><span class="header-section-number">7.1</span> Chapter preparation</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-the-data-set" id="toc-introduction-to-the-data-set" class="nav-link" data-scroll-target="#introduction-to-the-data-set"><span class="header-section-number">7.1.1</span> Introduction to the data set</a></li>
+<li><a href="#introduction-to-the-data-set" id="toc-introduction-to-the-data-set" class="nav-link" data-scroll-target="#introduction-to-the-data-set"><span class="header-section-number">7.1.1</span> Introduction to the data set</a></li>
   <li><a href="#organising-your-files-and-project-for-the-chapter" id="toc-organising-your-files-and-project-for-the-chapter" class="nav-link" data-scroll-target="#organising-your-files-and-project-for-the-chapter"><span class="header-section-number">7.1.2</span> Organising your files and project for the chapter</a></li>
   <li><a href="#activity-1---read-and-wrangle-the-data" id="toc-activity-1---read-and-wrangle-the-data" class="nav-link" data-scroll-target="#activity-1---read-and-wrangle-the-data"><span class="header-section-number">7.1.3</span> Activity 1 - Read and wrangle the data</a></li>
   <li><a href="#activity-2---explore-the-data" id="toc-activity-2---explore-the-data" class="nav-link" data-scroll-target="#activity-2---explore-the-data"><span class="header-section-number">7.1.4</span> Activity 2 - Explore the data</a></li>
-  </ul></li>
-  <li><a href="#viz-a3" id="toc-viz-a3" class="nav-link" data-scroll-target="#viz-a3"><span class="header-section-number">7.2</span> Scatterplots</a>
+  </ul>
+</li>
+  <li>
+<a href="#viz-a3" id="toc-viz-a3" class="nav-link" data-scroll-target="#viz-a3"><span class="header-section-number">7.2</span> Scatterplots</a>
   <ul class="collapse">
-  <li><a href="#activity-3---creating-a-basic-scatterplot" id="toc-activity-3---creating-a-basic-scatterplot" class="nav-link" data-scroll-target="#activity-3---creating-a-basic-scatterplot"><span class="header-section-number">7.2.1</span> Activity 3 - Creating a basic scatterplot</a></li>
+<li><a href="#activity-3---creating-a-basic-scatterplot" id="toc-activity-3---creating-a-basic-scatterplot" class="nav-link" data-scroll-target="#activity-3---creating-a-basic-scatterplot"><span class="header-section-number">7.2.1</span> Activity 3 - Creating a basic scatterplot</a></li>
   <li><a href="#activity-4---editing-axis-labels" id="toc-activity-4---editing-axis-labels" class="nav-link" data-scroll-target="#activity-4---editing-axis-labels"><span class="header-section-number">7.2.2</span> Activity 4 - Editing axis labels</a></li>
   <li><a href="#activity-5---adding-a-regression-line" id="toc-activity-5---adding-a-regression-line" class="nav-link" data-scroll-target="#activity-5---adding-a-regression-line"><span class="header-section-number">7.2.3</span> Activity 5 - Adding a regression line</a></li>
   <li><a href="#activity-6---creating-a-grouped-scatterplot" id="toc-activity-6---creating-a-grouped-scatterplot" class="nav-link" data-scroll-target="#activity-6---creating-a-grouped-scatterplot"><span class="header-section-number">7.2.4</span> Activity 6 - Creating a grouped scatterplot</a></li>
-  </ul></li>
-  <li><a href="#viz-a4" id="toc-viz-a4" class="nav-link" data-scroll-target="#viz-a4"><span class="header-section-number">7.3</span> Boxplots</a>
+  </ul>
+</li>
+  <li>
+<a href="#viz-a4" id="toc-viz-a4" class="nav-link" data-scroll-target="#viz-a4"><span class="header-section-number">7.3</span> Boxplots</a>
   <ul class="collapse">
-  <li><a href="#activity-7---creating-a-basic-boxplot" id="toc-activity-7---creating-a-basic-boxplot" class="nav-link" data-scroll-target="#activity-7---creating-a-basic-boxplot"><span class="header-section-number">7.3.1</span> Activity 7 - Creating a basic boxplot</a></li>
+<li><a href="#activity-7---creating-a-basic-boxplot" id="toc-activity-7---creating-a-basic-boxplot" class="nav-link" data-scroll-target="#activity-7---creating-a-basic-boxplot"><span class="header-section-number">7.3.1</span> Activity 7 - Creating a basic boxplot</a></li>
   <li><a href="#activity-8---adding-colour-to-variables" id="toc-activity-8---adding-colour-to-variables" class="nav-link" data-scroll-target="#activity-8---adding-colour-to-variables"><span class="header-section-number">7.3.2</span> Activity 8 - Adding colour to variables</a></li>
   <li><a href="#activity-9---controlling-colours" id="toc-activity-9---controlling-colours" class="nav-link" data-scroll-target="#activity-9---controlling-colours"><span class="header-section-number">7.3.3</span> Activity 9 - Controlling colours</a></li>
   <li><a href="#activity-10---ordering-categories" id="toc-activity-10---ordering-categories" class="nav-link" data-scroll-target="#activity-10---ordering-categories"><span class="header-section-number">7.3.4</span> Activity 10 - Ordering categories</a></li>
   <li><a href="#activity-11--boxplots-for-multiple-factors" id="toc-activity-11--boxplots-for-multiple-factors" class="nav-link" data-scroll-target="#activity-11--boxplots-for-multiple-factors"><span class="header-section-number">7.3.5</span> Activity 11- Boxplots for multiple factors</a></li>
-  </ul></li>
-  <li><a href="#viz-a7" id="toc-viz-a7" class="nav-link" data-scroll-target="#viz-a7"><span class="header-section-number">7.4</span> Violin-boxplots</a>
+  </ul>
+</li>
+  <li>
+<a href="#viz-a7" id="toc-viz-a7" class="nav-link" data-scroll-target="#viz-a7"><span class="header-section-number">7.4</span> Violin-boxplots</a>
   <ul class="collapse">
-  <li><a href="#activity-12---creating-a-basic-violin-plot" id="toc-activity-12---creating-a-basic-violin-plot" class="nav-link" data-scroll-target="#activity-12---creating-a-basic-violin-plot"><span class="header-section-number">7.4.1</span> Activity 12 - Creating a basic violin plot</a></li>
+<li><a href="#activity-12---creating-a-basic-violin-plot" id="toc-activity-12---creating-a-basic-violin-plot" class="nav-link" data-scroll-target="#activity-12---creating-a-basic-violin-plot"><span class="header-section-number">7.4.1</span> Activity 12 - Creating a basic violin plot</a></li>
   <li><a href="#activity-13---creating-a-violin-boxplot" id="toc-activity-13---creating-a-violin-boxplot" class="nav-link" data-scroll-target="#activity-13---creating-a-violin-boxplot"><span class="header-section-number">7.4.2</span> Activity 13 - Creating a violin-boxplot</a></li>
   <li><a href="#activity-14---adding-additional-variables" id="toc-activity-14---adding-additional-variables" class="nav-link" data-scroll-target="#activity-14---adding-additional-variables"><span class="header-section-number">7.4.3</span> Activity 14 - Adding additional variables</a></li>
-  </ul></li>
-  <li><a href="#test-yourself" id="toc-test-yourself" class="nav-link" data-scroll-target="#test-yourself"><span class="header-section-number">7.5</span> Test yourself</a>
+  </ul>
+</li>
+  <li>
+<a href="#test-yourself" id="toc-test-yourself" class="nav-link" data-scroll-target="#test-yourself"><span class="header-section-number">7.5</span> Test yourself</a>
   <ul class="collapse">
-  <li><a href="#knowledge-check" id="toc-knowledge-check" class="nav-link" data-scroll-target="#knowledge-check"><span class="header-section-number">7.5.1</span> Knowledge check</a></li>
+<li><a href="#knowledge-check" id="toc-knowledge-check" class="nav-link" data-scroll-target="#knowledge-check"><span class="header-section-number">7.5.1</span> Knowledge check</a></li>
   <li><a href="#error-mode-2" id="toc-error-mode-2" class="nav-link" data-scroll-target="#error-mode-2"><span class="header-section-number">7.5.2</span> Error mode</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#words-from-this-chapter" id="toc-words-from-this-chapter" class="nav-link" data-scroll-target="#words-from-this-chapter"><span class="header-section-number">7.6</span> Words from this Chapter</a></li>
   <li><a href="#end-of-chapter" id="toc-end-of-chapter" class="nav-link" data-scroll-target="#end-of-chapter"><span class="header-section-number">7.7</span> End of chapter</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/07-more-visualisation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/07-more-visualisation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/edit/main/07-more-visualisation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/PsyTeachR/quant-fundamentals-v3/blob/main/07-more-visualisation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-07-more-viz" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scatterplots, boxplots, and violin-boxplots</span></span></h1>
 </div>
 
@@ -550,10 +535,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
   
 
 
-</header>
-
-
-<p>Back in Chapter 3, we introduced you to data visualisation in R/RStudio using the package <pkg>ggplot2</pkg>. You developed foundational skills in using the layering system and customising your plots, but we only covered visualising one variable at a time in a histogram or barplot. This gets you a long way, but you typically want to visualise the relationship or difference between variables.</p>
+</header><p>Back in Chapter 3, we introduced you to data visualisation in R/RStudio using the package <pkg>ggplot2</pkg>. You developed foundational skills in using the layering system and customising your plots, but we only covered visualising one variable at a time in a histogram or barplot. This gets you a long way, but you typically want to visualise the relationship or difference between variables.</p>
 <p>In this chapter, we develop your data visualisation skills to cover scatterplots, boxplots, and violin-boxplots. This will give you the skills to visualise your data in the next few chapters on inferential statistics. This is the final data visualisation specific chapter in the book, but by learning these core concepts, you will be able to find out how to create additional types of data visualisation independently.</p>
 <p><strong>Chapter Intended Learning Outcomes (ILOs)</strong></p>
 <p>By the end of this chapter, you will be able to:</p>
@@ -563,10 +545,10 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <li><p>Create and edit a violin-boxplot to visualise the density of data points in a continuous outcome.</p></li>
 <li><p>Customise your plots to include colourblind-friendly colour palettes and facet your data to visualise multiple independent variables.</p></li>
 </ul>
-<section id="chapter-preparation" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="chapter-preparation"><span class="header-section-number">7.1</span> Chapter preparation</h2>
-<section id="introduction-to-the-data-set" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="introduction-to-the-data-set"><span class="header-section-number">7.1.1</span> Introduction to the data set</h3>
+<section id="chapter-preparation" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="chapter-preparation">
+<span class="header-section-number">7.1</span> Chapter preparation</h2>
+<section id="introduction-to-the-data-set" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="introduction-to-the-data-set">
+<span class="header-section-number">7.1.1</span> Introduction to the data set</h3>
 <p>For this chapter, we are using open data from <span class="citation" data-cites="zhang_present_2014">Zhang et al. (<a href="references.html#ref-zhang_present_2014" role="doc-biblioref">2014</a>)</span>. The abstract of their article is:</p>
 <blockquote class="blockquote">
 <p>Although documenting everyday activities may seem trivial, four studies reveal that creating records of the present generates unexpected benefits by allowing future rediscoveries. In Study 1, we used a time-capsule paradigm to show that individuals underestimate the extent to which rediscovering experiences from the past will be curiosity provoking and interesting in the future. In Studies 2 and 3, we found that people are particularly likely to underestimate the pleasure of rediscovering ordinary, mundane experiences, as opposed to extraordinary experiences. Finally, Study 4 demonstrates that underestimating the pleasure of rediscovery leads to time-inconsistent choices: Individuals forgo opportunities to document the present but then prefer rediscovering those moments in the future to engaging in an alternative fun activity. Underestimating the value of rediscovery is linked to people’s erroneous faith in their memory of everyday events. By documenting the present, people provide themselves with the opportunity to rediscover mundane moments that may otherwise have been forgotten.</p>
@@ -574,9 +556,8 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <p>In summary, they were interested in whether people could predict how interested they would be in rediscovering past experiences. They call it a “time capsule” effect, where people store photos or messages to remind themselves of past events in the future.</p>
 <p>At the start of the study (time 1), participants in a romantic relationship wrote about two kinds of experiences. An “extraordinary” experience with their partner on Valentine’s day and an “ordinary” experience one week before. They were then asked how enjoyable, interesting, and meaningful they predict they will find these recollections in three months time (time 2). Three months later, Zhang et al.&nbsp;randomised participants into one of two groups. In the “extraordinary” group, they reread the extraordinary recollection. In the “ordinary” group, they reread the ordinary recollection. All the participants completed measures on how enjoyable, interesting, and meaningful they found the experience, but this time what they actually felt, rather than what they predict they will feel.</p>
 <p>They predicted participants in the ordinary group would underestimate their future feelings (i.e., there would be a bigger difference between time 1 and time 2 measures) compared to participants in the extraordinary group. In this chapter, we focus on a composite measure which took the mean of items on interest, meaningfulness, and enjoyment.</p>
-</section>
-<section id="organising-your-files-and-project-for-the-chapter" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="organising-your-files-and-project-for-the-chapter"><span class="header-section-number">7.1.2</span> Organising your files and project for the chapter</h3>
+</section><section id="organising-your-files-and-project-for-the-chapter" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="organising-your-files-and-project-for-the-chapter">
+<span class="header-section-number">7.1.2</span> Organising your files and project for the chapter</h3>
 <p>Before we can get started, you need to organise your files and project for the chapter, so your working directory is in order.</p>
 <ol type="1">
 <li><p>In your folder for research methods and the book <code>ResearchMethods1_2/Quant_Fundamentals</code>, create a new folder called <code>Chapter_07_dataviz</code>. Within <code>Chapter_07_dataviz</code>, create two new folders called <code>data</code> and <code>figures</code>.</p></li>
@@ -585,9 +566,8 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <li><p>We are working with a new data set, so please save the following data file: <a href="data/Zhang_2014.csv">Zhang_2014.csv</a>. Right click the link and select “save link as”, or clicking the link will save the files to your Downloads. Make sure that you save the file as “.csv”. Save or copy the file to your <code>data/</code> folder within <code>Chapter_07_dataviz</code>.</p></li>
 </ol>
 <p>You are now ready to start working on the chapter!</p>
-</section>
-<section id="activity-1---read-and-wrangle-the-data" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="activity-1---read-and-wrangle-the-data"><span class="header-section-number">7.1.3</span> Activity 1 - Read and wrangle the data</h3>
+</section><section id="activity-1---read-and-wrangle-the-data" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="activity-1---read-and-wrangle-the-data">
+<span class="header-section-number">7.1.3</span> Activity 1 - Read and wrangle the data</h3>
 <p>As the first activity, try and test yourself by completing the following task list to practice your data wrangling skills. Create an object called <code>zhang_data</code> to be consistent with the tasks below. If you want to focus on data visualisation, then you can just type the code in the solution.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -603,20 +583,24 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <ol type="1">
 <li><p>Load the <pkg>tidyverse</pkg> package.</p></li>
 <li><p>Read the data file <code>data/Zhang_2014.csv</code>.</p></li>
-<li><p>Select the following columns:</p>
+<li>
+<p>Select the following columns:</p>
 <ul>
 <li><p><code>Gender</code></p></li>
 <li><p><code>Age</code></p></li>
 <li><p><code>Condition</code></p></li>
 <li><p><code>T1_Predicted_Interest_Composite</code> renamed to <code>time1_interest</code></p></li>
 <li><p><code>T2_Actual_Interest_Composite</code> renamed to <code>time2_interest</code>.</p></li>
-</ul></li>
+</ul>
+</li>
 <li><p>There is currently no identifier, so create a new variable called <code>participant_ID</code>. Hint: explore whether you can find a function to add a row number.</p></li>
-<li><p>Recode two variables to be easier to understand and visualise:</p>
+<li>
+<p>Recode two variables to be easier to understand and visualise:</p>
 <ul>
 <li><p>Gender: 1 = “Male”, 2 = “Female”.</p></li>
 <li><p>Condition: 1 = “Ordinary”, 2 = “Extraordinary”.</p></li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>Your data should now be in wide format and ready to create a scatterplot.</p>
 </div>
@@ -662,9 +646,8 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</section>
-<section id="activity-2---explore-the-data" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="activity-2---explore-the-data"><span class="header-section-number">7.1.4</span> Activity 2 - Explore the data</h3>
+</section><section id="activity-2---explore-the-data" class="level3" data-number="7.1.4"><h3 data-number="7.1.4" class="anchored" data-anchor-id="activity-2---explore-the-data">
+<span class="header-section-number">7.1.4</span> Activity 2 - Explore the data</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -685,13 +668,11 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <col style="width: 41%">
 <col style="width: 39%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">Variable</th>
 <th style="text-align: left;">Type</th>
 <th style="text-align: left;">Description</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Gender</td>
@@ -726,13 +707,11 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </tbody>
 </table>
 <p>We will use this data set to demonstrate different ways of visualising continuous variables, either combining multiple continuous variables in a scatterplot or splitting continuous variables into categories in a boxplot or violin-boxplot.</p>
-</section>
-</section>
-<section id="viz-a3" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="viz-a3"><span class="header-section-number">7.2</span> Scatterplots</h2>
+</section></section><section id="viz-a3" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="viz-a3">
+<span class="header-section-number">7.2</span> Scatterplots</h2>
 <p>The first visualisation is a <a class="glossary" title="Plotting two variables on the x- and y-axis to show the correlation/relationship between the variables.">scatterplot</a> to show the relationship between two continuous variables. One variable goes on the x-axis and the other variables goes on the y-axis. Each dot then represents the intersection of those two variables per observation/participant. You will use these plots often when reporting a correlation or regression.</p>
-<section id="activity-3---creating-a-basic-scatterplot" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="activity-3---creating-a-basic-scatterplot"><span class="header-section-number">7.2.1</span> Activity 3 - Creating a basic scatterplot</h3>
+<section id="activity-3---creating-a-basic-scatterplot" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="activity-3---creating-a-basic-scatterplot">
+<span class="header-section-number">7.2.1</span> Activity 3 - Creating a basic scatterplot</h3>
 <p>Let us start by making a scatterplot of <code>Age</code> and <code>time1_interest</code> to see if there is any relationship between the two. We need to specify both the x- and y-axis variables, but the only difference to what we created in Chapter 3 is using a new layer <code>geom_point</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>zhang_data <span class="sc">%&gt;%</span> </span>
@@ -740,15 +719,13 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span id="cb2-3"><a href="#cb2-3"></a>       <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/scat1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/scat1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-4---editing-axis-labels" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="activity-4---editing-axis-labels"><span class="header-section-number">7.2.2</span> Activity 4 - Editing axis labels</h3>
+</section><section id="activity-4---editing-axis-labels" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="activity-4---editing-axis-labels">
+<span class="header-section-number">7.2.2</span> Activity 4 - Editing axis labels</h3>
 <p>This plot is great for some exploratory data analysis, but it looks a little untidy to put into a report. We can use the <code>scale_x_continuous</code> and <code>scale_y_continuous</code> layers to control the tick marks, as well as the axis name.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>zhang_data <span class="sc">%&gt;%</span>  </span>
@@ -763,8 +740,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span id="cb3-10"><a href="#cb3-10"></a>                                  <span class="at">by =</span> <span class="dv">5</span>)) <span class="co"># in steps of 5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/scat2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/scat2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -772,7 +748,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <p>To break down these new arguments/functions in the layers:</p>
 <ul>
 <li><p><code>breaks</code> set the tick marks on the plot. We demonstrate two ways of setting this. On the x-axis, we just manually set values for 1 to 7. On the y-axis, we use a second function to set the breaks.</p></li>
-<li><p><code>seq()</code> creates a sequence of numbers and can save a lot of time when you need to add lots of values. We set three arguments, <code>from</code> for the starting point, <code>to</code> for the end point, and <code>by</code> for the steps the sequence goes up in.</p></li>
+<li><p><code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> creates a sequence of numbers and can save a lot of time when you need to add lots of values. We set three arguments, <code>from</code> for the starting point, <code>to</code> for the end point, and <code>by</code> for the steps the sequence goes up in.</p></li>
 <li><p><code>limits</code> controls the start and end point of the graph scale. In the original graph, we can see there are points below 20 and above 40, so we might want to increase the <code>limits</code> of the graph to include a wider range.</p></li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -798,8 +774,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -812,17 +787,15 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">40</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-5---adding-a-regression-line" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="activity-5---adding-a-regression-line"><span class="header-section-number">7.2.3</span> Activity 5 - Adding a regression line</h3>
+</section><section id="activity-5---adding-a-regression-line" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="activity-5---adding-a-regression-line">
+<span class="header-section-number">7.2.3</span> Activity 5 - Adding a regression line</h3>
 <p>It is often useful to add a regression line or line of best fit to a scatterplot. You can add a regression line with the <code>geom_smooth()</code> layer and by default will also provide a 95% confidence interval ribbon. You can specify what type of line you want to draw, most often you will need <code>method = "lm"</code> for a linear model or a straight line.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>zhang_data <span class="sc">%&gt;%</span>  </span>
@@ -838,8 +811,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 <span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/scat3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/scat3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -869,7 +841,9 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>So far, we made a scatterplot of age against interest at time 1. Now, create a scatterplot on your own using the two interest rating variables: <code>time1_interest</code> and <code>time2_interest</code>.</p>
-<p>After you made the scatterplot, it looks like there is a <select class="webex-select"><option value="blank"></option><option value="answer">positive</option><option value="">negative</option></select> relationship between interest ratings at time 1 and time 2.</p>
+<p>After you made the scatterplot, it looks like there is a <select class="webex-select"><option value="blank"></option>
+<option value="answer">positive</option>
+<option value="">negative</option></select> relationship between interest ratings at time 1 and time 2.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -896,8 +870,7 @@ Note
 <span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -905,9 +878,8 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="activity-6---creating-a-grouped-scatterplot" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="activity-6---creating-a-grouped-scatterplot"><span class="header-section-number">7.2.4</span> Activity 6 - Creating a grouped scatterplot</h3>
+</section><section id="activity-6---creating-a-grouped-scatterplot" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="activity-6---creating-a-grouped-scatterplot">
+<span class="header-section-number">7.2.4</span> Activity 6 - Creating a grouped scatterplot</h3>
 <p>Before we move on, we can add a third variable to show how the relationship might differ for different groups within our data. We can do this by adding the <code>colour</code> argument to <code>aes()</code> and setting it as whatever variable we would like to distinguish between. In this case, we will see how the relationship between age and interest at time 1 differs for the male and female participants. There are a few participants with missing gender, so we will first filter them out.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>zhang_data <span class="sc">%&gt;%</span></span>
@@ -920,8 +892,7 @@ Note
 <span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/scat4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/scat4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -963,8 +934,7 @@ Note
 <span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -972,13 +942,11 @@ Note
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="viz-a4" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="viz-a4"><span class="header-section-number">7.3</span> Boxplots</h2>
+</section></section><section id="viz-a4" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="viz-a4">
+<span class="header-section-number">7.3</span> Boxplots</h2>
 <p>The next visualisation is the <a class="glossary" title="Visualising a continuous variable by five summary statistics: the median centre line, the first and third quartile, and 1.5 times the first and third quartiles.">boxplot</a> which presents a range of summary statistics for your outcome, which you can split between different groups on the x-axis, or add further variables to divide by. For the boxplot element, you get five summary statistics: the median centre line, the first and third quartile as the box (essentially, the interquartile range), and 1.5 times the first and third quartiles as the whiskers extending from the box. If there are any values beyond the whiskers, you see the individual data points and this is one definition of an outlier (more on that in Chapter 11)</p>
-<section id="activity-7---creating-a-basic-boxplot" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="activity-7---creating-a-basic-boxplot"><span class="header-section-number">7.3.1</span> Activity 7 - Creating a basic boxplot</h3>
+<section id="activity-7---creating-a-basic-boxplot" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="activity-7---creating-a-basic-boxplot">
+<span class="header-section-number">7.3.1</span> Activity 7 - Creating a basic boxplot</h3>
 <p>Before we create the boxplot, we need a final data wrangling step. At the moment, we have <code>time1_interest</code> and <code>time2_interest</code> in wide format, but to plot together, we need to express it as a single variable. For that, we must restructure the data. This is why we spent so much time on data wrangling, as you might need to quickly restructure your data to plot certain elements.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1025,8 +993,7 @@ Note
 <span id="cb12-5"><a href="#cb12-5"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/bp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/bp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1041,15 +1008,13 @@ Note
 <span id="cb13-6"><a href="#cb13-6"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-8---adding-colour-to-variables" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="activity-8---adding-colour-to-variables"><span class="header-section-number">7.3.2</span> Activity 8 - Adding colour to variables</h3>
+</section><section id="activity-8---adding-colour-to-variables" class="level3" data-number="7.3.2"><h3 data-number="7.3.2" class="anchored" data-anchor-id="activity-8---adding-colour-to-variables">
+<span class="header-section-number">7.3.2</span> Activity 8 - Adding colour to variables</h3>
 <p>It is not as important when you only have one variable on the x-axis, but one useful feature is adding colour to distinguish between categories. You can control this by adding a variable to the <code>fill</code> argument within <code>aes()</code>.</p>
 <p>By default, we get a legend which is redundant when we only have different colours on the x-axis, so we can turn it off by adding <code>guides(fill = FALSE)</code> as a layer.</p>
 <div class="cell" data-layout-align="center">
@@ -1062,8 +1027,7 @@ Note
 <span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="co"># remove the legend</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/bp4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/bp4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1088,8 +1052,7 @@ Note
 <span id="cb15-6"><a href="#cb15-6"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1104,17 +1067,15 @@ Note
 <span id="cb16-6"><a href="#cb16-6"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-9---controlling-colours" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="activity-9---controlling-colours"><span class="header-section-number">7.3.3</span> Activity 9 - Controlling colours</h3>
+</section><section id="activity-9---controlling-colours" class="level3" data-number="7.3.3"><h3 data-number="7.3.3" class="anchored" data-anchor-id="activity-9---controlling-colours">
+<span class="header-section-number">7.3.3</span> Activity 9 - Controlling colours</h3>
 <p><pkg>ggplot2</pkg> has a default colour scheme which is fine for quick plots, but it is useful to control the colour scheme. You can do this manually by editing <code>scale_fill_discrete()</code> and choosing colours through the <code>type</code> argument (you can do this through character names or choosing a HEX code: <a href="https://r-charts.com/colors/" target="_blank">https://r-charts.com/colors/</a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>zhang_data_long <span class="sc">%&gt;%</span> </span>
@@ -1126,8 +1087,7 @@ Note
 <span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"pink"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1145,8 +1105,7 @@ Note
 <span id="cb18-9"><a href="#cb18-9"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1162,7 +1121,10 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>For your independent boxplot, use <code>zhang_data_long</code> to visualise <code>Interest</code> as your continuous variable and <code>Condition</code> for different categories. This will show the difference in interest rating between those in the ordinary and extraordinary groups.</p>
-<p>Comparing the ordinary and extraordinary groups, it looks like <select class="webex-select"><option value="blank"></option><option value="">ordinary score higher on average</option><option value="answer">very little difference on average</option><option value="">extraordinary score higher on average</option></select>.</p>
+<p>Comparing the ordinary and extraordinary groups, it looks like <select class="webex-select"><option value="blank"></option>
+<option value="">ordinary score higher on average</option>
+<option value="answer">very little difference on average</option>
+<option value="">extraordinary score higher on average</option></select>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -1189,8 +1151,7 @@ Note
 <span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1198,9 +1159,8 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="activity-10---ordering-categories" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="activity-10---ordering-categories"><span class="header-section-number">7.3.4</span> Activity 10 - Ordering categories</h3>
+</section><section id="activity-10---ordering-categories" class="level3" data-number="7.3.4"><h3 data-number="7.3.4" class="anchored" data-anchor-id="activity-10---ordering-categories">
+<span class="header-section-number">7.3.4</span> Activity 10 - Ordering categories</h3>
 <p>When we plot variables like <code>Gender</code> on the x-axis, R has an internal order it sets unless you create a factor. The default is alphabetical or numerical. In previous plots, it displayed Female then Male, as F comes before M.</p>
 <p>Controlling the order of categories is an important design choice to communicate your message, and the most direct way is controlling the factor order before plotting. Here, we add <code>mutate()</code> in a pipe and manually set the factor levels, just be careful as it is case sensitive to the values in your data.</p>
 <div class="cell" data-layout-align="center">
@@ -1217,15 +1177,13 @@ Note
 <span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-11--boxplots-for-multiple-factors" class="level3" data-number="7.3.5">
-<h3 data-number="7.3.5" class="anchored" data-anchor-id="activity-11--boxplots-for-multiple-factors"><span class="header-section-number">7.3.5</span> Activity 11- Boxplots for multiple factors</h3>
+</section><section id="activity-11--boxplots-for-multiple-factors" class="level3" data-number="7.3.5"><h3 data-number="7.3.5" class="anchored" data-anchor-id="activity-11--boxplots-for-multiple-factors">
+<span class="header-section-number">7.3.5</span> Activity 11- Boxplots for multiple factors</h3>
 <p>When you only have one independent variable, using the <code>fill</code> argument to change the colour can be a little redundant as the colours do not add any additional information. It makes more sense to use colour to represent a second variable.</p>
 <p>For this example, we will use <code>Condition</code> and <code>Time</code> as variables. <code>fill()</code> now specifies a second independent variable, rather than repeating the variable on the x-axis as in the previous plot, so we do not want to deactivate the legend.</p>
 <div class="cell" data-layout-align="center">
@@ -1238,8 +1196,7 @@ Note
 <span id="cb21-7"><a href="#cb21-7"></a>                       <span class="at">alpha =</span> <span class="fl">0.6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/bp5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/bp5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1256,19 +1213,16 @@ Note
 <span id="cb22-8"><a href="#cb22-8"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Time 1"</span>, <span class="st">"Time 2"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="viz-a7" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="viz-a7"><span class="header-section-number">7.4</span> Violin-boxplots</h2>
+</section></section><section id="viz-a7" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="viz-a7">
+<span class="header-section-number">7.4</span> Violin-boxplots</h2>
 <p>Boxplots are great for your own exploratory data analysis but you do not often see them reported in isolation. They visualise summary statistics, but you do not get much sense of the underlying distribution of values. When you want to communicate continuous outcomes, researchers in psychology are using <a class="glossary" title="A combination of a violin plot to show the density of data points and a boxplot to show summary statistics of distribution.">violin-boxplots</a> more often. This combines both elements: a violin plot to show the distribution of the data, and a boxplot to add summary statistics. This is where <pkg>ggplot2</pkg> comes into it’s own as we can add and customise several layers.</p>
-<section id="activity-12---creating-a-basic-violin-plot" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="activity-12---creating-a-basic-violin-plot"><span class="header-section-number">7.4.1</span> Activity 12 - Creating a basic violin plot</h3>
+<section id="activity-12---creating-a-basic-violin-plot" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="activity-12---creating-a-basic-violin-plot">
+<span class="header-section-number">7.4.1</span> Activity 12 - Creating a basic violin plot</h3>
 <p>Violin plots get their name as they look something like a violin when the data are roughly normally distributed. They show density, so the fatter the violin element, the more data points there are for that value. Compared to the boxplot, the only difference is changing the layer to <code>geom_violin()</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>zhang_data_long <span class="sc">%&gt;%</span> </span>
@@ -1279,8 +1233,7 @@ Note
 <span id="cb23-6"><a href="#cb23-6"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/vp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/vp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1297,8 +1250,7 @@ Note
 <span id="cb24-8"><a href="#cb24-8"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/vp2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/vp2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1316,9 +1268,8 @@ Important
 <p>It is important to remember that R is very literal. <pkg>ggplot2</pkg> works on a system of layers. It will add new geoms on top of existing ones and it will not stop to think whether this is a good idea. Try running the code above but put <code>geom_jitter()</code> first and then add <code>geom_violin()</code>. The order of your layers matters.</p>
 </div>
 </div>
-</section>
-<section id="activity-13---creating-a-violin-boxplot" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="activity-13---creating-a-violin-boxplot"><span class="header-section-number">7.4.2</span> Activity 13 - Creating a violin-boxplot</h3>
+</section><section id="activity-13---creating-a-violin-boxplot" class="level3" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="activity-13---creating-a-violin-boxplot">
+<span class="header-section-number">7.4.2</span> Activity 13 - Creating a violin-boxplot</h3>
 <p>Instead of adding the data points in a layer, we can add a boxplot to create the violin-boxplot. This way, we get distribution information from the violin layer and summary statistics from the boxplot layer.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>zhang_data_long <span class="sc">%&gt;%</span> </span>
@@ -1330,8 +1281,7 @@ Important
 <span id="cb25-7"><a href="#cb25-7"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1350,8 +1300,7 @@ Important
 <span id="cb26-10"><a href="#cb26-10"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1377,8 +1326,7 @@ Important
 <span id="cb27-16"><a href="#cb27-16"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/vbp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/vbp1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1410,8 +1358,7 @@ Warning
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1452,9 +1399,8 @@ Warning
 </div>
 </div>
 </div>
-</section>
-<section id="activity-14---adding-additional-variables" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="activity-14---adding-additional-variables"><span class="header-section-number">7.4.3</span> Activity 14 - Adding additional variables</h3>
+</section><section id="activity-14---adding-additional-variables" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="activity-14---adding-additional-variables">
+<span class="header-section-number">7.4.3</span> Activity 14 - Adding additional variables</h3>
 <p>Like boxplots, we can add a second grouping variable to <code>fill</code> instead of just using it for colour.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>zhang_data_long <span class="sc">%&gt;%</span> </span>
@@ -1475,8 +1421,7 @@ Warning
 <span id="cb29-16"><a href="#cb29-16"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1506,8 +1451,7 @@ Warning
 <span id="cb30-21"><a href="#cb30-21"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1540,8 +1484,7 @@ Warning
 <span id="cb31-23"><a href="#cb31-23"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="07-more-visualisation_files/figure-html/facet1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="07-more-visualisation_files/figure-html/facet1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1560,26 +1503,26 @@ Warning
 <p>Like previous advice, none of this is a memory test. You will rarely write all of this and check it runs. Complex plots like this are normally an iterative process where you start with the basic components of say a violin-boxplot. Something does not look right, so you change the axis labels. Then you change the transparency of the layers. Before you know it, you have added ten edits and produced a plot you are satisfied with. Furthermore, once you have plots you are happy with, you will also find you recycle past code to adapt to new data.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="test-yourself" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="test-yourself"><span class="header-section-number">7.5</span> Test yourself</h2>
+</section></section><section id="test-yourself" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="test-yourself">
+<span class="header-section-number">7.5</span> Test yourself</h2>
 <p>To end the chapter, we have some knowledge check questions to test your understanding of the concepts we covered in the chapter. We then have some error mode tasks to see if you can find the solution to some common errors in the concepts we covered in this chapter.</p>
-<section id="knowledge-check" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="knowledge-check"><span class="header-section-number">7.5.1</span> Knowledge check</h3>
+<section id="knowledge-check" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="knowledge-check">
+<span class="header-section-number">7.5.1</span> Knowledge check</h3>
 <p><strong>Question 1</strong>. You want to plot several summary statistics including the median for your outcome, which <pkg>ggplot2</pkg> layer could you use?</p>
 <div id="radio_OCGPRCYABR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value=""> <span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value=""> <span>geom_point()</span></label><label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value="answer"> <span>geom_boxplot()</span></label>
+<label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value=""><span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value=""><span>geom_point()</span></label><label><input type="radio" autocomplete="off" name="radio_OCGPRCYABR" value="answer"><span>geom_boxplot()</span></label>
 </div>
 <p><strong>Question 2</strong>. You want to create a scatterplot to show the correlation between two continuous variables, which <pkg>ggplot2</pkg> layer could you use?</p>
 <div id="radio_VDXDCNASJM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value="answer"> <span>geom_point()</span></label><label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value=""> <span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value=""> <span>geom_boxplot()</span></label>
+<label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value="answer"><span>geom_point()</span></label><label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value=""><span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_VDXDCNASJM" value=""><span>geom_boxplot()</span></label>
 </div>
 <p><strong>Question 3</strong>. You want to show the density of values in your outcome, which <pkg>ggplot2</pkg> layer could you use?</p>
 <div id="radio_HPAKFKNGSC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value="answer"> <span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value=""> <span>geom_boxplot()</span></label><label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value=""> <span>geom_point()</span></label>
+<label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value="answer"><span>geom_violin()</span></label><label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value=""><span>geom_boxplot()</span></label><label><input type="radio" autocomplete="off" name="radio_HPAKFKNGSC" value=""><span>geom_point()</span></label>
 </div>
-<p><strong>Question 4</strong>. To separate a scatterplot into different groups, you could specify a grouping variable using the <code>fill</code> argument to change the colour of the points? <select class="webex-select"><option value="blank"></option><option value="">TRUE</option><option value="answer">FALSE</option></select></p>
+<p><strong>Question 4</strong>. To separate a scatterplot into different groups, you could specify a grouping variable using the <code>fill</code> argument to change the colour of the points? <select class="webex-select"><option value="blank"></option>
+<option value="">TRUE</option>
+<option value="answer">FALSE</option></select></p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1598,7 +1541,7 @@ Warning
 </div>
 <p><strong>Question 5</strong>. The order of layers is important in <pkg>ggplot2</pkg>. Which order of layers would show individual data points on top of a boxplot?</p>
 <div id="radio_VSMZSZSORZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""> <span>data %&gt;% ggplot() + geom_jitter() + geom_boxplot()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value="answer"> <span>data %&gt;% ggplot() + geom_boxplot() + geom_jitter()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""> <span>data + ggplot() + geom_boxplot() + geom_jitter()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""> <span>data + ggplot() + geom_jitter() + geom_boxplot()</span></label>
+<label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""><span>data %&gt;% ggplot() + geom_jitter() + geom_boxplot()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value="answer"><span>data %&gt;% ggplot() + geom_boxplot() + geom_jitter()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""><span>data + ggplot() + geom_boxplot() + geom_jitter()</span></label><label><input type="radio" autocomplete="off" name="radio_VSMZSZSORZ" value=""><span>data + ggplot() + geom_jitter() + geom_boxplot()</span></label>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
@@ -1621,9 +1564,8 @@ Warning
 </div>
 </div>
 </div>
-</section>
-<section id="error-mode-2" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="error-mode-2"><span class="header-section-number">7.5.2</span> Error mode</h3>
+</section><section id="error-mode-2" class="level3" data-number="7.5.2"><h3 data-number="7.5.2" class="anchored" data-anchor-id="error-mode-2">
+<span class="header-section-number">7.5.2</span> Error mode</h3>
 <p>The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on the new types of data visualisation. Remember to keep a note of what kind of error messages you receive and how you fixed them, so you have a bank of solutions when you tackle errors independently.</p>
 <p>Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load <pkg>tidyverse</pkg> and wrangle the data files:</p>
 <div class="cell" data-layout-align="center">
@@ -1770,19 +1712,15 @@ Warning
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="words-from-this-chapter" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="words-from-this-chapter"><span class="header-section-number">7.6</span> Words from this Chapter</h2>
+</section></section><section id="words-from-this-chapter" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="words-from-this-chapter">
+<span class="header-section-number">7.6</span> Words from this Chapter</h2>
 <p>Below you will find a list of words that were used in this chapter that might be new to you in case it helps to have somewhere to refer back to what they mean. The links in this table take you to the entry for the words in the <a href="https://psyteachr.github.io/glossary/" target="_blank">PsyTeachR Glossary</a>. Note that the Glossary is written by numerous members of the team and as such may use slightly different terminology from that shown in the chapter.</p>
 <div class="cell" data-layout-align="center">
 <table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">term</th>
 <th style="text-align: left;">definition</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://psyteachr.github.io/glossary/b#boxplot" class="glossary" target="_blank">boxplot</a></td>
@@ -1799,10 +1737,9 @@ Warning
 </tbody>
 </table>
 </div>
-</section>
-<section id="end-of-chapter" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="end-of-chapter"><span class="header-section-number">7.7</span> End of chapter</h2>
-<p>Well done, you have completed the second chapter dedicated to data visualisation! This is a key area for psychology research and helping to communicate your findings to your audience. Data visualisation also comes with a lot of responsibility. There are lots of design choices to make and help communicate your findings as effectively and transparently as possible. We could dedicate a whole book to data visualisation possibilities in R and <pkg>ggplot2</pkg>, so we have added a range of further reading sources in the <a href="#additional-resources">Additional Resources</a> appendix.</p>
+</section><section id="end-of-chapter" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="end-of-chapter">
+<span class="header-section-number">7.7</span> End of chapter</h2>
+<p>Well done, you have completed the second chapter dedicated to data visualisation! This is a key area for psychology research and helping to communicate your findings to your audience. Data visualisation also comes with a lot of responsibility. There are lots of design choices to make and help communicate your findings as effectively and transparently as possible. We could dedicate a whole book to data visualisation possibilities in R and <pkg>ggplot2</pkg>, so we have added a range of further reading sources in the <a href="appendix-a2-additional-learning-resources.html">Additional Resources</a> appendix.</p>
 <p>In the next chapter, we start on inferential statistics introducing you to the concept of correlation and regression by focusing on one continuous predictor variable and one continuous outcome variable.</p>
 
 
@@ -1811,477 +1748,239 @@ Warning
 Zhang, T., Kim, T., Brooks, A. W., Gino, F., &amp; Norton, M. I. (2014). A <span>“<span>Present</span>”</span> for the <span>Future</span>: <span>The</span> <span>Unexpected</span> <span>Value</span> of <span>Rediscovery</span>. <em>Psychological Science</em>, <em>25</em>(10), 1851–1860. <a href="https://doi.org/10.1177/0956797614542274">https://doi.org/10.1177/0956797614542274</a>
 </div>
 </div>
-</section>
-
-</main> <!-- /main -->
-<script>
-
-
+</section></main><!-- /main --><script>
 
 /* update total correct if #webex-total_correct exists */
-
 update_total_correct = function() {
-
   console.log("webex: update total_correct");
 
-
-
   var t = document.getElementsByClassName("webex-total_correct");
-
   for (var i = 0; i < t.length; i++) {
-
     p = t[i].parentElement;
-
     var correct = p.getElementsByClassName("webex-correct").length;
-
     var solvemes = p.getElementsByClassName("webex-solveme").length;
-
     var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
-
     var selects = p.getElementsByClassName("webex-select").length;
 
-
-
     t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
-
   }
-
 }
-
-
 
 /* webex-solution button toggling function */
-
 b_func = function() {
-
   console.log("webex: toggle hide");
 
-
-
   var cl = this.parentElement.classList;
-
   if (cl.contains('open')) {
-
     cl.remove("open");
-
   } else {
-
     cl.add("open");
-
   }
-
 }
-
-
 
 /* check answers */
-
 check_func = function() {
-
   console.log("webex: check answers");
 
-
-
   var cl = this.parentElement.classList;
-
   if (cl.contains('unchecked')) {
-
     cl.remove("unchecked");
-
     this.innerHTML = "Hide Answers";
-
   } else {
-
     cl.add("unchecked");
-
     this.innerHTML = "Show Answers";
-
   }
-
 }
-
-
 
 /* function for checking solveme answers */
-
 solveme_func = function(e) {
-
   console.log("webex: check solveme");
 
-
-
   var real_answers = JSON.parse(this.dataset.answer);
-
   var my_answer = this.value;
-
   var cl = this.classList;
-
   if (cl.contains("ignorecase")) {
-
     my_answer = my_answer.toLowerCase();
-
   }
-
   if (cl.contains("nospaces")) {
-
     my_answer = my_answer.replace(/ /g, "")
-
   }
-
-
 
   if (my_answer == "") {
-
     cl.remove("webex-correct");
-
     cl.remove("webex-incorrect");
-
   } else if (real_answers.includes(my_answer)) {
-
     cl.add("webex-correct");
-
     cl.remove("webex-incorrect");
-
   } else {
-
     cl.add("webex-incorrect");
-
     cl.remove("webex-correct");
-
   }
-
-
 
   // match numeric answers within a specified tolerance
-
   if(this.dataset.tol > 0){
-
     var tol = JSON.parse(this.dataset.tol);
-
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
-
     if (matches.reduce((a, b) => a + b, 0) > 0) {
-
       cl.add("webex-correct");
-
     } else {
-
       cl.remove("webex-correct");
-
     }
-
   }
-
-
 
   // added regex bit
-
   if (cl.contains("regex")){
-
     answer_regex = RegExp(real_answers.join("|"))
-
     if (answer_regex.test(my_answer)) {
-
       cl.add("webex-correct");
-
     }
-
   }
 
-
-
   update_total_correct();
-
 }
 
-
-
 /* function for checking select answers */
-
 select_func = function(e) {
-
   console.log("webex: check select");
-
-
 
   var cl = this.classList
 
-
-
   /* add style */
-
   cl.remove("webex-incorrect");
-
   cl.remove("webex-correct");
-
   if (this.value == "answer") {
-
     cl.add("webex-correct");
-
   } else if (this.value != "blank") {
-
     cl.add("webex-incorrect");
-
   }
 
-
-
   update_total_correct();
-
 }
-
-
 
 /* function for checking radiogroups answers */
-
 radiogroups_func = function(e) {
-
   console.log("webex: check radiogroups");
 
-
-
   var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
-
   var cl = checked_button.parentElement.classList;
-
   var labels = checked_button.parentElement.parentElement.children;
 
-
-
   /* get rid of styles */
-
   for (i = 0; i < labels.length; i++) {
-
     labels[i].classList.remove("webex-incorrect");
-
     labels[i].classList.remove("webex-correct");
-
   }
-
-
 
   /* add style */
-
   if (checked_button.value == "answer") {
-
     cl.add("webex-correct");
-
   } else {
-
     cl.add("webex-incorrect");
-
   }
 
-
-
   update_total_correct();
-
 }
-
-
 
 window.onload = function() {
-
   console.log("webex onload");
-
   /* set up solution buttons */
-
   var buttons = document.getElementsByTagName("button");
 
-
-
   for (var i = 0; i < buttons.length; i++) {
-
     if (buttons[i].parentElement.classList.contains('webex-solution')) {
-
       buttons[i].onclick = b_func;
-
     }
-
   }
-
-
 
   var check_sections = document.getElementsByClassName("webex-check");
-
   console.log("check:", check_sections.length);
-
   for (var i = 0; i < check_sections.length; i++) {
-
     check_sections[i].classList.add("unchecked");
 
-
-
     let btn = document.createElement("button");
-
     btn.innerHTML = "Show Answers";
-
     btn.classList.add("webex-check-button");
-
     btn.onclick = check_func;
-
     check_sections[i].appendChild(btn);
 
-
-
     let spn = document.createElement("span");
-
     spn.classList.add("webex-total_correct");
-
     check_sections[i].appendChild(spn);
-
   }
-
-
 
   /* set up webex-solveme inputs */
-
   var solveme = document.getElementsByClassName("webex-solveme");
 
-
-
   for (var i = 0; i < solveme.length; i++) {
-
     /* make sure input boxes don't auto-anything */
-
     solveme[i].setAttribute("autocomplete","off");
-
     solveme[i].setAttribute("autocorrect", "off");
-
     solveme[i].setAttribute("autocapitalize", "off");
-
     solveme[i].setAttribute("spellcheck", "false");
-
     solveme[i].value = "";
 
-
-
     /* adjust answer for ignorecase or nospaces */
-
     var cl = solveme[i].classList;
-
     var real_answer = solveme[i].dataset.answer;
-
     if (cl.contains("ignorecase")) {
-
       real_answer = real_answer.toLowerCase();
-
     }
-
     if (cl.contains("nospaces")) {
-
       real_answer = real_answer.replace(/ /g, "");
-
     }
-
     solveme[i].dataset.answer = real_answer;
 
-
-
     /* attach checking function */
-
     solveme[i].onkeyup = solveme_func;
-
     solveme[i].onchange = solveme_func;
 
-
-
     solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-
   }
-
-
 
   /* set up radiogroups */
-
   var radiogroups = document.getElementsByClassName("webex-radiogroup");
-
   for (var i = 0; i < radiogroups.length; i++) {
-
     radiogroups[i].onchange = radiogroups_func;
-
   }
-
-
 
   /* set up selects */
-
   var selects = document.getElementsByClassName("webex-select");
-
   for (var i = 0; i < selects.length; i++) {
-
     selects[i].onchange = select_func;
-
     selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-
   }
 
-
-
   update_total_correct();
-
 }
 
-
-
-</script>
-
-<script>
-
+</script><script>
 // open rdrr links externally ----
 
-
-
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
-
 var exlink_func = function(){
-
   window.open(this.href);
-
   return false;
-
 };
-
 for (var i = 0; i < exlinks.length; i++) {
-
     exlinks[i].addEventListener('click', exlink_func, false);
-
 }
-
-
 
 // visible second sidebar in mobile ----
 
-
-
 function move_sidebar() {
-
   var toc = document.getElementById("TOC");
-
   var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
-
   var right_sidebar = document.getElementById("quarto-margin-sidebar");
 
-
-
   if (window.innerWidth < 768) {
-
     small_sidebar.append(toc);
-
   } else {
-
     right_sidebar.append(toc);
-
   }
-
 }
-
 move_sidebar();
-
 window.onresize = move_sidebar;
-
-</script>
-<script id="quarto-html-after-body" type="application/javascript">
+</script><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2693,9 +2392,7 @@ window.onresize = move_sidebar;
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./06-wrangling-3.html" class="pagination-link" aria-label="Data Wrangling 3: Pivots and Pipes">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Wrangling 3: Pivots and Pipes</span></span>
       </a>          
@@ -2707,8 +2404,7 @@ window.onresize = move_sidebar;
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -2720,8 +2416,6 @@ window.onresize = move_sidebar;
     </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
