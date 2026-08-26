@@ -6,7 +6,7 @@ library(tidyverse)
 library(cowplot)
 ```
 
-Until now, a large component of each chapter was dedicated to data wrangling as we must first process raw data into something tidier we can apply our visualisation or modelling steps to. In this chapter, there is no data wrangling, just functions to calculate statistical power in different ways for different tests. Before, the difficulty was in unique problems in wrangling your specific data. In power analysis, the functions are pretty straight forward to use, but deciding what inputs you use are the hard parts as they are your decisions to make. 
+Until now, a large component of each chapter was dedicated to data wrangling as we must first process raw data into something tidier we can apply our visualisation or modelling steps to. In this chapter, there is no data wrangling, just functions to calculate statistical power in different ways for different tests. Before, the difficulty was in unique problems in wrangling your specific data. In power analysis, the functions are pretty straight forward to use, but deciding what inputs you use are the hard parts as they are **your** decisions to make. 
 
 We adapted a few components of this chapter from @bartlett_power_2022 and we recommend referring to this article for more information on the concepts behind statistical power. However, the article focuses on the statistics software jamovi, so this chapter focuses on power analysis using the <pkg>pwr</pkg> package.
 
@@ -24,15 +24,15 @@ By the end of this chapter, you will be able to:
 
 ### Organising your files and project for the chapter
 
-In contrast to previous chapters, there will be no data wrangling in this chapter, so we do not need to worry about downloading files. We will still be working around some key studies, but we will introduce them as needed. However, you will still be working in an R Markdown document, so you need to make sure your working directory is in order.
+In contrast to previous chapters, there will be no data wrangling in this chapter, so we do not need to worry about downloading files. We will still be working around some key studies, but we will introduce them as needed. However, you will still be working in an Quarto document, so you need to make sure your working directory is in order.
 
 1. In your folder for research methods and the book `ResearchMethods1_2/Quant_Fundamentals`, create a new folder called `Chapter_10_power`.
 
 2. Create an R Project for `Chapter_10_power` as an existing directory for your chapter folder. This should now be your working directory.
 
-3. Create a new R Markdown document and give it a sensible title describing the chapter, such as `10 Statistical Power and Effect Sizes`. Delete everything below line 10 so you have a blank file to work with and save the file in your `Chapter_10_power` folder. 
+3. Create a new Quarto document and give it a sensible title describing the chapter, such as `10 Statistical Power and Effect Sizes`. Delete everything below line 6 so you have a blank file to work with and save the file in your `Chapter_10_power` folder. 
 
-4. In a code chunk, load the <pkg>pwr</pkg> and <pkg>tidyverse</pkg> packages. If you need to install any packages, revisit [Chapter 1](#install-tidy) if you need a refresher, but remember not to install packages on the university computers / online server. 
+4. In a code chunk, load the <pkg>pwr</pkg> and <pkg>tidyverse</pkg> packages. If you need to install any packages, revisit [Chapter 1](#install-tidy) if you need a refresher, but remember not to install packages on the university computers. 
 
 You are now ready to start working on the chapter! 
 
@@ -40,7 +40,7 @@ You are now ready to start working on the chapter!
 
 Given there is no data wrangling for this chapter and the functions for power analysis are pretty straight forward, we have a little space to recap the key concepts behind power analysis. Almost all the work here comes into thinking and justifying your decisions, rather than spending lots of time on wrangling and analysis.
 
-The branch of statistics we are using here is Null Hypothesis Significance Testing (NHST). There are two types of `r glossary("hypothesis", display = "hypotheses")` and what you are trying to establish is the `r glossary("probability")` of rejecting the null hypothesis. Those two hypotheses are:
+The branch of statistics we are using here is Null Hypothesis Significance Testing (NHST). There are two types of `r glossary("hypothesis", display = "hypotheses")` and what you are trying to establish is the `r glossary("probability")` of your data - assuming that the null hypothesis is true - to make a decision. Those two hypotheses are:
 
 - The **null hypothesis** which states that there is no difference ($H_0: \mu_1 = \mu_2$) or no relationship ($H_0: r = 0$). 
 - The **alternative hypothesis** which states that there is a difference ($H_1: \mu_1 \ne \mu_2$) or there is a relationship ($H_1: r \ne 0$).
@@ -63,11 +63,15 @@ Critically, there is a relationship between these four concepts, where if you kn
 
 1. **A priori** power analysis: How many participants do I need, for a given alpha, beta/power, and smallest effect size of interest? This is most useful in the design stage to help you plan how many participants you need to design an informative study. 
 
-2. **Sensitivity** power analysis: What effect size can I detect, for a given alpha, beta/power, and sample size? This is most useful after you finish collecting data or when you are using secondary data as the sample size is not longer under your control and it helps put your findings in context. 
+2. **Sensitivity** power analysis: What effect size can I detect, for a given alpha, beta/power, and sample size? This is most useful after you finish collecting data or when you are using secondary data as the sample size is no longer under your control and it helps put your findings in context. 
 
-You may now be thinking though, if there is a relationship between all four concepts, could we calculate power for a given alpha, sample size, and effect size? It is a tempting idea and you might see some articles report it, but unfortunately is is misleading and tells you nothing more than the *p*-value does. The short version is we are typically using a sample to learn something about a population, so there is uncertainty in the estimate. Using the observed effect size in your study assumes this is the true population effect, which is rarely a good assumption. If you are interested, @lakens_sample_2022 is a great resource for sample size justification in general, but also explains why post-hoc power is not a good idea.
+::: {.callout-warning}
+#### Beware of post-hoc power 
 
-After the brief recap, we will now focus on *a priori* and sensitivity power analyses applied to different statistical models. 
+You may now be thinking though, if there is a relationship between all four concepts, could we calculate power for a given alpha, sample size, and effect size? It is a tempting idea and you might see some articles report it, but unfortunately it tells you nothing more than the *p*-value. 
+
+The short version is we are typically using a sample to learn something about a population, so there is uncertainty in the estimate. Using the observed effect size in your study assumes this is the true population effect, which is rarely a good assumption. If you are interested, @lakens_sample_2022 is a great resource for sample size justification in general, but also explains why post-hoc power is not a good idea. Friends do not let friends report post-hoc power. 
+:::
 
 ## Power analysis for t-tests / categorical predictors
 
@@ -340,7 +344,7 @@ Hopefully, these demonstrations reinforce the idea of sensitivity and how power 
 
 ### Power for regression with a categorical predictor
 
-In Chapters 8 and 9, we recommended expressing your designs as linear regression models. They have many benefits, but one downside is the effect size and process we need for power analysis is not the most intuitive. Typically, people report effect sizes like Cohen's d when comparing groups, but here we need Cohen's $f^2$. You can convert between effect sizes and we recommend the website [psychometrica.de](https://www.psychometrica.de/effect_size.html#interpretation ){target="_blank"} which has an online calculator for converting effect sizes in section 14. Alternatively, you can use the following code to save $f^2$ as an object. 
+In Chapters 8 and 9, we recommended expressing your designs as linear regression models. They have many benefits, but one downside is the effect size and process we need for power analysis is not the most intuitive. Typically, people report effect sizes like Cohen's d when comparing groups, but here we need Cohen's $f^2$. You can convert between effect sizes and we recommend the website [psychometrica.de](https://www.psychometrica.de/effect_size.html#interpretation ){target="_blank"} which has an online calculator for converting effect sizes in Section 14. Alternatively, you can use the following code to save $f^2$ as an object. 
 
 ```{r}
 # enter your Cohen's d value
@@ -535,6 +539,20 @@ pwr.r.test(n = 271,
 ```
 :::
 
+::: {.callout-important}
+#### What if I want to calculate power for non-parametric tests? 
+
+Unfortunately, the <pkg>pwr</pkg> package does not include out-of-the-box functions for calculating power for tests like the Spearman. Really, you need to simulate a power analysis for these test but it is beyond the scope of this course. James explored this though for a Spearman correlation and you can see in @fig-img-pearson-spearman-grid a grid comparing sample sizes for the same settings between a Pearson and Spearman correlation. You consistently have greater power (or need fewer participants) for a Pearson correlation but the difference is neglible once the smallest effect size of interest approaches *r* = 0.5. 
+
+```{r pearson-spearman-grid, echo=FALSE}
+#| label: fig-img-pearson-spearman-grid
+#| fig.cap: "Comparing the statistical power between a Pearson and Spearman correlation. Each panels shows a different effect size from r = 0.1 to 0.9."
+
+knitr::include_graphics("images/Pearson Spearman grid.png")
+```
+
+:::
+
 ### Power for regression with a continuous predictor
 
 Like the categorical predictor, we have a mismatch between the effect size you typically see reported (Pearson's *r*) and the effect size we need for a regression power analysis ($f^2$). The website [psychometrica.de](https://www.psychometrica.de/effect_size.html#interpretation ){target="_blank"} still works for converting effect sizes in section 14. Alternatively, you can use the following code to save $f^2$ as an object. 
@@ -690,13 +708,11 @@ pwr.r.test(n = 72,
 
 The following questions are designed to introduce you to making and fixing errors. For this topic, we focus on simple linear regression between two continuous variables. There are not many outright errors that people make here, more misspecifications that are not doing what you think they are doing. 
 
-Create and save a new R Markdown file for these activities. Delete the example code, so your file is blank from line 10. Create a new code chunk to load the packages <pkg>tidyverse</pkg> and <pkg>pwr</pkg>.
+Create and save a new Quarto file for these activities. Delete the example code, so your file is blank from line 6. Create a new code chunk to load the packages <pkg>tidyverse</pkg> and <pkg>pwr</pkg>.
 
-Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your R Markdown file below the code chunk to load <pkg>tidyverse</pkg> and <pkg>pwr</pkg>. Once you have copied the activities, click knit and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
+Below, we have several variations of a code chunk error or misspecification. Copy and paste them into your Quarto file below the code chunk to load <pkg>tidyverse</pkg> and <pkg>pwr</pkg>. Once you have copied the activities, click Render and look at the error message you receive. See if you can fix the error and get it working before checking the answer.
 
-- unconverted effect sizes
-
-**Question 7**. Copy the following code chunk into your R Markdown file and press knit. You should get a cryptic sounding error like `Error in uniroot(function(n) eval(p.body) - power, c(4 + 1e-10, 1e+09)): f() values at end points not of opposite sign`. 
+**Question 7**. Copy the following code chunk into your Quarto file and press Render. You should get a cryptic sounding error like `Error in uniroot(function(n) eval(p.body) - power, c(4 + 1e-10, 1e+09)): f() values at end points not of opposite sign`. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -734,7 +750,7 @@ pwr.r.test(n = NULL,
 Both will produce the same sample size as it is the absolute effect which is important, but we recommend making it consistent with your research question / hypothesis. 
 :::
 
-**Question 8**. Copy the following code chunk into your R Markdown file and press knit. You want to conduct a sensitivity power analysis when you have unequal sample sizes. You should get the following error: `Error in pwr.t.test(n1 = 40, n2 = 50, d = NULL, sig.level = 0.05, power = 0.9,  : unused arguments (n1 = 40, n2 = 50)`. 
+**Question 8**. Copy the following code chunk into your Quarto file and press Render. You want to conduct a sensitivity power analysis when you have unequal sample sizes. You should get the following error: `Error in pwr.t.test(n1 = 40, n2 = 50, d = NULL, sig.level = 0.05, power = 0.9,  : unused arguments (n1 = 40, n2 = 50)`. 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
@@ -761,7 +777,7 @@ pwr.t2n.test(n1 = 40, n2 = 50,
 ```
 :::
 
-**Question 9**. Copy the following code chunk into your R Markdown file and press knit. In your research to establish your smallest effect size of interest, you found a meta-analysis which found the average effect size for your topic was d = 0.54. For your correlational study, you use this effect size for your *a priori* power analysis. This...works, but is this all consistent? 
+**Question 9**. Copy the following code chunk into your Quarto file and press Render. In your research to establish your smallest effect size of interest, you found a meta-analysis which found the average effect size for your topic was d = 0.54. For your correlational study, you use this effect size for your *a priori* power analysis. This...works, but is this all consistent? 
 
 ````{verbatim, lang = "markdown"}
 ```{r}
