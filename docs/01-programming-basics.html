@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
 <title>1&nbsp; Introduction to programming with R/R Studio – Fundamentals of Quantitative Analysis</title>
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-5a2acb6f4ed5aeb23a104ba421924b87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3ef0dc11fbe9a93113d104f6ec40ffea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec624fd271699fd99ed06233d2577880.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -555,7 +555,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The default RStudio interface on a Mac. On the left, you can see the console. In the top right, the environment. In the bottom left, the files.">
+<div id="fig-img-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The default RStudio interface on a Mac. On the left, you can see the console. In the top right, the environment. In the bottom left, the files." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The default RStudio interface on a Mac. On the left, you can see the console. In the top right, the environment. In the bottom left, the files.">
 </div>
@@ -685,7 +685,7 @@ Warning
 <p>You can also use the tab button when writing a function name to auto-complete that function name or to find functions that start with certain letters. This feature can be really helpful if you cannot quite remember the name of a function or argument.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-autocomplete" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function.">
+<div id="fig-img-autocomplete" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-autocomplete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/autocomplete.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Example of pressing tab to autocomplete function arguments. You can see an example where the arguments n, mean, and sd are visible for the mean function.">
 </div>
@@ -743,7 +743,7 @@ Important
 <p>Often when you load packages you get information in your console window. Some packages will provide little messages to tell you what it has done or warn you about something. Sometimes these messages can look like errors and make you panic, but try and read over what it is saying first. For example, you should have something that looks like Figure <a href="#fig-img-load-tidyverse" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> when you load <code>tidyverse</code>. You might think you have done something wrong as it has little red crosses, but it is just telling you that it has loaded a set of packages and there are some <strong><a href="https://psyteachr.github.io/glossary/c#conflict" target="_blank" class="glossary" title="Having two packages loaded that have a function with the same name.">conflicts</a></strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-load-tidyverse" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded.">
+<div id="fig-img-load-tidyverse" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-load-tidyverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/tidyverse-loading.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The loading messages from tidyverse. You can see all the packages it loads under attaching core packages, such as dplyr and ggplot2. You can then see conflicts between functions in these packages and others already loaded.">
 </div>
@@ -825,7 +825,7 @@ Attaching package: 'MASS'</code></pre>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-objects-enviro" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James.">
+<div id="fig-img-objects-enviro" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-objects-enviro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/objects-enviro.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Example of objects in the environment, for example showing values as age equals 30 and name equals James.">
 </div>
@@ -902,7 +902,7 @@ Figure&nbsp;1.4: Objects in the environment. Feel free to change your numbers an
 <p>You can do this by clicking on the top menu <strong><code>Tools &gt;&gt; Global Options...</code></strong> and then deselecting boxes so that your General box looks like Figure <a href="#fig-img-options" class="quarto-xref">Figure&nbsp;<span>1.5</span></a> and applying the changes to save your selections.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-options" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never.">
+<div id="fig-img-options" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/global_options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Global options in RStudio where you can see the General tab. For example, we untick Restore RData into workspace at startup, and set Save workspace to .RData on exit to Never.">
 </div>
@@ -949,7 +949,7 @@ Figure&nbsp;1.5: Global options - you want to make your global options look simi
 <p>This last activity shows a quick way to restart R from inside RStudio. On the Top Menu, click <strong><code>Session &gt;&gt; Restart R</code></strong> like Figure <a href="#fig-img-session" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-session" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Highlighting how to restart R by using the menus Session >> Restart R.">
+<div id="fig-img-session" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Highlighting how to restart R by using the menus Session >> Restart R." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-session-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/new_session.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Highlighting how to restart R by using the menus Session >> Restart R.">
 </div>
@@ -1124,7 +1124,7 @@ Figure&nbsp;1.6: Restarting your R session from within RStudio.
 <p>We missed the final bracket, so we start the function name <code>rnorm(</code>, enter our arguments, but there is no closing bracket. You will see in the console like Figure <a href="#fig-img-unfinished-bracket" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>, there is a little <code>+</code> symbol and you can enter new code, but there is no output.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-img-unfinished-bracket" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input.">
+<div id="fig-img-unfinished-bracket" class="quarto-float quarto-figure quarto-figure-center anchored" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-img-unfinished-bracket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/unfinished-bracket.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="In the R console, you can see rnorm(n = 10, mean = 5, sd = 1 types into the console on one line but no output. The second line just shows the + symbol for expecting more input.">
 </div>

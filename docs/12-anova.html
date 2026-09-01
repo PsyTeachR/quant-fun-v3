@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Materials for the MSc Conversion Research Methods 1 and 2 courses at the University of Glasgow School of Psychology &amp; Neuroscience.">
 <title>12&nbsp; One-way ANOVA – Fundamentals of Quantitative Analysis</title>
@@ -93,14 +93,14 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-5a2acb6f4ed5aeb23a104ba421924b87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3ef0dc11fbe9a93113d104f6ec40ffea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-978cc8d5dd5d9d5454ecb7aa9035592b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec624fd271699fd99ed06233d2577880.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-907e2612f73bf321301ed99ac5a3e008.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -760,7 +760,7 @@ gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
 </div>
 </section></section><section id="anova-a6" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="anova-a6">
 <span class="header-section-number">12.2</span> One-way ANOVA</h2>
-<p>Now we can run the one-way ANOVA using <code>aov_ez()</code> from the <pkg>afex</pkg> package and save it to the object <code>mod</code>. As well as running the ANOVA, the <code>aov_ez()</code> function also conducts a Levene’s test for homogeneity of variance so that we can test our final assumption.</p>
+<p>Now we can run the one-way ANOVA using <code>aov_ez()</code> from the <pkg>afex</pkg> package and save it to the object <code>mod</code>.</p>
 <section id="activity-4---running-a-one-way-anova-using-afex" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="activity-4---running-a-one-way-anova-using-afex">
 <span class="header-section-number">12.2.1</span> Activity 4 - Running a one-way ANOVA using afex</h3>
 <p><code>aov_ez()</code> will likely produce some messages that look like errors, do not worry about these, they are just letting you know what it’s done. Run the code below to view the results of the ANOVA.</p>
@@ -787,12 +787,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1</code></pre>
 <p>Just like with the t-tests and correlations, we can use <code>tidy()</code> to make the output easier to work with. Run the below code to transform the output. Do not worry about the warning message, it is just telling you it does not know how to automatically rename the columns so it will keep the original names.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mod_output <span class="ot">&lt;-</span> mod<span class="sc">$</span>anova_table <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">tidy</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The column names num.Df, den.Df, MSE, and ges in ANOVA output were not
-recognized or transformed.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mod_output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">tidy</span>()</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>mod_output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -839,13 +836,13 @@ recognized or transformed.</code></pre>
 <p>You should refer to the lecture for more information on what each variable means and how it is calculated.</p>
 <ul>
 <li><p>Is the overall effect of Condition significant? <select class="webex-select"><option value="blank"></option>
-<option value="answer">Yes</option>
-<option value="">No</option></select></p></li>
+<option value="">No</option>
+<option value="answer">Yes</option></select></p></li>
 <li><p>What is the F-statistics to 2 decimal places? <input class="webex-solveme nospaces" size="4" data-answer="[&quot;3.79&quot;]"></p></li>
 <li><p>According to the rules of thumb, the effect size is <select class="webex-select"><option value="blank"></option>
+<option value="answer">Large</option>
 <option value="">Small</option>
-<option value="">Medium</option>
-<option value="answer">Large</option></select></p></li>
+<option value="">Medium</option></select></p></li>
 </ul></section><section id="anova-a7" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="anova-a7">
 <span class="header-section-number">12.2.2</span> Activity 5 - Checking assumptions for ANOVA</h3>
 <p>To test the assumptions, we must use the model we created with <code>aov_ez()</code>. For a one-way independent ANOVA, the assumptions are the same as for a Student t-test / regression model with a categorical predictor:</p>
@@ -857,8 +854,8 @@ recognized or transformed.</code></pre>
 </ol>
 <p>We know that 1 and 2 are met because of the design of our study. To test 3, we can look at the qq-plot of the residuals. Instead of saving just the model object, we must specifically select the <code>aov</code> component and run our diagnostic plots.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>aov, </span>
-<span id="cb9-2"><a href="#cb9-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>aov, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>     <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -872,8 +869,8 @@ Figure&nbsp;12.1: qq-plot for model residuals.
 </div>
 <p>The qq-plot shows the assumption of normality might not be ideal. Is this a problem? If the sample sizes for each group are equal, then ANOVA is robust to violations of both normality and of homogeneity of variance. If you are interested, there is a good discussion of these issues in <span class="citation" data-cites="blanca_effect_2018">Blanca et al. (<a href="references.html#ref-blanca_effect_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="knief_violating_2021">Knief &amp; Forstmeier (<a href="references.html#ref-knief_violating_2021" role="doc-biblioref">2021</a>)</span>. We can check how many participants are in each condition using <code>count()</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>james_data <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">count</span>(Condition)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>james_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">count</span>(Condition)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -906,8 +903,8 @@ Figure&nbsp;12.1: qq-plot for model residuals.
 <p>Thankfully, the sample sizes are equal, so we should be OK to proceed with the ANOVA. It is not clear whether normality was checked in the original paper.</p>
 <p>For the last assumption, we can test homogeneity of variance by checking the third diagnostic plot for the scale against location.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>aov, </span>
-<span id="cb11-2"><a href="#cb11-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>aov, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>     <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-homogeneity" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-homogeneity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -938,7 +935,7 @@ Note
 <div class="callout-body-container callout-body">
 <p>The <code>check_model()</code> function from <pkg>performance</pkg> also works here, so you can see what it looks like if you run:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">check_model</span>(mod<span class="sc">$</span>aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">check_model</span>(mod<span class="sc">$</span>aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -947,11 +944,11 @@ Note
 <p>For post-hoc comparisons, the paper appears to have computed Welch t-tests but there is no mention of any multiple comparison correction. We could reproduce these results by using <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> for each of the contrasts.</p>
 <p>For example, to compare condition 1 (the control group) with condition 2 (the reactivation plus tetris group) we could run:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>james_data <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span> <span class="co"># ignore unused factor levels</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">t.test</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb13-5"><a href="#cb13-5"></a>         <span class="at">data =</span> .)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>james_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span> <span class="co"># ignore unused factor levels</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">t.test</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb11-5"><a href="#cb11-5"></a>         <span class="at">data =</span> .)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -983,14 +980,14 @@ Important
 <p>First, we use <code>emmeans()</code> to run the comparisons and then we can pull out the contrasts and use <code>tidy()</code> to make it easier to work with.</p>
 <p>Run the code below. Which conditions are significantly different from each other? Are any of the comparisons different from the ones reported in the paper now that a correction for multiple comparisons has been applied?</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>mod_pairwise <span class="ot">&lt;-</span><span class="fu">emmeans</span>(mod, </span>
-<span id="cb15-2"><a href="#cb15-2"></a>                       pairwise <span class="sc">~</span> Condition, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>                       <span class="at">adjust =</span> <span class="st">"bonferroni"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a>mod_contrasts <span class="ot">&lt;-</span> mod_pairwise<span class="sc">$</span>contrasts <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">tidy</span>()</span>
-<span id="cb15-7"><a href="#cb15-7"></a></span>
-<span id="cb15-8"><a href="#cb15-8"></a>mod_contrasts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>mod_pairwise <span class="ot">&lt;-</span><span class="fu">emmeans</span>(mod, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>                       pairwise <span class="sc">~</span> Condition, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>                       <span class="at">adjust =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>mod_contrasts <span class="ot">&lt;-</span> mod_pairwise<span class="sc">$</span>contrasts <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">tidy</span>()</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a>mod_contrasts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -1100,10 +1097,10 @@ Warning
 <p>On the basis of the effect size of d = 1.14 from Experiment 1, we assumed a large effect size of f = 0.4. A sample size of 18 per condition was required in order to ensure an 80% power to detect this difference at the 5% significance level.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="dv">4</span>, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>               <span class="at">f =</span> .<span class="dv">4</span>, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>               <span class="at">sig.level =</span> .<span class="dv">05</span>, </span>
-<span id="cb16-4"><a href="#cb16-4"></a>               <span class="at">power =</span> .<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="dv">4</span>, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>               <span class="at">f =</span> .<span class="dv">4</span>, </span>
+<span id="cb14-3"><a href="#cb14-3"></a>               <span class="at">sig.level =</span> .<span class="dv">05</span>, </span>
+<span id="cb14-4"><a href="#cb14-4"></a>               <span class="at">power =</span> .<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      Balanced one-way analysis of variance power calculation 
@@ -1119,48 +1116,48 @@ NOTE: n is number in each group</code></pre>
 </div>
 <p>We have already got the effect size for the overall ANOVA, however, we should also really calculate Cohen’s d using <code>cohens_d()</code> from <pkg>effectsize</pkg> for each of the pairwise comparisons. This code is a little long because you need to do it separately for each comparison, bind them all together and then add them to <code>mod_contrasts</code> - just make sure your understand which bits of the code you would need to change to run this on different data. As we are binding rows and columns rather than joining, it is critical the comparisons are already in the correct order.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calculate Cohen's d for all comparisons</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>d_1_2 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-3"><a href="#cb18-3"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-4"><a href="#cb18-4"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-5"><a href="#cb18-5"></a>                   <span class="fu">droplevels</span>())</span>
-<span id="cb18-6"><a href="#cb18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7"></a>d_1_3 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-8"><a href="#cb18-8"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-9"><a href="#cb18-9"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-10"><a href="#cb18-10"></a>                   <span class="fu">droplevels</span>()) </span>
-<span id="cb18-11"><a href="#cb18-11"></a></span>
-<span id="cb18-12"><a href="#cb18-12"></a>d_1_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-13"><a href="#cb18-13"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-14"><a href="#cb18-14"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-15"><a href="#cb18-15"></a>                   <span class="fu">droplevels</span>())</span>
-<span id="cb18-16"><a href="#cb18-16"></a></span>
-<span id="cb18-17"><a href="#cb18-17"></a>d_2_3 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-18"><a href="#cb18-18"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-19"><a href="#cb18-19"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-20"><a href="#cb18-20"></a>                   <span class="fu">droplevels</span>())</span>
-<span id="cb18-21"><a href="#cb18-21"></a></span>
-<span id="cb18-22"><a href="#cb18-22"></a>d_2_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-23"><a href="#cb18-23"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-24"><a href="#cb18-24"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-25"><a href="#cb18-25"></a>                   <span class="fu">droplevels</span>())</span>
-<span id="cb18-26"><a href="#cb18-26"></a></span>
-<span id="cb18-27"><a href="#cb18-27"></a>d_3_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
-<span id="cb18-28"><a href="#cb18-28"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
-<span id="cb18-29"><a href="#cb18-29"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-30"><a href="#cb18-30"></a>                   <span class="fu">droplevels</span>())</span>
-<span id="cb18-31"><a href="#cb18-31"></a></span>
-<span id="cb18-32"><a href="#cb18-32"></a><span class="co"># Bind all the comparisons in the order of mod_contrasts</span></span>
-<span id="cb18-33"><a href="#cb18-33"></a>pairwise_ds <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(d_1_2, </span>
-<span id="cb18-34"><a href="#cb18-34"></a>                         d_1_3, </span>
-<span id="cb18-35"><a href="#cb18-35"></a>                         d_1_4,</span>
-<span id="cb18-36"><a href="#cb18-36"></a>                         d_2_3, </span>
-<span id="cb18-37"><a href="#cb18-37"></a>                         d_2_4, </span>
-<span id="cb18-38"><a href="#cb18-38"></a>                         d_3_4)</span>
-<span id="cb18-39"><a href="#cb18-39"></a></span>
-<span id="cb18-40"><a href="#cb18-40"></a><span class="co"># Bind this object to the mod_contrasts object</span></span>
-<span id="cb18-41"><a href="#cb18-41"></a>mod_contrasts <span class="ot">&lt;-</span> mod_contrasts <span class="sc">%&gt;%</span></span>
-<span id="cb18-42"><a href="#cb18-42"></a>  <span class="fu">bind_cols</span>(pairwise_ds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Calculate Cohen's d for all comparisons</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>d_1_2 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-3"><a href="#cb16-3"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-4"><a href="#cb16-4"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5"></a>                   <span class="fu">droplevels</span>())</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>d_1_3 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-8"><a href="#cb16-8"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-9"><a href="#cb16-9"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10"></a>                   <span class="fu">droplevels</span>()) </span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a>d_1_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-13"><a href="#cb16-13"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-14"><a href="#cb16-14"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-15"><a href="#cb16-15"></a>                   <span class="fu">droplevels</span>())</span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a>d_2_3 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-18"><a href="#cb16-18"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-19"><a href="#cb16-19"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-20"><a href="#cb16-20"></a>                   <span class="fu">droplevels</span>())</span>
+<span id="cb16-21"><a href="#cb16-21"></a></span>
+<span id="cb16-22"><a href="#cb16-22"></a>d_2_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-23"><a href="#cb16-23"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-24"><a href="#cb16-24"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-25"><a href="#cb16-25"></a>                   <span class="fu">droplevels</span>())</span>
+<span id="cb16-26"><a href="#cb16-26"></a></span>
+<span id="cb16-27"><a href="#cb16-27"></a>d_3_4 <span class="ot">&lt;-</span> <span class="fu">cohens_d</span>(intrusions <span class="sc">~</span> Condition, </span>
+<span id="cb16-28"><a href="#cb16-28"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(james_data, </span>
+<span id="cb16-29"><a href="#cb16-29"></a>                               Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-30"><a href="#cb16-30"></a>                   <span class="fu">droplevels</span>())</span>
+<span id="cb16-31"><a href="#cb16-31"></a></span>
+<span id="cb16-32"><a href="#cb16-32"></a><span class="co"># Bind all the comparisons in the order of mod_contrasts</span></span>
+<span id="cb16-33"><a href="#cb16-33"></a>pairwise_ds <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(d_1_2, </span>
+<span id="cb16-34"><a href="#cb16-34"></a>                         d_1_3, </span>
+<span id="cb16-35"><a href="#cb16-35"></a>                         d_1_4,</span>
+<span id="cb16-36"><a href="#cb16-36"></a>                         d_2_3, </span>
+<span id="cb16-37"><a href="#cb16-37"></a>                         d_2_4, </span>
+<span id="cb16-38"><a href="#cb16-38"></a>                         d_3_4)</span>
+<span id="cb16-39"><a href="#cb16-39"></a></span>
+<span id="cb16-40"><a href="#cb16-40"></a><span class="co"># Bind this object to the mod_contrasts object</span></span>
+<span id="cb16-41"><a href="#cb16-41"></a>mod_contrasts <span class="ot">&lt;-</span> mod_contrasts <span class="sc">%&gt;%</span></span>
+<span id="cb16-42"><a href="#cb16-42"></a>  <span class="fu">bind_cols</span>(pairwise_ds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1184,7 +1181,7 @@ Warning
 <span class="header-section-number">12.3</span> Reporting the results of your ANOVA</h2>
 <p>The below code replicates the write-up in the paper, although has changed the Welch t-test to the pairwise comparisons from <code>emmeans()</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>Second, and critically, <span class="cf">for</span> the <span class="dv">7</span><span class="sc">-</span>day diary postintervention, there was a significant difference between groups <span class="cf">in</span> overall intrusion frequency <span class="cf">in</span> daily life, <span class="fu">F</span>(<span class="st">`</span><span class="at">r mod_output$num.Df</span><span class="st">`</span>, <span class="st">`</span><span class="at">r mod_output$den.Df</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_output$statistic %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_output$p.value %&gt;% round(3)</span><span class="st">`</span>, ηp2 <span class="ot">=</span> .<span class="st">`</span><span class="at">r mod_output$ges %&gt;% round(2)</span><span class="st">`</span>. Planned comparisons demonstrated that relative to the no<span class="sc">-</span>task control group, only those <span class="cf">in</span> the reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[1]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[1] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[1] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[1] %&gt;% round(2)</span><span class="st">`</span>, experienced significantly fewer intrusive memories; this finding replicated Experiment <span class="fl">1.</span> The reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group had significantly fewer intrusive thoughts than the reactivation<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[5]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[5] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[5] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[5] %&gt;% round(2)</span><span class="st">`</span>. Further, there were no significant differences between the reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group and the Tetris<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[4]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[4] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[4] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[4] %&gt;% round(2)</span><span class="st">`</span>, the no<span class="sc">-</span>task control group and the reactivation<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[3]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[3] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[3] %&gt;% round(2)</span><span class="st">`</span>, or between the no<span class="sc">-</span>task control group and the Tetris<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[2]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[2] %&gt;% round(2)</span><span class="st">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Second, and critically, <span class="cf">for</span> the <span class="dv">7</span><span class="sc">-</span>day diary postintervention, there was a significant difference between groups <span class="cf">in</span> overall intrusion frequency <span class="cf">in</span> daily life, <span class="fu">F</span>(<span class="st">`</span><span class="at">r mod_output$num.Df</span><span class="st">`</span>, <span class="st">`</span><span class="at">r mod_output$den.Df</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_output$statistic %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_output$p.value %&gt;% round(3)</span><span class="st">`</span>, ηp2 <span class="ot">=</span> .<span class="st">`</span><span class="at">r mod_output$ges %&gt;% round(2)</span><span class="st">`</span>. Planned comparisons demonstrated that relative to the no<span class="sc">-</span>task control group, only those <span class="cf">in</span> the reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[1]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[1] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[1] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[1] %&gt;% round(2)</span><span class="st">`</span>, experienced significantly fewer intrusive memories; this finding replicated Experiment <span class="fl">1.</span> The reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group had significantly fewer intrusive thoughts than the reactivation<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[5]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[5] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[5] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[5] %&gt;% round(2)</span><span class="st">`</span>. Further, there were no significant differences between the reactivation<span class="sc">-</span>plus<span class="sc">-</span>Tetris group and the Tetris<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[4]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[4] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[4] %&gt;% round(2)</span><span class="st">`</span>, d <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$Cohens_d[4] %&gt;% round(2)</span><span class="st">`</span>, the no<span class="sc">-</span>task control group and the reactivation<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[3]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[3] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[3] %&gt;% round(2)</span><span class="st">`</span>, or between the no<span class="sc">-</span>task control group and the Tetris<span class="sc">-</span>only group, <span class="fu">t</span>(<span class="st">`</span><span class="at">r mod_contrasts$df[2]</span><span class="st">`</span>) <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p <span class="ot">=</span> <span class="st">`</span><span class="at">r mod_contrasts$adj.p.value[2] %&gt;% round(2)</span><span class="st">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If you add that code to your Quarto document, rendering it should create the following:</p>
 <blockquote class="blockquote">
