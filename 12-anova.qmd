@@ -1,5 +1,12 @@
 # One-way ANOVA
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      echo = TRUE)
+
+```
+
 This chapter marks the beginning of the content you cover in Research Methods 2. You should be familiar with all the content from Research Methods 1 we covered in Chapters 1 to 11, so please revisit previous chapters if you need a refresher. 
 
 In the course materials, you have worked through manually calculating an ANOVA to gain a conceptual understanding. However, when you run an ANOVA, typically the computer does all of these calculations for you. In this chapter, we will show you how to run a one-way ANOVA using the <pkg>afex</pkg> package and post-hoc tests using the <pkg>emmeans</pkg> package. 
@@ -205,7 +212,7 @@ We can see from this plot that there are a few potential outliers in each of the
 
 ## One-way ANOVA {#anova-a6}
 
-Now we can run the one-way ANOVA using `aov_ez()` from the <pkg>afex</pkg> package and save it to the object `mod`. As well as running the ANOVA, the `aov_ez()` function also conducts a Levene's test for homogeneity of variance so that we can test our final assumption.
+Now we can run the one-way ANOVA using `aov_ez()` from the <pkg>afex</pkg> package and save it to the object `mod`.
 
 ### Activity 4 - Running a one-way ANOVA using afex
 
@@ -243,11 +250,11 @@ mod_output
 
 You should refer to the lecture for more information on what each variable means and how it is calculated.
 
-- Is the overall effect of Condition significant? `r mcq(c(answer = "Yes", "No"))`
+- Is the overall effect of Condition significant? `r mcq(sample(c(answer = "Yes", "No")))`
 
 - What is the F-statistics to 2 decimal places? `r fitb("3.79")`
 
-- According to the rules of thumb, the effect size is `r mcq(c("Small", "Medium", answer = "Large"))`
+- According to the rules of thumb, the effect size is `r mcq(sample(c("Small", "Medium", answer = "Large")))`
 
 ### Activity 5 - Checking assumptions for ANOVA {#anova-a7}
 
